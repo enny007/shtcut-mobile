@@ -1,3 +1,1 @@
-# shtcut_mobile
-
-A new Flutter project.
+# shtcut-mobile

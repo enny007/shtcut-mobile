@@ -1,1 +1,0 @@
-# shtcut-mobile

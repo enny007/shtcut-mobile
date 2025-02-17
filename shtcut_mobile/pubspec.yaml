@@ -7,8 +7,12 @@ environment:
   sdk: '>=3.0.3 <4.0.0'
 
 dependencies:
+  dio: ^5.8.0+1
   flutter:
     sdk: flutter
+  flutter_screenutil: ^5.9.3
+  gap: ^3.0.1
+  google_fonts: ^6.2.1
   stacked: ^3.4.0
   stacked_services: ^1.1.0
 
@@ -22,4 +26,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/svgs/
 
