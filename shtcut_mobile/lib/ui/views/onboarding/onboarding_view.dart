@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import 'package:shtcut_mobile/app/app.router.dart';
+import 'package:shtcut_mobile/app/app_setup.dart';
 import 'package:shtcut_mobile/ui/common/app_colors.dart';
 import 'package:shtcut_mobile/ui/global_widgets/app_button.dart';
 import 'package:shtcut_mobile/ui/utils/extensions.dart';
@@ -53,10 +55,9 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
                           Gap(15.h),
                           Text(
                             data['title']!,
-                            style: context.displaySmall!.copyWith(
+                            style: context.displayMedium!.copyWith(
                               color: kcTextHeadingColor,
                               fontWeight: FontWeight.w700,
-                              fontSize: 28.sp,
                             ),
                           ),
                           Gap(12.h),
@@ -88,7 +89,9 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
                 ),
                 child: AppButton(
                   callback: () {
-                    viewModel.nextPage();
+                    viewModel.currentPage == 3
+                        ? navRouter.navigateToSignUpView()
+                        : viewModel.nextPage();
                   },
                   text: viewModel.currentPage ==
                           viewModel.onboardingData.length - 1
@@ -103,6 +106,7 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
                   horizontal: 15.w,
                 ),
                 child: AppButton(
+                  verticalPadding: 5.h,
                   callback: () {
                     viewModel.currentPage == 3
                         ? () {}

@@ -5,6 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 const Color kcPrimaryColor = Color(0xFF2F64E9);
 const Color kcTextHeadingColor = Color(0xFF2B2829);
 const Color kcTextColor = Color(0xFF5A5555);
+const Color kcPrimaryTextColor = Color(0xFF101828);
+const Color kcSubHeadingColor = Color(0xFF393B41);
 // const Color kcPrimaryColorDark = Color(0xFF300151);
 // const Color kcDarkGreyColor = Color(0xFF1A1B1E);
 // const Color kcMediumGrey = Color(0xFF474A54);
@@ -46,32 +48,32 @@ class AppTheme {
         // todayBackgroundColor: WidgetStatePropertyAll(kcSecondaryColor),
       ),
       textTheme: GoogleFonts.plusJakartaSansTextTheme().copyWith(
-        displayLarge: GoogleFonts.openSans(
+        displayLarge: GoogleFonts.plusJakartaSans(
           fontSize: 32.sp,
           fontWeight: FontWeight.w700,
           color: kcTextColor,
         ),
-        displayMedium: GoogleFonts.openSans(
+        displayMedium: GoogleFonts.plusJakartaSans(
           fontSize: 24.sp,
           fontWeight: FontWeight.w400,
           color: kcTextColor,
         ),
-        displaySmall: GoogleFonts.openSans(
+        displaySmall: GoogleFonts.plusJakartaSans(
           fontSize: 20.sp,
           fontWeight: FontWeight.w500,
           color: kcTextColor,
         ),
-        bodyLarge: GoogleFonts.openSans(
+        bodyLarge: GoogleFonts.plusJakartaSans(
           fontSize: 16.sp,
           fontWeight: FontWeight.w500,
           color: kcTextColor,
         ),
-        bodyMedium: GoogleFonts.openSans(
+        bodyMedium: GoogleFonts.plusJakartaSans(
           fontSize: 14.sp,
           fontWeight: FontWeight.w500,
           color: kcTextColor,
         ),
-        bodySmall: GoogleFonts.openSans(
+        bodySmall: GoogleFonts.plusJakartaSans(
           fontSize: 12.sp,
           fontWeight: FontWeight.w500,
           color: kcTextColor,
@@ -112,7 +114,7 @@ class AppTheme {
           vertical: 16.h,
           horizontal: 16.w,
         ),
-        hintStyle: GoogleFonts.openSans(color: Colors.grey),
+        hintStyle: GoogleFonts.plusJakartaSans(color: Colors.grey),
       ),
       colorScheme: const ColorScheme.light(
         primary: kcPrimaryColor,
