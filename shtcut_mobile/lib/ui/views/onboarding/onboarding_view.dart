@@ -109,7 +109,7 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
                   verticalPadding: 5.h,
                   callback: () {
                     viewModel.currentPage == 3
-                        ? () {}
+                        ? navRouter.navigateToSignInView()
                         : viewModel.skipOnboarding();
                   },
                   text: viewModel.currentPage ==

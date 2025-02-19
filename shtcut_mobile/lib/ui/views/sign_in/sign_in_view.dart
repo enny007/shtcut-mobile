@@ -10,15 +10,15 @@ import 'package:shtcut_mobile/ui/common/app_colors.dart';
 import 'package:shtcut_mobile/ui/global_widgets/app_button.dart';
 import 'package:shtcut_mobile/ui/global_widgets/app_text_field.dart';
 import 'package:shtcut_mobile/ui/utils/extensions.dart';
-import 'package:shtcut_mobile/ui/views/sign_up/sign_up_view_model.dart';
+import 'package:shtcut_mobile/ui/views/sign_in/sign_in_view_model.dart';
 import 'package:stacked/stacked.dart';
 
-class SignUpView extends StackedView<SignUpViewModel> {
-  const SignUpView({super.key});
+class SignInView extends StackedView<SignInViewModel> {
+  const SignInView({super.key});
 
   @override
   Widget builder(
-      BuildContext context, SignUpViewModel viewModel, Widget? child) {
+      BuildContext context, SignInViewModel viewModel, Widget? child) {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -41,7 +41,7 @@ class SignUpView extends StackedView<SignUpViewModel> {
           child: Column(
             children: [
               Text(
-                'Create Account',
+                'Welcome back',
                 style: context.displayMedium!.copyWith(
                   fontWeight: FontWeight.w600,
                   color: kcTextHeadingColor,
@@ -49,7 +49,7 @@ class SignUpView extends StackedView<SignUpViewModel> {
               ),
               Gap(2.h),
               Text(
-                'Register Using Your Credentials',
+                'Log in to my account',
                 style: context.bodyMedium!.copyWith(
                   fontWeight: FontWeight.w500,
                 ),
@@ -61,6 +61,7 @@ class SignUpView extends StackedView<SignUpViewModel> {
                   return null;
                 },
                 label: 'Email',
+                hintText: 'My Email',
                 prefixIcon: SvgPicture.asset(
                   'assets/svgs/email.svg',
                   fit: BoxFit.scaleDown,
@@ -95,72 +96,51 @@ class SignUpView extends StackedView<SignUpViewModel> {
               ),
               Gap(12.h),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SizedBox(
-                    height: 16.h,
-                    width: 16.w,
-                    child: Checkbox(
-                      value: viewModel.acceptedTerms,
-                      onChanged: viewModel.setAcceptedTerms,
-                      checkColor: kcPrimaryColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(4.r),
-                      ),
-                      side: const BorderSide(
-                        color: kcPrimaryColor,
-                        width: 1.67,
-                      ),
-                      fillColor: WidgetStateProperty.resolveWith((states) {
-                        if (states.contains(WidgetState.selected)) {
-                          return const Color(0xffDCE5FB);
-                        }
-                        return const Color(0xffDCE5FB);
-                      }),
+                  Expanded(
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          height: 16.h,
+                          width: 16.w,
+                          child: Checkbox(
+                            value: false,
+                            onChanged: (_) {},
+                            checkColor: kcPrimaryColor,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(4.r),
+                            ),
+                            side: const BorderSide(
+                              color: kcPrimaryColor,
+                              width: 1.67,
+                            ),
+                            fillColor:
+                                WidgetStateProperty.resolveWith((states) {
+                              if (states.contains(WidgetState.selected)) {
+                                return const Color(0xffDCE5FB);
+                              }
+                              return const Color(0xffDCE5FB);
+                            }),
+                          ),
+                        ),
+                        Gap(8.w),
+                        Text(
+                          'Remember me',
+                          style: context.bodySmall!.copyWith(
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  Gap(8.w),
-                  Expanded(
-                    child: RichText(
-                      text: TextSpan(
-                        style: context.bodySmall!.copyWith(
-                          color: Colors.black,
-                        ),
-                        children: [
-                          TextSpan(
-                            text: 'I agree with ',
-                            style: context.bodySmall!.copyWith(
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                          TextSpan(
-                            text: 'Terms & Conditions',
-                            style: context.bodySmall!.copyWith(
-                              color: kcPrimaryColor,
-                              fontWeight: FontWeight.w400,
-                            ),
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = () {
-                                // Handle Terms & Conditions tap
-                              },
-                          ),
-                          TextSpan(
-                            text: ' and ',
-                            style: context.bodySmall!.copyWith(
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                          TextSpan(
-                            text: 'Privacy Policy',
-                            style: context.bodySmall!.copyWith(
-                              color: kcPrimaryColor,
-                              fontWeight: FontWeight.w400,
-                            ),
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = () {
-                                // Handle Privacy Policy tap
-                              },
-                          ),
-                        ],
+                  InkWell(
+                    onTap: () {},
+                    child: Text(
+                      'Forgot Password?',
+                      style: context.bodySmall!.copyWith(
+                        fontWeight: FontWeight.w500,
+                        color: kcPrimaryColor,
                       ),
                     ),
                   ),
@@ -169,9 +149,9 @@ class SignUpView extends StackedView<SignUpViewModel> {
               Gap(24.h),
               AppButton(
                 callback: () {
-                  viewModel.showEmailVerificationSheet();
+                  viewModel.showForgotPasswordSheet();
                 },
-                text: 'Sign Up',
+                text: 'Log In',
                 color: kcPrimaryColor,
               ),
               Gap(22.h),
@@ -256,7 +236,7 @@ class SignUpView extends StackedView<SignUpViewModel> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Already have an account?',
+                    'Don\'t have an account?',
                     style: context.bodySmall!.copyWith(
                       fontSize: 11.sp,
                     ),
@@ -264,10 +244,10 @@ class SignUpView extends StackedView<SignUpViewModel> {
                   Gap(1.w),
                   InkWell(
                     onTap: () {
-                      navRouter.navigateToSignInView();
+                      navRouter.navigateToSignUpView();
                     },
                     child: Text(
-                      'Login',
+                      'Sign Up',
                       style: context.bodySmall!.copyWith(
                         color: kcPrimaryColor,
                         fontSize: 11.sp,
@@ -284,7 +264,7 @@ class SignUpView extends StackedView<SignUpViewModel> {
   }
 
   @override
-  SignUpViewModel viewModelBuilder(BuildContext context) {
-    return SignUpViewModel();
+  SignInViewModel viewModelBuilder(BuildContext context) {
+    return SignInViewModel();
   }
 }

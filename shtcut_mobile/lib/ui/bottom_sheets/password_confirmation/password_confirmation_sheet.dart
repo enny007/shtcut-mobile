@@ -2,17 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
-import 'package:shtcut_mobile/ui/bottom_sheets/forgot_password/forgot_password_model.dart';
+import 'package:shtcut_mobile/ui/bottom_sheets/password_confirmation/password_confirmation_model.dart';
 import 'package:shtcut_mobile/ui/common/app_colors.dart';
 import 'package:shtcut_mobile/ui/global_widgets/app_button.dart';
-import 'package:shtcut_mobile/ui/global_widgets/app_text_field.dart';
 import 'package:shtcut_mobile/ui/global_widgets/sheet_widget.dart';
 import 'package:shtcut_mobile/ui/utils/extensions.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-class ForgotPasswordSheet extends StackedView<ForgotPasswordModel> {
-  const ForgotPasswordSheet({
+class PasswordConfirmationSheet extends StackedView<PasswordConfirmationModel> {
+  const PasswordConfirmationSheet({
     super.key,
     required this.completer,
     required this.request,
@@ -20,48 +19,32 @@ class ForgotPasswordSheet extends StackedView<ForgotPasswordModel> {
   final Function(SheetResponse)? completer;
   final SheetRequest request;
   @override
-  Widget builder(
-      BuildContext context, ForgotPasswordModel viewModel, Widget? child) {
+  Widget builder(BuildContext context, PasswordConfirmationModel viewModel,
+      Widget? child) {
     return SheetWidget(
       icon: SvgPicture.asset('assets/svgs/password_icon.svg'),
       children: [
         Text(
-          'Forgot Password',
+          'Password Has Been Created',
           style: context.displaySmall!.copyWith(
             fontWeight: FontWeight.w600,
             color: kcPrimaryTextColor,
           ),
+          textAlign: TextAlign.center,
         ),
         Gap(16.h),
         Text(
-          'Reset password code will be sent to your email to reset your password.',
+          'To log in to your account, click the Sign in button and enter your email along with your new password.',
           style: context.bodySmall!.copyWith(
             color: kcSubHeadingColor,
           ),
           textAlign: TextAlign.center,
         ),
-        Gap(16.h),
-        AppTextField(
-          controller: viewModel.emailController,
-          validator: (_) {
-            return null;
-          },
-          label: 'Email',
-          prefixIcon: SvgPicture.asset(
-            'assets/svgs/email.svg',
-            fit: BoxFit.scaleDown,
-          ),
-          hintText: 'My Email',
-        ),
-        Gap(32.h),
+        Gap(70.h),
         AppButton(
-          text: 'Send Verification Code',
+          text: 'Set up my social media',
           callback: () {
-            completer!(
-              SheetResponse(
-                confirmed: true,
-              ),
-            );
+            completer!(SheetResponse(confirmed: true));
           },
           color: kcPrimaryColor,
         ),
@@ -70,7 +53,7 @@ class ForgotPasswordSheet extends StackedView<ForgotPasswordModel> {
   }
 
   @override
-  ForgotPasswordModel viewModelBuilder(BuildContext context) {
-    return ForgotPasswordModel();
+  PasswordConfirmationModel viewModelBuilder(BuildContext context) {
+    return PasswordConfirmationModel();
   }
 }
