@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart'
     hide EdgeInsetsExtension;
@@ -134,8 +133,10 @@ class SignInView extends StackedView<SignInViewModel> {
                       ],
                     ),
                   ),
-                  InkWell(
-                    onTap: () {},
+                  GestureDetector(
+                    onTap: () {
+                      viewModel.showForgotPasswordSheet();
+                    },
                     child: Text(
                       'Forgot Password?',
                       style: context.bodySmall!.copyWith(
@@ -149,7 +150,7 @@ class SignInView extends StackedView<SignInViewModel> {
               Gap(24.h),
               AppButton(
                 callback: () {
-                  viewModel.showForgotPasswordSheet();
+                  viewModel.navigateToConnectAccount();
                 },
                 text: 'Log In',
                 color: kcPrimaryColor,

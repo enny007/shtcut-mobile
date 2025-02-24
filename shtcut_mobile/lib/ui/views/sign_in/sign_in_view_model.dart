@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shtcut_mobile/app/app.bottomsheets.dart';
+import 'package:shtcut_mobile/app/app.router.dart';
 import 'package:shtcut_mobile/app/app_setup.dart';
 import 'package:stacked/stacked.dart';
 
@@ -50,6 +51,10 @@ class SignInViewModel extends BaseViewModel {
       variant: BottomSheetType.passwordConfirmation,
     );
     if (response?.confirmed == true) {}
+  }
+
+  void navigateToConnectAccount() {
+    navRouter.navigateToConnectAccountsView();
   }
 
   @override

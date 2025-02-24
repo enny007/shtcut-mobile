@@ -6,6 +6,7 @@ import 'package:shtcut_mobile/ui/bottom_sheets/password_confirmation/password_co
 import 'package:shtcut_mobile/ui/bottom_sheets/set_new_password/set_new_password_sheet.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/welcome/welcome_sheet.dart';
 import 'package:shtcut_mobile/ui/dialogs/info_alert/info_alert_dialog.dart';
+import 'package:shtcut_mobile/ui/views/connect_accounts/connect_accounts_view.dart';
 import 'package:shtcut_mobile/ui/views/onboarding/onboarding_view.dart';
 import 'package:shtcut_mobile/ui/views/sign_in/sign_in_view.dart';
 import 'package:shtcut_mobile/ui/views/sign_up/sign_up_view.dart';
@@ -31,6 +32,10 @@ import 'package:stacked_services/stacked_services.dart';
     ),
     CustomRoute(
       page: SignInView,
+      transitionsBuilder: TransitionsBuilders.fadeIn,
+    ),
+    CustomRoute(
+      page: ConnectAccountsView,
       transitionsBuilder: TransitionsBuilders.fadeIn,
     ),
     // @stacked-route
