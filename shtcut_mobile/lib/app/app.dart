@@ -1,3 +1,4 @@
+import 'package:shtcut_mobile/core/service/bottom_bar_service.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/email_verification/email_verification_sheet.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/forgot_password/forgot_password_otp_sheet.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/forgot_password/forgot_password_sheet.dart';
@@ -44,6 +45,7 @@ import 'package:stacked_services/stacked_services.dart';
     LazySingleton(classType: BottomSheetService),
     LazySingleton(classType: DialogService),
     LazySingleton(classType: NavigationService),
+    LazySingleton(classType: BottomBarService),
     // @stacked-service
   ],
   bottomsheets: [

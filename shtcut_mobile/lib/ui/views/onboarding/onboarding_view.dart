@@ -106,7 +106,6 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
                   horizontal: 15.w,
                 ),
                 child: AppButton(
-                  verticalPadding: 5.h,
                   callback: () {
                     viewModel.currentPage == 3
                         ? navRouter.navigateToSignInView()

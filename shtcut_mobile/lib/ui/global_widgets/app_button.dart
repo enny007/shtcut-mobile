@@ -35,7 +35,7 @@ class AppButton extends StatelessWidget {
     return GestureDetector(
       onTap: callback,
       child: Container(
-        height: height?.h ?? 42.h,
+        height: height?.h ?? 50.h,
         padding: EdgeInsets.symmetric(
           vertical: verticalPadding,
           horizontal: horizontalPadding,

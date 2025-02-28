@@ -8,7 +8,7 @@ import 'package:shtcut_mobile/ui/utils/extensions.dart';
 class AppTextField extends StatelessWidget {
   final String? labelText;
   final String hintText;
-  final TextStyle hintStyle;
+  final TextStyle? hintStyle;
   final bool isPassword;
   final TextInputType keyboardType;
   final TextEditingController controller;
@@ -55,7 +55,7 @@ class AppTextField extends StatelessWidget {
     this.labelColor = kcTextColor,
     this.labelText,
     this.hintText = '',
-    this.hintStyle = const TextStyle(),
+    this.hintStyle,
     this.isPassword = false,
     this.maxLines = 1,
     this.maxLength,
@@ -114,7 +114,11 @@ class AppTextField extends StatelessWidget {
             ),
             decoration: InputDecoration(
               hintText: hintText,
-              hintStyle: hintStyle,
+              hintStyle: hintStyle ??
+                  context.bodyMedium!.copyWith(
+                    color: Colors.grey,
+                    fontWeight: FontWeight.w400,
+                  ),
               errorText: errorText == '' ? null : errorText,
               prefixIcon: prefixIcon != null
                   ? IconTheme(

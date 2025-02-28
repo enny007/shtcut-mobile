@@ -22,6 +22,7 @@ class PasswordConfirmationSheet extends StackedView<PasswordConfirmationModel> {
   Widget builder(BuildContext context, PasswordConfirmationModel viewModel,
       Widget? child) {
     return SheetWidget(
+      height: 300.h,
       icon: SvgPicture.asset('assets/svgs/password_icon.svg'),
       children: [
         Text(

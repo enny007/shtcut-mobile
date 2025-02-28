@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:shtcut_mobile/app/app.bottomsheets.dart';
 import 'package:shtcut_mobile/app/app_setup.dart';
 import 'package:stacked/stacked.dart';
@@ -8,6 +9,9 @@ class SignUpViewModel extends BaseViewModel {
 
   bool get isPasswordObscured => _isPasswordObscured;
   bool get acceptedTerms => _acceptedTerms;
+
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   void togglePasswordVisibility() {
     _isPasswordObscured = !_isPasswordObscured;
@@ -36,5 +40,12 @@ class SignUpViewModel extends BaseViewModel {
       variant: BottomSheetType.welcome,
       isScrollControlled: false,
     );
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
   }
 }

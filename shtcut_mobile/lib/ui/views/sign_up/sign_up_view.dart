@@ -56,11 +56,12 @@ class SignUpView extends StackedView<SignUpViewModel> {
               ),
               Gap(24.h),
               AppTextField(
-                controller: TextEditingController(),
+                controller: viewModel.emailController,
                 validator: (value) {
                   return null;
                 },
                 label: 'Email',
+                hintText: 'Email',
                 prefixIcon: SvgPicture.asset(
                   'assets/svgs/email.svg',
                   fit: BoxFit.scaleDown,
@@ -68,12 +69,13 @@ class SignUpView extends StackedView<SignUpViewModel> {
               ),
               Gap(24.h),
               AppTextField(
-                controller: TextEditingController(),
+                controller: viewModel.passwordController,
+                obscureText: viewModel.isPasswordObscured,
                 validator: (value) {
                   return null;
                 },
                 label: 'Password',
-                isPassword: viewModel.isPasswordObscured,
+                hintText: 'Password',
                 prefixIcon: SvgPicture.asset(
                   'assets/svgs/password_lock.svg',
                   fit: BoxFit.scaleDown,
