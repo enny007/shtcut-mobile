@@ -54,7 +54,9 @@ class ConnectAccountsView extends StackedView<ConnectAccountsViewModel> {
                     SizedBox(
                       width: 86.w,
                       child: AppButton(
-                        callback: () {},
+                        callback: () {
+                          viewModel.navigateToHome();
+                        },
                         color: Colors.white,
                         radius: 4.r,
                         text: 'Done',

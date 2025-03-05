@@ -1,3 +1,5 @@
+import 'package:shtcut_mobile/app/app.router.dart';
+import 'package:shtcut_mobile/app/app_setup.dart';
 import 'package:stacked/stacked.dart';
 
 class ConnectAccountsViewModel extends BaseViewModel {
@@ -35,4 +37,8 @@ class ConnectAccountsViewModel extends BaseViewModel {
       'title': 'Thread',
     },
   ];
+
+  void navigateToHome() {
+    navRouter.navigateToHomeView();
+  }
 }

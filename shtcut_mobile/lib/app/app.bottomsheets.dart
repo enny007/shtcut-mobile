@@ -7,6 +7,7 @@
 import 'package:stacked_services/stacked_services.dart';
 
 import 'app.locator.dart';
+import '../ui/bottom_sheets/action_sheet/action_sheet.dart';
 import '../ui/bottom_sheets/email_verification/email_verification_sheet.dart';
 import '../ui/bottom_sheets/forgot_password/forgot_password_otp_sheet.dart';
 import '../ui/bottom_sheets/forgot_password/forgot_password_sheet.dart';
@@ -23,6 +24,7 @@ enum BottomSheetType {
   emailVerification,
   setNewPassword,
   passwordConfirmation,
+  action,
 }
 
 void setupBottomSheetUi() {
@@ -43,6 +45,8 @@ void setupBottomSheetUi() {
         SetNewPasswordSheet(request: request, completer: completer),
     BottomSheetType.passwordConfirmation: (context, request, completer) =>
         PasswordConfirmationSheet(request: request, completer: completer),
+    BottomSheetType.action: (context, request, completer) =>
+        ActionSheet(request: request, completer: completer),
   };
 
   bottomsheetService.setCustomSheetBuilders(builders);

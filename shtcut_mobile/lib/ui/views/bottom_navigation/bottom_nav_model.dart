@@ -1,29 +1,39 @@
 import 'package:shtcut_mobile/app/app.locator.dart';
+import 'package:shtcut_mobile/app/app.router.dart';
+import 'package:shtcut_mobile/app/app_setup.dart';
 import 'package:shtcut_mobile/core/service/bottom_bar_service.dart';
 import 'package:stacked/stacked.dart';
 
 class BottomNavLayoutModel extends BaseViewModel {
   final _navigationService = locator<BottomBarService>();
-  
+
   int get currentIndex => _navigationService.currentIndex;
 
   void setIndex(int index) {
-    _navigationService.setIndex(index);
+    final adjustedIndex = index >= 2 ? index - 1 : index;
+    _navigationService.setIndex(adjustedIndex);
     // Add navigation logic here based on index
-    switch(index) {
+    switch (adjustedIndex) {
       case 0:
-        // Navigate to home
+        navRouter.navigateTo(
+          Routes.homeView,
+        );
         break;
       case 1:
-        // Navigate to links
+        navRouter.navigateTo(
+          Routes.calendarView,
+        );
         break;
       case 2:
-        // Navigate to analytics
+        navRouter.navigateTo(
+          Routes.recordingView,
+        );
         break;
       case 3:
-        // Navigate to profile
+        navRouter.navigateTo(
+          Routes.liveBroadcastView,
+        );
         break;
     }
   }
-  
 }

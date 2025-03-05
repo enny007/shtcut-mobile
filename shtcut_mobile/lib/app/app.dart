@@ -1,4 +1,5 @@
 import 'package:shtcut_mobile/core/service/bottom_bar_service.dart';
+import 'package:shtcut_mobile/ui/bottom_sheets/action_sheet/action_sheet.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/email_verification/email_verification_sheet.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/forgot_password/forgot_password_otp_sheet.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/forgot_password/forgot_password_sheet.dart';
@@ -7,8 +8,12 @@ import 'package:shtcut_mobile/ui/bottom_sheets/password_confirmation/password_co
 import 'package:shtcut_mobile/ui/bottom_sheets/set_new_password/set_new_password_sheet.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/welcome/welcome_sheet.dart';
 import 'package:shtcut_mobile/ui/dialogs/info_alert/info_alert_dialog.dart';
+import 'package:shtcut_mobile/ui/views/calendar/calendar_view.dart';
 import 'package:shtcut_mobile/ui/views/connect_accounts/connect_accounts_view.dart';
+import 'package:shtcut_mobile/ui/views/home/home_view.dart';
+import 'package:shtcut_mobile/ui/views/live_broadcast/live_broadcast_view.dart';
 import 'package:shtcut_mobile/ui/views/onboarding/onboarding_view.dart';
+import 'package:shtcut_mobile/ui/views/recording/recording_view.dart';
 import 'package:shtcut_mobile/ui/views/sign_in/sign_in_view.dart';
 import 'package:shtcut_mobile/ui/views/sign_up/sign_up_view.dart';
 import 'package:shtcut_mobile/ui/views/startup/startup_view.dart';
@@ -39,6 +44,22 @@ import 'package:stacked_services/stacked_services.dart';
       page: ConnectAccountsView,
       transitionsBuilder: TransitionsBuilders.fadeIn,
     ),
+    CustomRoute(
+      page: HomeView,
+      transitionsBuilder: TransitionsBuilders.fadeIn,
+    ),
+    CustomRoute(
+      page: CalendarView,
+      transitionsBuilder: TransitionsBuilders.fadeIn,
+    ),
+    CustomRoute(
+      page: RecordingView,
+      transitionsBuilder: TransitionsBuilders.fadeIn,
+    ),
+    CustomRoute(
+      page: LiveBroadcastView,
+      transitionsBuilder: TransitionsBuilders.fadeIn,
+    ),
     // @stacked-route
   ],
   dependencies: [
@@ -56,6 +77,7 @@ import 'package:stacked_services/stacked_services.dart';
     StackedBottomsheet(classType: EmailVerificationSheet),
     StackedBottomsheet(classType: SetNewPasswordSheet),
     StackedBottomsheet(classType: PasswordConfirmationSheet),
+    StackedBottomsheet(classType: ActionSheet),
     // @stacked-bottom-sheet
   ],
   dialogs: [
