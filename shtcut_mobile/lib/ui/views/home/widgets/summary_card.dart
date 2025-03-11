@@ -82,7 +82,7 @@ class SummaryCard extends StatelessWidget {
     required BuildContext context,
   }) {
     return Container(
-      height: 72.h,
+      height: 70.h,
       // width: 80.w,
       padding: EdgeInsets.only(
         left: 12.w,

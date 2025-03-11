@@ -10,7 +10,6 @@ class CollapsibleDropdown extends StatefulWidget {
   final String subtitle;
   final List<Widget> children;
   final bool initiallyExpanded;
-
   const CollapsibleDropdown({
     Key? key,
     required this.title,

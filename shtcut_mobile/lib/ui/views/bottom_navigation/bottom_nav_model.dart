@@ -1,3 +1,4 @@
+import 'package:shtcut_mobile/app/app.bottomsheets.dart';
 import 'package:shtcut_mobile/app/app.locator.dart';
 import 'package:shtcut_mobile/app/app.router.dart';
 import 'package:shtcut_mobile/app/app_setup.dart';
@@ -35,5 +36,12 @@ class BottomNavLayoutModel extends BaseViewModel {
         );
         break;
     }
+  }
+
+  Future<void> showActionSheet() async {
+    await bottomSheetService.showCustomSheet(
+      variant: BottomSheetType.action,
+      isScrollControlled: true,
+    );
   }
 }

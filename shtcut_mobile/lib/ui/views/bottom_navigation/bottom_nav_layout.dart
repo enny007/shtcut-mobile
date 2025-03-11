@@ -89,7 +89,9 @@ class BottomNavLayout extends StackedView<BottomNavLayoutModel> {
         width: 48.w,
         child: FloatingActionButton(
           backgroundColor: kcPrimaryColor,
-          onPressed: () {},
+          onPressed: () {
+            viewModel.showActionSheet();
+          },
           child: const Icon(
             Icons.add,
             color: Colors.white,

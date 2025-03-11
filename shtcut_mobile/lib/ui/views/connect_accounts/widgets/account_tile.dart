@@ -15,8 +15,8 @@ class AccountTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 87.h,
-      width: double.infinity,
+      // height: 87.h,
+      // width: double.infinity,
       padding: EdgeInsets.symmetric(
         horizontal: 16.w,
         vertical: 12.h,
@@ -30,6 +30,7 @@ class AccountTile extends StatelessWidget {
         ),
       ),
       child: ListTile(
+        contentPadding: EdgeInsets.zero,
         leading: SvgPicture.asset(
           svgPath,
           fit: BoxFit.scaleDown,

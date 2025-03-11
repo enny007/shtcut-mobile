@@ -8,7 +8,7 @@ import 'package:shtcut_mobile/ui/utils/extensions.dart';
 import 'package:shtcut_mobile/ui/views/bottom_navigation/bottom_nav_layout.dart';
 import 'package:shtcut_mobile/ui/views/home/home_view_model.dart';
 import 'package:shtcut_mobile/ui/views/home/widgets/adaptable_icon.dart';
-import 'package:shtcut_mobile/ui/views/home/widgets/collapsible_card.dart';
+import 'package:shtcut_mobile/ui/global_widgets/collapsible_card.dart';
 import 'package:shtcut_mobile/ui/views/home/widgets/collapsible_item.dart';
 import 'package:shtcut_mobile/ui/views/home/widgets/summary_card.dart';
 import 'package:stacked/stacked.dart';

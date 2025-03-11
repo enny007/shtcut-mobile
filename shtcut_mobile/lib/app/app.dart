@@ -10,6 +10,7 @@ import 'package:shtcut_mobile/ui/bottom_sheets/welcome/welcome_sheet.dart';
 import 'package:shtcut_mobile/ui/dialogs/info_alert/info_alert_dialog.dart';
 import 'package:shtcut_mobile/ui/views/calendar/calendar_view.dart';
 import 'package:shtcut_mobile/ui/views/connect_accounts/connect_accounts_view.dart';
+import 'package:shtcut_mobile/ui/views/create_post/create_post_view.dart';
 import 'package:shtcut_mobile/ui/views/home/home_view.dart';
 import 'package:shtcut_mobile/ui/views/live_broadcast/live_broadcast_view.dart';
 import 'package:shtcut_mobile/ui/views/onboarding/onboarding_view.dart';
@@ -58,6 +59,10 @@ import 'package:stacked_services/stacked_services.dart';
     ),
     CustomRoute(
       page: LiveBroadcastView,
+      transitionsBuilder: TransitionsBuilders.fadeIn,
+    ),
+    CustomRoute(
+      page: CreatePostView,
       transitionsBuilder: TransitionsBuilders.fadeIn,
     ),
     // @stacked-route
