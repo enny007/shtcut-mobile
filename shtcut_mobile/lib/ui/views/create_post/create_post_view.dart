@@ -12,6 +12,7 @@ import 'package:shtcut_mobile/ui/views/bottom_navigation/bottom_nav_layout.dart'
 import 'package:shtcut_mobile/ui/views/connect_accounts/widgets/account_tile.dart';
 import 'package:shtcut_mobile/ui/views/create_post/create_post_view_model.dart';
 import 'package:shtcut_mobile/ui/views/create_post/widgets/collapsible_account_tile.dart';
+import 'package:shtcut_mobile/ui/views/create_post/widgets/connect_account_tile.dart';
 import 'package:stacked/stacked.dart';
 
 class CreatePostView extends StackedView<CreatePostViewModel> {
@@ -26,7 +27,7 @@ class CreatePostView extends StackedView<CreatePostViewModel> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: 750.h,
+              height: 728.h,
               child: Stack(
                 children: [
                   Container(
@@ -46,7 +47,7 @@ class CreatePostView extends StackedView<CreatePostViewModel> {
                       contentPadding: EdgeInsets.zero,
                       leading: IconButton(
                         icon: Platform.isIOS
-                            ? const Icon(CupertinoIcons.back,
+                            ? const Icon(Icons.arrow_back_ios,
                                 color: Colors.white)
                             : const Icon(Icons.arrow_back, color: Colors.white),
                         onPressed: () => navRouter.back(),
@@ -119,10 +120,63 @@ class CreatePostView extends StackedView<CreatePostViewModel> {
                                     title: 'Instagram',
                                   ),
                                   Gap(14.h),
-                                  const CollapsibleAccountTile(
+                                  CollapsibleAccountTile(
                                     svgPath: 'assets/svgs/x_logo.svg',
                                     title: 'Twitter',
-                                    children: [],
+                                    children: [
+                                      CheckableAccountTile(
+                                        imagePath: 'assets/images/x_dummy.png',
+                                        title: 'Account 1',
+                                        onChanged: (value) {
+                                          // Handle checkbox change
+                                          print('Account 1 checked: $value');
+                                        },
+                                      ),
+                                      Gap(10.h),
+                                      CheckableAccountTile(
+                                        imagePath: 'assets/images/x_dummy.png',
+                                        title: 'Account 2',
+                                        onChanged: (value) {
+                                          // Handle checkbox change
+                                          print('Account 2 checked: $value');
+                                        },
+                                      ),
+                                      Gap(10.h),
+                                      CheckableAccountTile(
+                                        imagePath: 'assets/images/x_dummy.png',
+                                        title: 'Account 3',
+                                        onChanged: (value) {
+                                          // Handle checkbox change
+                                          print('Account 3 checked: $value');
+                                        },
+                                      ),
+                                      Gap(10.h),
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                          left: 16.w,
+                                        ),
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            const Icon(
+                                              Icons.add_circle_outline,
+                                              size: 22,
+                                              color: kcPrimaryColor,
+                                            ),
+                                            Gap(6.w),
+                                            Text(
+                                              'Connect Account',
+                                              style:
+                                                  context.bodySmall!.copyWith(
+                                                color: kcPrimaryColor,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Gap(27.h),
+                                    ],
                                   ),
                                   Gap(14.h),
                                   const CollapsibleAccountTile(
@@ -178,7 +232,9 @@ class CreatePostView extends StackedView<CreatePostViewModel> {
                         horizontal: 15.w,
                       ),
                       child: AppButton(
-                        callback: () {},
+                        callback: () {
+                          viewModel.navigateToContentView();
+                        },
                         text: 'Next',
                         color: kcPrimaryColor,
                       ),

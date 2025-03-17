@@ -104,6 +104,7 @@ class AppTextField extends StatelessWidget {
             readOnly: readOnly,
             onTap: onTap,
             maxLength: maxLength,
+            maxLines: maxLines,
             cursorColor: cursorColor,
             focusNode: focusNode,
             textInputAction: textInputAction,

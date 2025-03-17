@@ -12,6 +12,8 @@ import 'package:stacked_services/src/navigation/navigation_service.dart';
 import 'package:stacked_shared/stacked_shared.dart';
 
 import '../core/service/bottom_bar_service.dart';
+import '../core/service/local_storage_service.dart';
+import '../core/service/media_service.dart';
 
 final locator = StackedLocator.instance;
 
@@ -28,4 +30,6 @@ Future<void> setupLocator({
   locator.registerLazySingleton(() => DialogService());
   locator.registerLazySingleton(() => NavigationService());
   locator.registerLazySingleton(() => BottomBarService());
+  locator.registerLazySingleton(() => MediaService());
+  locator.registerLazySingleton(() => SharedPreferencesService());
 }
