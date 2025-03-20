@@ -42,7 +42,7 @@ class WelcomeSheet extends StackedView<WelcomeModel> {
         Gap(70.h),
         AppButton(
           text: 'Set up my social media',
-          callback: () {},
+          callback: viewModel.navigateToConnectSocials,
           color: kcPrimaryColor,
         ),
       ],
@@ -51,6 +51,6 @@ class WelcomeSheet extends StackedView<WelcomeModel> {
 
   @override
   WelcomeModel viewModelBuilder(BuildContext context) {
-    return WelcomeModel();
+    return WelcomeModel(completer);
   }
 }

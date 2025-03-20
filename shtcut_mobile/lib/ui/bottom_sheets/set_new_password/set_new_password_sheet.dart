@@ -23,7 +23,7 @@ class SetNewPasswordSheet extends StackedView<SetNewPasswordModel> {
   Widget builder(
       BuildContext context, SetNewPasswordModel viewModel, Widget? child) {
     return SheetWidget(
-      height: 500.h,
+      height: 430.h,
       icon: SvgPicture.asset('assets/svgs/password_icon.svg'),
       children: [
         Text(
@@ -43,10 +43,8 @@ class SetNewPasswordSheet extends StackedView<SetNewPasswordModel> {
         ),
         Gap(16.h),
         AppTextField(
-          controller: TextEditingController(),
-          validator: (value) {
-            return null;
-          },
+          controller: viewModel.passwordController,
+          validator: viewModel.validatePassword,
           label: 'Password',
           isPassword: viewModel.isPasswordObscured,
           prefixIcon: SvgPicture.asset(
@@ -70,10 +68,8 @@ class SetNewPasswordSheet extends StackedView<SetNewPasswordModel> {
         ),
         Gap(24.h),
         AppTextField(
-          controller: TextEditingController(),
-          validator: (value) {
-            return null;
-          },
+          controller: viewModel.confirmPasswordController,
+          validator: viewModel.validateConfirmPassword,
           label: 'Confirm Password',
           isPassword: viewModel.isConfirmPasswordObscured,
           prefixIcon: SvgPicture.asset(
@@ -99,9 +95,11 @@ class SetNewPasswordSheet extends StackedView<SetNewPasswordModel> {
         AppButton(
           text: 'Submit',
           callback: () {
-            completer!(SheetResponse(confirmed: true));
+            viewModel.resetPassword();
           },
           color: kcPrimaryColor,
+          isDisabled: !viewModel.isPasswordsMatch,
+          isLoading: viewModel.isBusy,
         ),
       ],
     );
@@ -109,6 +107,18 @@ class SetNewPasswordSheet extends StackedView<SetNewPasswordModel> {
 
   @override
   SetNewPasswordModel viewModelBuilder(BuildContext context) {
-    return SetNewPasswordModel();
+    final data = request.data is Map<String, dynamic>
+        ? request.data as Map<String, dynamic>
+        : <String, dynamic>{};
+
+    // Get email and otpCode with null safety
+    final email = data['email'] as String? ?? '';
+    final otpCode = data['otpCode'] as String? ?? '';
+    return SetNewPasswordModel()
+      ..initialize(
+        email,
+        otpCode,
+        completer,
+      );
   }
 }

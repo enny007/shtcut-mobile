@@ -1,6 +1,11 @@
+import 'package:shtcut_mobile/core/api/auth/auth_impl.dart';
+import 'package:shtcut_mobile/core/network/dio_client.dart';
+import 'package:shtcut_mobile/core/service/auth_service.dart';
 import 'package:shtcut_mobile/core/service/bottom_bar_service.dart';
 import 'package:shtcut_mobile/core/service/local_storage_service.dart';
 import 'package:shtcut_mobile/core/service/media_service.dart';
+import 'package:shtcut_mobile/core/service/social_auth_service.dart';
+import 'package:shtcut_mobile/core/service/toast_service.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/action_sheet/action_sheet.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/add_hashtag/add_hashtag_sheet.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/add_hashtag/hashtag_created_sheet.dart';
@@ -86,6 +91,14 @@ import 'package:stacked_services/stacked_services.dart';
   LazySingleton(classType: BottomBarService),
   LazySingleton(classType: MediaService),
   LazySingleton(classType: SharedPreferencesService),
+  LazySingleton(
+    classType: DioClient,
+    resolveUsing: DioClient.getInstance,
+  ),
+  LazySingleton(classType: ToastService),
+  LazySingleton(classType: AuthImpl),
+  LazySingleton(classType: AuthService),
+  LazySingleton(classType: SocialAuthService),
   // @stacked-service
 ], bottomsheets: [
   StackedBottomsheet(classType: NoticeSheet),

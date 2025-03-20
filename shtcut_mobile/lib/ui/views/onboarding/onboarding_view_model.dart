@@ -25,7 +25,7 @@ class OnboardingViewModel extends BaseViewModel {
           'Take charge of your social media with ease. Simply connect your accounts and experience more.'
     },
     {
-      'image': 'assets/images/onboard_1.png',
+      'image': 'assets/images/onboard_4.png',
       'title': 'Welcome to Shtcut!',
       'description':
           'Take charge of your social media with ease. Simply connect your accounts and experience more.'

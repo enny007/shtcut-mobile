@@ -5,6 +5,7 @@ import 'package:shtcut_mobile/app/app.router.dart';
 import 'package:shtcut_mobile/app/app_setup.dart';
 import 'package:shtcut_mobile/ui/common/app_colors.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:toastification/toastification.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,15 +34,17 @@ class MainApp extends StatelessWidget {
         onTap: () {
           FocusManager.instance.primaryFocus?.unfocus();
         },
-        child: MaterialApp(
-          theme: AppTheme.lightTheme,
-          initialRoute: Routes.homeView,
-          debugShowCheckedModeBanner: false,
-          onGenerateRoute: StackedRouter().onGenerateRoute,
-          navigatorKey: StackedService.navigatorKey,
-          navigatorObservers: [
-            StackedService.routeObserver,
-          ],
+        child: ToastificationWrapper(
+          child: MaterialApp(
+            theme: AppTheme.lightTheme,
+            initialRoute: Routes.startupView,
+            debugShowCheckedModeBanner: false,
+            onGenerateRoute: StackedRouter().onGenerateRoute,
+            navigatorKey: StackedService.navigatorKey,
+            navigatorObservers: [
+              StackedService.routeObserver,
+            ],
+          ),
         ),
       ),
     );

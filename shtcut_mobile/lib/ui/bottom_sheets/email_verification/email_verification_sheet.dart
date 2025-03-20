@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/email_verification/email_verification_model.dart';
 import 'package:shtcut_mobile/ui/common/app_colors.dart';
 import 'package:shtcut_mobile/ui/global_widgets/app_button.dart';
+import 'package:shtcut_mobile/ui/global_widgets/loader.dart';
 import 'package:shtcut_mobile/ui/global_widgets/otp_box.dart';
 import 'package:shtcut_mobile/ui/global_widgets/sheet_widget.dart';
 import 'package:shtcut_mobile/ui/utils/extensions.dart';
@@ -22,9 +23,10 @@ class EmailVerificationSheet extends StackedView<EmailVerificationModel> {
   @override
   Widget builder(
       BuildContext context, EmailVerificationModel viewModel, Widget? child) {
+    final email = request.data as String;
     return SheetWidget(
       icon: SvgPicture.asset('assets/svgs/email_verification.svg'),
-      height: 350.h,
+      height: 380.h,
       children: [
         Text(
           'Email Verification Sent!',
@@ -45,7 +47,7 @@ class EmailVerificationSheet extends StackedView<EmailVerificationModel> {
                 text: 'A verification code will be sent to the email ',
               ),
               TextSpan(
-                text: 'Hello@work.com',
+                text: email,
                 style: context.bodyMedium!.copyWith(
                   color: kcPrimaryColor,
                   fontWeight: FontWeight.w600,
@@ -90,23 +92,45 @@ class EmailVerificationSheet extends StackedView<EmailVerificationModel> {
                 fontSize: 11.sp,
               ),
             ),
-            Gap(1.w),
-            Text(
-              'Resend Code',
-              style: context.bodySmall!.copyWith(
-                color: kcPrimaryColor,
-                fontSize: 11.sp,
-              ),
-            ),
+            Gap(3.w),
+            viewModel.resendCountdown > 0
+                ? Text(
+                    'Resend in (${viewModel.resendCountdown})',
+                    style: context.bodySmall!.copyWith(
+                      color: kcSubHeadingColor,
+                      fontSize: 11.sp,
+                    ),
+                  )
+                : InkWell(
+                    onTap: viewModel.isBusy2
+                        ? null
+                        : () {
+                            viewModel.resendOtp();
+                          },
+                    child: viewModel.isBusy2
+                        ? const BouncingDotsLoader(
+                            color: kcPrimaryColor,
+                          )
+                        : Text(
+                            'Resend Code',
+                            style: context.bodySmall!.copyWith(
+                              color: kcPrimaryColor,
+                              fontSize: 11.sp,
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
+                  ),
           ],
         ),
         Gap(32.h),
         AppButton(
           text: 'Confirm Code',
           callback: () {
-            completer!(SheetResponse(confirmed: true));
+            viewModel.verifyOtp();
           },
           color: kcPrimaryColor,
+          isDisabled: !viewModel.isOtpComplete,
+          isLoading: viewModel.isBusy,
         ),
       ],
     );
@@ -114,6 +138,11 @@ class EmailVerificationSheet extends StackedView<EmailVerificationModel> {
 
   @override
   EmailVerificationModel viewModelBuilder(BuildContext context) {
-    return EmailVerificationModel();
+    final email = request.data as String;
+    return EmailVerificationModel()
+      ..initialize(
+        userEmail: email,
+        completer: completer!,
+      );
   }
 }

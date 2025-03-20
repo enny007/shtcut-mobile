@@ -116,6 +116,7 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
                       ? 'Log In'
                       : 'Skip',
                   textColor: kcPrimaryColor,
+                  color: Colors.transparent,
                   border: Border.all(
                     color: kcPrimaryColor,
                     width: 2.w,

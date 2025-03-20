@@ -12,6 +12,7 @@ class SharedPreferencesService extends BaseService {
       'permission_photos_prompted';
   static const String _keyPermissionFilesPrompted = 'permission_files_prompted';
 
+  static const String _keyAuthToken = 'auth_token';
   Future<void> init() async {
     if (!_isInitialized) {
       _prefs = await SharedPreferences.getInstance();
@@ -41,6 +42,17 @@ class SharedPreferencesService extends BaseService {
       default:
         return _keyPermissionFilesPrompted;
     }
+  }
+
+  Future<bool> saveToken(String token) async {
+    await init();
+    return await _prefs.setString(_keyAuthToken, token);
+  }
+
+  /// Get the stored authentication token
+  Future<String?> getToken() async {
+    await init();
+    return _prefs.getString(_keyAuthToken);
   }
 
   // Clear all stored preferences (useful for testing)

@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/forgot_password/forgot_password_model.dart';
 import 'package:shtcut_mobile/ui/common/app_colors.dart';
 import 'package:shtcut_mobile/ui/global_widgets/app_button.dart';
+import 'package:shtcut_mobile/ui/global_widgets/loader.dart';
 import 'package:shtcut_mobile/ui/global_widgets/otp_box.dart';
 import 'package:shtcut_mobile/ui/global_widgets/sheet_widget.dart';
 import 'package:shtcut_mobile/ui/utils/extensions.dart';
@@ -22,6 +23,17 @@ class ForgotPasswordOtpSheet extends StackedView<ForgotPasswordModel> {
   @override
   Widget builder(
       BuildContext context, ForgotPasswordModel viewModel, Widget? child) {
+    final Map<String, dynamic> requestData =
+        request.data is Map<String, dynamic>
+            ? request.data as Map<String, dynamic>
+            : {};
+    final email = requestData['email'] as String? ?? '';
+
+    // Store email in viewModel for later use
+    if (email.isNotEmpty && viewModel.emailController.text.isEmpty) {
+      viewModel.emailController.text = email;
+    }
+
     return SheetWidget(
       icon: SvgPicture.asset('assets/svgs/password_icon.svg'),
       children: [
@@ -74,22 +86,50 @@ class ForgotPasswordOtpSheet extends StackedView<ForgotPasswordModel> {
               ),
             ),
             Gap(1.w),
-            Text(
-              'Resend it',
-              style: context.bodySmall!.copyWith(
-                color: kcPrimaryColor,
-                fontSize: 11.sp,
-              ),
-            ),
+            viewModel.resendCountdown > 0
+                ? Text(
+                    'Resend in (${viewModel.resendCountdown})',
+                    style: context.bodySmall!.copyWith(
+                      color: kcSubHeadingColor,
+                      fontSize: 11.sp,
+                    ),
+                  )
+                : InkWell(
+                    onTap: viewModel.isBusy2
+                        ? null
+                        : () {
+                            viewModel.resendCode();
+                          },
+                    child: viewModel.isBusy2
+                        ? const BouncingDotsLoader(
+                            color: kcPrimaryColor,
+                          )
+                        : Text(
+                            'Resend it',
+                            style: context.bodySmall!.copyWith(
+                              color: kcPrimaryColor,
+                              fontSize: 11.sp,
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
+                  ),
           ],
         ),
         Gap(32.h),
         AppButton(
           text: 'Submit',
           callback: () {
-            completer!(SheetResponse(confirmed: true));
+            final Map<String, String> responseData = {
+              'otpCode': viewModel.otpCode,
+              'email': viewModel.emailController.text,
+            };
+            completer!(SheetResponse(
+              confirmed: true,
+              data: responseData,
+            ));
           },
           color: kcPrimaryColor,
+          isDisabled: !viewModel.isOtpComplete,
         ),
       ],
     );
@@ -97,6 +137,18 @@ class ForgotPasswordOtpSheet extends StackedView<ForgotPasswordModel> {
 
   @override
   ForgotPasswordModel viewModelBuilder(BuildContext context) {
-    return ForgotPasswordModel();
+    final Map<String, dynamic> requestData =
+        request.data is Map<String, dynamic>
+            ? request.data as Map<String, dynamic>
+            : {};
+    final email = requestData['email'] as String? ?? '';
+
+    // Create and initialize the model
+    final model = ForgotPasswordModel(completer);
+    if (email.isNotEmpty) {
+      model.emailController.text = email;
+    }
+
+    return model;
   }
 }

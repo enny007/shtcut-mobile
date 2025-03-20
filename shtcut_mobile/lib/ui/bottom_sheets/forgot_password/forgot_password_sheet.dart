@@ -43,9 +43,7 @@ class ForgotPasswordSheet extends StackedView<ForgotPasswordModel> {
         Gap(16.h),
         AppTextField(
           controller: viewModel.emailController,
-          validator: (_) {
-            return null;
-          },
+          validator: viewModel.validateEmail,
           label: 'Email',
           prefixIcon: SvgPicture.asset(
             'assets/svgs/email.svg',
@@ -57,13 +55,11 @@ class ForgotPasswordSheet extends StackedView<ForgotPasswordModel> {
         AppButton(
           text: 'Send Verification Code',
           callback: () {
-            completer!(
-              SheetResponse(
-                confirmed: true,
-              ),
-            );
+            viewModel.sendPasswordResetCode();
           },
           color: kcPrimaryColor,
+          isLoading: viewModel.isBusy,
+          isDisabled: !viewModel.isValid,
         ),
       ],
     );
@@ -71,6 +67,6 @@ class ForgotPasswordSheet extends StackedView<ForgotPasswordModel> {
 
   @override
   ForgotPasswordModel viewModelBuilder(BuildContext context) {
-    return ForgotPasswordModel();
+    return ForgotPasswordModel(completer);
   }
 }

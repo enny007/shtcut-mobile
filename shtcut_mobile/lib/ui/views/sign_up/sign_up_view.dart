@@ -57,9 +57,7 @@ class SignUpView extends StackedView<SignUpViewModel> {
               Gap(24.h),
               AppTextField(
                 controller: viewModel.emailController,
-                validator: (value) {
-                  return null;
-                },
+                validator: viewModel.validateEmail,
                 label: 'Email',
                 hintText: 'Email',
                 prefixIcon: SvgPicture.asset(
@@ -170,11 +168,11 @@ class SignUpView extends StackedView<SignUpViewModel> {
               ),
               Gap(24.h),
               AppButton(
-                callback: () {
-                  viewModel.showEmailVerificationSheet();
-                },
+                callback: viewModel.signUp,
                 text: 'Sign Up',
                 color: kcPrimaryColor,
+                isDisabled: !viewModel.isValid,
+                isLoading: viewModel.isBusy,
               ),
               Gap(22.h),
               Row(
@@ -203,7 +201,11 @@ class SignUpView extends StackedView<SignUpViewModel> {
               ),
               Gap(32.h),
               AppButton(
-                callback: () {},
+                callback: () {
+                  viewModel.googleSignIn();
+                },
+                isLoading: viewModel.isBusy2,
+                loadingColor: kcPrimaryColor,
                 color: Colors.white,
                 textColor: kcTextColor,
                 centerWidget: Row(
