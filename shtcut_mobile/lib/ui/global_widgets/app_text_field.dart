@@ -5,7 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:shtcut_mobile/ui/common/app_colors.dart';
 import 'package:shtcut_mobile/ui/utils/extensions.dart';
 
-class AppTextField extends StatelessWidget {
+class AppTextField extends StatefulWidget {
   final String? labelText;
   final String hintText;
   final TextStyle? hintStyle;
@@ -84,71 +84,125 @@ class AppTextField extends StatelessWidget {
   static void _defaultOnTap() {}
 
   @override
+  State<AppTextField> createState() => _AppTextFieldState();
+}
+
+class _AppTextFieldState extends State<AppTextField> {
+  String? _errorText;
+  bool _hasInteracted = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Add listener to validate on change
+    widget.controller.addListener(_onTextChanged);
+  }
+
+  @override
+  void dispose() {
+    widget.controller.removeListener(_onTextChanged);
+    super.dispose();
+  }
+
+  void _onTextChanged() {
+    if (_hasInteracted) {
+      _validate(widget.controller.text);
+    }
+  }
+
+  void _validate(String value) {
+    setState(() {
+      _errorText = widget.validator(value);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          label,
+          widget.label,
           style: context.bodySmall!.copyWith(
-            color: labelColor,
+            color: widget.labelColor,
             fontWeight: FontWeight.w400,
           ),
         ),
         Gap(4.h),
         TextFormField(
-            controller: controller,
-            validator: validator,
-            keyboardType: keyboardType,
-            obscureText: obscureText,
-            readOnly: readOnly,
-            onTap: onTap,
-            maxLength: maxLength,
-            maxLines: maxLines,
-            cursorColor: cursorColor,
-            focusNode: focusNode,
-            textInputAction: textInputAction,
-            onFieldSubmitted: onFieldSubmitted,
+            controller: widget.controller,
+            validator: widget.validator,
+            keyboardType: widget.keyboardType,
+            obscureText: widget.obscureText,
+            readOnly: widget.readOnly,
+            onTap: widget.onTap,
+            maxLength: widget.maxLength,
+            maxLines: widget.maxLines,
+            cursorColor: widget.cursorColor,
+            focusNode: widget.focusNode,
+            textInputAction: widget.textInputAction,
+            onFieldSubmitted: widget.onFieldSubmitted,
+            onChanged: (value) {
+              if (!_hasInteracted) {
+                setState(() {
+                  _hasInteracted = true;
+                });
+              }
+              _validate(value);
+              if (widget.onChanged != null) {
+                widget.onChanged!(value);
+              }
+            },
+            // Also mark as interacted when the field loses focus
+            onEditingComplete: () {
+              if (!_hasInteracted) {
+                setState(() {
+                  _hasInteracted = true;
+                });
+                _validate(widget.controller.text);
+              }
+            },
             style: context.bodyMedium!.copyWith(
               color: Colors.black,
               fontWeight: FontWeight.w400,
             ),
             decoration: InputDecoration(
-              hintText: hintText,
-              hintStyle: hintStyle ??
+              hintText: widget.hintText,
+              hintStyle: widget.hintStyle ??
                   context.bodyMedium!.copyWith(
                     color: Colors.grey,
                     fontWeight: FontWeight.w400,
                   ),
-              errorText: errorText == '' ? null : errorText,
-              prefixIcon: prefixIcon != null
+              errorText: _hasInteracted ? _errorText : null,
+              prefixIcon: widget.prefixIcon != null
                   ? IconTheme(
                       data: IconThemeData(
                         color: Theme.of(context).iconTheme.color,
                       ),
-                      child: prefixIcon ?? const SizedBox(),
+                      child: widget.prefixIcon ?? const SizedBox(),
                     )
                   : null,
               enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(radius),
+                borderRadius: BorderRadius.circular(widget.radius),
                 borderSide: BorderSide(
-                  color: enabledColor,
+                  color: widget.enabledColor,
                 ),
               ),
               focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(radius),
+                borderRadius: BorderRadius.circular(widget.radius),
                 borderSide: BorderSide(
                   color: Theme.of(context).primaryColor,
                 ),
               ),
               errorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(radius),
+                borderRadius: BorderRadius.circular(widget.radius),
                 borderSide: BorderSide(
                   color: Theme.of(context).colorScheme.error,
                 ),
               ),
               focusedErrorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(radius),
+                borderRadius: BorderRadius.circular(widget.radius),
                 borderSide: BorderSide(
                   color: Theme.of(context).colorScheme.error,
                 ),
@@ -158,15 +212,15 @@ class AppTextField extends StatelessWidget {
                 horizontal: 16.w,
               ),
               // isDense: true,
-              suffixIcon: suffixIcon != null
+              suffixIcon: widget.suffixIcon != null
                   ? IconTheme(
                       data: IconThemeData(
                         color: Theme.of(context).iconTheme.color,
                       ),
-                      child: suffixIcon,
+                      child: widget.suffixIcon,
                     )
                   : null,
-              fillColor: fillColor,
+              fillColor: widget.fillColor,
               filled: true,
             )),
       ],

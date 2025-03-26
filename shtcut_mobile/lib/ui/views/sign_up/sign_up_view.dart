@@ -69,9 +69,7 @@ class SignUpView extends StackedView<SignUpViewModel> {
               AppTextField(
                 controller: viewModel.passwordController,
                 obscureText: viewModel.isPasswordObscured,
-                validator: (value) {
-                  return null;
-                },
+                validator: viewModel.validatePassword,
                 label: 'Password',
                 hintText: 'Password',
                 prefixIcon: SvgPicture.asset(

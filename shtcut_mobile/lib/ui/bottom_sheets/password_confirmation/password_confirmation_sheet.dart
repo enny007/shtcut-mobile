@@ -26,7 +26,7 @@ class PasswordConfirmationSheet extends StackedView<PasswordConfirmationModel> {
       icon: SvgPicture.asset('assets/svgs/password_icon.svg'),
       children: [
         Text(
-          'Password Has Been Created',
+          'Password Has Been Changed',
           style: context.displaySmall!.copyWith(
             fontWeight: FontWeight.w600,
             color: kcPrimaryTextColor,

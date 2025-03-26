@@ -138,4 +138,3 @@ class SocialAuthModel {
 
 //   @override
 //   int get hashCode => email.hashCode ^ mobile.hashCode;
-

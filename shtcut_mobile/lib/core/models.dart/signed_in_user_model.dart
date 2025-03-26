@@ -49,7 +49,8 @@ class SignedInUserModel {
       socialAuth: json['socialAuth'] as bool,
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
-      verifications: Verifications.fromJson(json['verifications'] as Map<String, dynamic>),
+      verifications:
+          Verifications.fromJson(json['verifications'] as Map<String, dynamic>),
       modules: json['modules'] as List<dynamic>? ?? [],
       workspaces: json['workspaces'] as List<dynamic>? ?? [],
     );

@@ -23,7 +23,7 @@ class SetNewPasswordSheet extends StackedView<SetNewPasswordModel> {
   Widget builder(
       BuildContext context, SetNewPasswordModel viewModel, Widget? child) {
     return SheetWidget(
-      height: 430.h,
+      height: 450.h,
       icon: SvgPicture.asset('assets/svgs/password_icon.svg'),
       children: [
         Text(
