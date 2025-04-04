@@ -23,7 +23,7 @@ class LabelCreatedSheet extends StackedView<LabelCreatedModel> {
   Widget builder(
       BuildContext context, LabelCreatedModel viewModel, Widget? child) {
     return SheetWidget(
-      height: 267.h,
+      height: 250.h,
       icon: SvgPicture.asset(
         'assets/svgs/sheet_tag.svg',
       ),

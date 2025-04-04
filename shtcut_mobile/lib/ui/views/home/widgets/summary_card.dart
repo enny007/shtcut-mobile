@@ -10,7 +10,7 @@ class SummaryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 151.h,
+      height: 156.h,
       width: double.infinity,
       padding: EdgeInsets.only(
         left: 16.w,

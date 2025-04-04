@@ -22,7 +22,7 @@ class HashtagCreatedSheet extends StackedView<AddHashtagModel> {
   Widget builder(
       BuildContext context, AddHashtagModel viewModel, Widget? child) {
     return SheetWidget(
-      height: 267.h,
+      height: 250.h,
       icon: SvgPicture.asset('assets/svgs/hashtag_sheet.svg'),
       children: [
         Text(

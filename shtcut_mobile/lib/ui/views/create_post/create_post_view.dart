@@ -1,8 +1,7 @@
 import 'dart:io';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart'
+    hide EdgeInsetsExtension;
 import 'package:gap/gap.dart';
 import 'package:shtcut_mobile/app/app_setup.dart';
 import 'package:shtcut_mobile/ui/common/app_colors.dart';
@@ -23,228 +22,235 @@ class CreatePostView extends StackedView<CreatePostViewModel> {
       BuildContext context, CreatePostViewModel viewModel, Widget? child) {
     return BottomNavLayout(
       child: Scaffold(
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: 728.h,
-              child: Stack(
+        backgroundColor: const Color(0xffF1F3F8),
+        appBar: AppBar(
+          backgroundColor: const Color(0xffFEFEFE),
+          toolbarHeight: 60.h,
+          elevation: 0,
+          leadingWidth: 71.w,
+          leading: Row(
+            children: [
+              Gap(10.w),
+              GestureDetector(
+                onTap: () => navRouter.back(),
+                child: Container(
+                  height: 32.h,
+                  width: 32.w,
+                  decoration: const BoxDecoration(
+                    color: Color(0xffDCE5FB),
+                    shape: BoxShape.circle,
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 1.w),
+                    child: Platform.isIOS
+                        ? const Icon(
+                            Icons.arrow_back_ios,
+                            color: kcPrimaryColor,
+                            size: 18.29,
+                          )
+                        : const Icon(
+                            Icons.arrow_back,
+                            color: kcPrimaryColor,
+                            size: 18.29,
+                          ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          centerTitle: true,
+          title: Text(
+            'Social Media Accounts',
+            style: context.displaySmall!.copyWith(
+              color: const Color(0xff101828),
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsetsExtension.fromPercentage(
+              lefthorizontalPercentage: 12.w,
+              righthorizontalPercentage: 12.w,
+              topverticalPercentage: 20.h,
+              bottomverticalPercentage: 20.h,
+              context: context,
+            ),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(8.r),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    height: 233.h,
-                    width: double.infinity,
+                  // Header section
+                  Padding(
                     padding: EdgeInsets.only(
-                      top: 45.h,
+                      left: 16.w,
+                      right: 16.w,
+                      top: 15.h,
                     ),
-                    decoration: BoxDecoration(
-                      color: kcPrimaryColor,
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(24.r),
-                        bottomRight: Radius.circular(24.r),
-                      ),
-                    ),
-                    child: ListTile(
-                      contentPadding: EdgeInsets.zero,
-                      leading: IconButton(
-                        icon: Platform.isIOS
-                            ? const Icon(Icons.arrow_back_ios,
-                                color: Colors.white)
-                            : const Icon(Icons.arrow_back, color: Colors.white),
-                        onPressed: () => navRouter.back(),
-                      ),
-                      title: Text(
-                        'Create New Post',
-                        style: context.displayMedium!.copyWith(
-                          fontWeight: FontWeight.w600,
-                          color: const Color(0xffFEFEFE),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Social media',
+                          style: context.bodyMedium!.copyWith(
+                            color: const Color(0xff101828),
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
-                      ),
-                      subtitle: Text(
-                        'Post to your social platforms ',
-                        style: context.bodyMedium!.copyWith(
-                          color: const Color(0xffD9D6FE),
+                        Gap(2.h),
+                        Text(
+                          'Select the social media platforms you want to post to',
+                          style: context.bodySmall!.copyWith(
+                            color: const Color(0xff475467),
+                            fontWeight: FontWeight.w400,
+                          ),
                         ),
-                      ),
-                      trailing: SvgPicture.asset(
-                        'assets/svgs/placard_icon.svg',
-                        height: 80.h,
-                        width: 87.w,
-                        // fit: BoxFit.scaleDown,
-                      ),
+                        Gap(21.h),
+                      ],
                     ),
                   ),
-                  //Stacked Container
-                  Positioned(
-                    top: 133
-                        .h, // This positions it to overlap 100 units (233 - 133 = 100)
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    child: Container(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 16.w,
-                        vertical: 15.h,
-                      ),
-                      margin: EdgeInsets.symmetric(
-                        horizontal: 12.w,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(8.r),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Social media',
-                            style: context.bodyMedium!.copyWith(
-                              color: const Color(0xff101828),
-                              fontWeight: FontWeight.w600,
+
+                  // Social media accounts list
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 16.w,
+                    ),
+                    child: Column(
+                      children: [
+                        const AccountTile(
+                          svgPath: 'assets/svgs/instagram_logo.svg',
+                          title: 'Instagram',
+                        ),
+                        Gap(14.h),
+                        CollapsibleAccountTile(
+                          svgPath: 'assets/svgs/x_logo.svg',
+                          title: 'Twitter',
+                          children: [
+                            CheckableAccountTile(
+                              imagePath: 'assets/images/x_dummy.png',
+                              title: 'Account 1',
+                              onChanged: (value) {
+                                // Handle checkbox change
+                                print('Account 1 checked: $value');
+                              },
                             ),
-                          ),
-                          Gap(2.h),
-                          Text(
-                            'Select the social media platforms you want to post to',
-                            style: context.bodySmall!.copyWith(
-                              color: const Color(0xff475467),
-                              fontWeight: FontWeight.w400,
+                            Gap(10.h),
+                            CheckableAccountTile(
+                              imagePath: 'assets/images/x_dummy.png',
+                              title: 'Account 2',
+                              onChanged: (value) {
+                                // Handle checkbox change
+                                print('Account 2 checked: $value');
+                              },
                             ),
-                          ),
-                          Gap(21.h),
-                          Expanded(
-                            child: SingleChildScrollView(
-                              child: Column(
+                            Gap(10.h),
+                            CheckableAccountTile(
+                              imagePath: 'assets/images/x_dummy.png',
+                              title: 'Account 3',
+                              onChanged: (value) {
+                                // Handle checkbox change
+                                print('Account 3 checked: $value');
+                              },
+                            ),
+                            Gap(10.h),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                left: 16.w,
+                              ),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  const AccountTile(
-                                    svgPath: 'assets/svgs/instagram_logo.svg',
-                                    title: 'Instagram',
+                                  const Icon(
+                                    Icons.add_circle_outline,
+                                    size: 22,
+                                    color: kcPrimaryColor,
                                   ),
-                                  Gap(14.h),
-                                  CollapsibleAccountTile(
-                                    svgPath: 'assets/svgs/x_logo.svg',
-                                    title: 'Twitter',
-                                    children: [
-                                      CheckableAccountTile(
-                                        imagePath: 'assets/images/x_dummy.png',
-                                        title: 'Account 1',
-                                        onChanged: (value) {
-                                          // Handle checkbox change
-                                          print('Account 1 checked: $value');
-                                        },
-                                      ),
-                                      Gap(10.h),
-                                      CheckableAccountTile(
-                                        imagePath: 'assets/images/x_dummy.png',
-                                        title: 'Account 2',
-                                        onChanged: (value) {
-                                          // Handle checkbox change
-                                          print('Account 2 checked: $value');
-                                        },
-                                      ),
-                                      Gap(10.h),
-                                      CheckableAccountTile(
-                                        imagePath: 'assets/images/x_dummy.png',
-                                        title: 'Account 3',
-                                        onChanged: (value) {
-                                          // Handle checkbox change
-                                          print('Account 3 checked: $value');
-                                        },
-                                      ),
-                                      Gap(10.h),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                          left: 16.w,
-                                        ),
-                                        child: Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            const Icon(
-                                              Icons.add_circle_outline,
-                                              size: 22,
-                                              color: kcPrimaryColor,
-                                            ),
-                                            Gap(6.w),
-                                            Text(
-                                              'Connect Account',
-                                              style:
-                                                  context.bodySmall!.copyWith(
-                                                color: kcPrimaryColor,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Gap(27.h),
-                                    ],
+                                  Gap(6.w),
+                                  Text(
+                                    'Connect Account',
+                                    style: context.bodySmall!.copyWith(
+                                      color: kcPrimaryColor,
+                                    ),
                                   ),
-                                  Gap(14.h),
-                                  const CollapsibleAccountTile(
-                                    svgPath: 'assets/svgs/facebook_logo.svg',
-                                    title: 'Facebook',
-                                    children: [],
-                                  ),
-                                  Gap(14.h),
-                                  const CollapsibleAccountTile(
-                                    svgPath: 'assets/svgs/tiktok_logo.svg',
-                                    title: 'Tiktok',
-                                    children: [],
-                                  ),
-                                  Gap(14.h),
-                                  const CollapsibleAccountTile(
-                                    svgPath: 'assets/svgs/youtube_logo.svg',
-                                    title: 'Youtube',
-                                    children: [],
-                                  ),
-                                  Gap(14.h),
-                                  const CollapsibleAccountTile(
-                                    svgPath: 'assets/svgs/linkedin_logo.svg',
-                                    title: 'LinkedIn',
-                                    children: [],
-                                  ),
-                                  Gap(14.h),
-                                  const CollapsibleAccountTile(
-                                    svgPath: 'assets/svgs/pinterest_logo.svg',
-                                    title: 'Pinterest',
-                                    children: [],
-                                  ),
-                                  Gap(14.h),
-                                  const CollapsibleAccountTile(
-                                    svgPath: 'assets/svgs/threads_logo.svg',
-                                    title: 'Threads',
-                                    children: [],
-                                  ),
-                                  Gap(50.h),
                                 ],
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 15.w,
-                      ),
-                      child: AppButton(
-                        callback: () {
-                          viewModel.navigateToContentView();
-                        },
-                        text: 'Next',
-                        color: kcPrimaryColor,
-                      ),
+                            Gap(27.h),
+                          ],
+                        ),
+                        Gap(14.h),
+                        const CollapsibleAccountTile(
+                          svgPath: 'assets/svgs/facebook_logo.svg',
+                          title: 'Facebook',
+                          children: [],
+                        ),
+                        Gap(14.h),
+                        const CollapsibleAccountTile(
+                          svgPath: 'assets/svgs/tiktok_logo.svg',
+                          title: 'Tiktok',
+                          children: [],
+                        ),
+                        Gap(14.h),
+                        const CollapsibleAccountTile(
+                          svgPath: 'assets/svgs/youtube_logo.svg',
+                          title: 'Youtube',
+                          children: [],
+                        ),
+                        Gap(14.h),
+                        const CollapsibleAccountTile(
+                          svgPath: 'assets/svgs/linkedin_logo.svg',
+                          title: 'LinkedIn',
+                          children: [],
+                        ),
+                        Gap(14.h),
+                        const CollapsibleAccountTile(
+                          svgPath: 'assets/svgs/pinterest_logo.svg',
+                          title: 'Pinterest',
+                          children: [],
+                        ),
+                        Gap(14.h),
+                        const CollapsibleAccountTile(
+                          svgPath: 'assets/svgs/threads_logo.svg',
+                          title: 'Threads',
+                          children: [],
+                        ),
+                        // Add padding at the bottom to ensure content is scrollable
+                        Gap(30.h),
+                      ],
                     ),
                   ),
                 ],
               ),
             ),
-            //Container
-          ],
+          ),
+        ),
+        bottomNavigationBar: Container(
+          padding: EdgeInsets.symmetric(
+            horizontal: 16.w,
+            vertical: 15.h,
+          ),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.05),
+                spreadRadius: 1,
+                blurRadius: 5,
+                offset: const Offset(0, -1),
+              ),
+            ],
+          ),
+          child: AppButton(
+            callback: () {
+              viewModel.navigateToContentView();
+            },
+            text: 'Next',
+            color: kcPrimaryColor,
+          ),
         ),
       ),
     );

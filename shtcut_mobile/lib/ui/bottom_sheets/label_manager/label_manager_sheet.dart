@@ -117,6 +117,7 @@ class LabelManagerSheet extends StackedView<LabelManagerModel> {
             width: 2.w,
           ),
           textColor: kcPrimaryColor,
+          color: Colors.transparent,
         ),
         Gap(8.h),
         AppButton(

@@ -120,6 +120,7 @@ class HashtagSheet extends StackedView<HashtagModel> {
             width: 2.w,
           ),
           textColor: kcPrimaryColor,
+          color: Colors.transparent,
         ),
       ],
     );

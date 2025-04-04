@@ -25,8 +25,16 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Get device information to determine if it's a tablet
+    final data = MediaQueryData.fromView(View.of(context));
+    final isTablet = data.size.shortestSide >= 600;
+
+    // Choose design size based on device type
+    final designSize = isTablet
+        ? const Size(834, 1194) // iPad Air dimensions as an example
+        : const Size(390, 844); // iPhone dimensions
     return ScreenUtilInit(
-      designSize: const Size(390, 844),
+      designSize: designSize,
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) => GestureDetector(
@@ -37,7 +45,7 @@ class MainApp extends StatelessWidget {
         child: ToastificationWrapper(
           child: MaterialApp(
             theme: AppTheme.lightTheme,
-            initialRoute: Routes.startupView,
+            initialRoute: Routes.homeView,
             debugShowCheckedModeBanner: false,
             onGenerateRoute: StackedRouter().onGenerateRoute,
             navigatorKey: StackedService.navigatorKey,

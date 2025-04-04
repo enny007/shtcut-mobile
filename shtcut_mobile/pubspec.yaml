@@ -44,9 +44,10 @@ flutter:
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: "assets/images/shtcut_app_logo.png"
+  image_path: "assets/images/logo_128.png"
   remove_alpha_ios: true
   min_sdk_android: 24
-  adaptive_icon_background: "#00FFFFFF"
-  adaptive_icon_foreground: "assets/images/shtcut_app_logo.png"
+  adaptive_icon_background: "#000000"
+  adaptive_icon_foreground: "assets/images/logo_128.png"
+  background_color_ios: "#000000"
 

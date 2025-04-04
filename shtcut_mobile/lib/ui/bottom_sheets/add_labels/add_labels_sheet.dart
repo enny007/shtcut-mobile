@@ -88,6 +88,7 @@ class AddLabelsSheet extends StackedView<AddLabelsModel> {
             width: 2.w,
           ),
           textColor: kcPrimaryColor,
+          color: Colors.transparent,
         ),
         Gap(8.h),
         AppButton(

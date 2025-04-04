@@ -49,8 +49,7 @@ class AccountTile extends StatelessWidget {
           ),
         ),
         trailing: Container(
-          height: 32.h,
-          width: 95.w,
+          height: 35.h,
           padding: EdgeInsets.symmetric(
             horizontal: 16.w,
             vertical: 6.h,

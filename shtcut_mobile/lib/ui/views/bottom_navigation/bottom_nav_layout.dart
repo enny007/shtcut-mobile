@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
+import 'package:shtcut_mobile/ui/utils/extensions.dart';
 import 'package:shtcut_mobile/ui/views/bottom_navigation/bottom_nav_model.dart';
 import 'package:stacked/stacked.dart';
 import 'package:shtcut_mobile/ui/common/app_colors.dart';
@@ -30,21 +31,25 @@ class BottomNavLayout extends StackedView<BottomNavLayoutModel> {
           onTap: viewModel.setIndex,
           type: BottomNavigationBarType.fixed,
           selectedItemColor: kcPrimaryColor,
+          unselectedItemColor: const Color(0xff5A5555),
           items: [
-            _buildNavItem('assets/svgs/shtcut_home.svg', 'Home', 0, viewModel),
-            _buildNavItem('assets/svgs/calendar.svg', 'Calendar', 1, viewModel),
-            _buildActionButton(viewModel),
-            _buildNavItem('assets/svgs/video.svg', 'Video', 2, viewModel),
             _buildNavItem(
-                'assets/svgs/Broadcast.svg', 'Broadcast', 3, viewModel),
+                'assets/svgs/shtcut_home.svg', 'Home', 0, viewModel, context),
+            _buildNavItem(
+                'assets/svgs/calendar.svg', 'Calendar', 1, viewModel, context),
+            _buildActionButton(viewModel),
+            _buildNavItem(
+                'assets/svgs/video.svg', 'Go Live', 2, viewModel, context),
+            _buildNavItem('assets/svgs/Broadcast.svg', 'Campaigns', 3,
+                viewModel, context),
           ],
         ),
       ),
     );
   }
 
-  BottomNavigationBarItem _buildNavItem(
-      String svgPath, String label, int index, BottomNavLayoutModel viewModel) {
+  BottomNavigationBarItem _buildNavItem(String svgPath, String label, int index,
+      BottomNavLayoutModel viewModel, BuildContext context) {
     return BottomNavigationBarItem(
       icon: Padding(
         padding: EdgeInsets.only(
@@ -64,17 +69,25 @@ class BottomNavLayout extends StackedView<BottomNavLayoutModel> {
                 BlendMode.srcIn,
               ),
             ),
-            Gap(8.h),
-            Container(
-              height: 2.h,
-              width: 12.w,
-              decoration: BoxDecoration(
+            Gap(5.h),
+            Text(
+              label,
+              style: context.bodySmall!.copyWith(
                 color: viewModel.currentIndex == index
                     ? kcPrimaryColor
-                    : Colors.transparent,
-                borderRadius: BorderRadius.circular(2.r),
+                    : const Color(0xff5A5555),
               ),
             ),
+            // Container(
+            //   height: 2.h,
+            //   width: 12.w,
+            //   decoration: BoxDecoration(
+            //     color: viewModel.currentIndex == index
+            //         ? kcPrimaryColor
+            //         : Colors.transparent,
+            //     borderRadius: BorderRadius.circular(2.r),
+            //   ),
+            // ),
           ],
         ),
       ),
@@ -84,18 +97,23 @@ class BottomNavLayout extends StackedView<BottomNavLayoutModel> {
 
   BottomNavigationBarItem _buildActionButton(BottomNavLayoutModel viewModel) {
     return BottomNavigationBarItem(
-      icon: SizedBox(
-        height: 48.h,
-        width: 48.w,
-        child: FloatingActionButton(
-          backgroundColor: kcPrimaryColor,
-          onPressed: () {
-            viewModel.showActionSheet();
-          },
-          child: const Icon(
-            Icons.add,
-            color: Colors.white,
-            size: 40,
+      icon: Padding(
+        padding: EdgeInsets.only(
+          top: 5.h,
+        ),
+        child: SizedBox(
+          height: 48.h,
+          width: 48.w,
+          child: FloatingActionButton(
+            backgroundColor: kcPrimaryColor,
+            onPressed: () {
+              viewModel.showActionSheet();
+            },
+            child: const Icon(
+              Icons.add,
+              color: Colors.white,
+              size: 40,
+            ),
           ),
         ),
       ),

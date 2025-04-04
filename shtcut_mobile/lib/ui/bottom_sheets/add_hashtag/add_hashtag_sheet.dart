@@ -62,6 +62,7 @@ class AddHashtagSheet extends StackedView<AddHashtagModel> {
             color: kcPrimaryColor,
             width: 2.w,
           ),
+          color: Colors.transparent,
         ),
         Gap(8.h),
         AppButton(

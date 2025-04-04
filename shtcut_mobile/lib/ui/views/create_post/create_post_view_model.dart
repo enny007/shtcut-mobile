@@ -64,14 +64,14 @@ class CreatePostViewModel extends ReactiveViewModel {
   final List<Map<String, dynamic>> contentOptions = [
     {
       'svgPath': 'assets/svgs/content_gallery.svg',
-      'title': 'Add Image',
+      'title': 'Add Image/Video',
       'onTap': () => {},
     },
-    {
-      'svgPath': 'assets/svgs/content_video.svg',
-      'title': 'Video',
-      'onTap': () => {},
-    },
+    // {
+    //   'svgPath': 'assets/svgs/content_video.svg',
+    //   'title': 'Video',
+    //   'onTap': () => {},
+    // },
     {
       'svgPath': 'assets/svgs/folder.svg',
       'title': 'Add File',
@@ -100,21 +100,25 @@ class CreatePostViewModel extends ReactiveViewModel {
       if (added) notifyListeners();
     };
 
-    contentOptions[1]['onTap'] = () async {
-      final added = await addVideo();
-      if (added) notifyListeners();
-    };
+    // contentOptions[1]['onTap'] = () async {
+    //   final added = await addVideo();
+    //   if (added) notifyListeners();
+    // };
 
-    contentOptions[2]['onTap'] = () async {
+    contentOptions[1]['onTap'] = () async {
       final added = await addFile();
       if (added) notifyListeners();
     };
 
-    contentOptions[4]['onTap'] = () async {
+    contentOptions[2]['onTap'] = () async {
+      navRouter.navigateToUnsplashView();
+    };
+
+    contentOptions[3]['onTap'] = () async {
       showHashTagSheet();
     };
 
-    contentOptions[5]['onTap'] = () async {
+    contentOptions[4]['onTap'] = () async {
       showLabelSheet();
     };
 
@@ -152,5 +156,9 @@ class CreatePostViewModel extends ReactiveViewModel {
   void removeMedia(int index) {
     _mediaService.removeMedia(index);
     notifyListeners();
+  }
+
+  void navigateToPreview() {
+    navRouter.navigateToContentPreviewView();
   }
 }

@@ -11,13 +11,27 @@ extension ThemeExtension on BuildContext {
   ThemeData get theme => Theme.of(this);
   TextTheme get textTheme => theme.textTheme;
 
-  TextStyle? get displayLarge => textTheme.displayLarge;
-  TextStyle? get displayMedium => textTheme.displayMedium;
-  TextStyle? get displaySmall => textTheme.displaySmall;
+  bool get isTablet => MediaQuery.of(this).size.shortestSide >= 600;
 
-  TextStyle? get bodyLarge => textTheme.bodyLarge;
-  TextStyle? get bodyMedium => textTheme.bodyMedium;
-  TextStyle? get bodySmall => textTheme.bodySmall;
+  TextStyle? get displayLarge => _getAdaptiveTextStyle(textTheme.displayLarge);
+  TextStyle? get displayMedium =>
+      _getAdaptiveTextStyle(textTheme.displayMedium);
+  TextStyle? get displaySmall => _getAdaptiveTextStyle(textTheme.displaySmall);
+
+  TextStyle? get bodyLarge => _getAdaptiveTextStyle(textTheme.bodyLarge);
+  TextStyle? get bodyMedium => _getAdaptiveTextStyle(textTheme.bodyMedium);
+  TextStyle? get bodySmall => _getAdaptiveTextStyle(textTheme.bodySmall);
+
+  TextStyle? _getAdaptiveTextStyle(TextStyle? style) {
+    if (style == null) return null;
+
+    // Scale factor for tablets (adjust as needed)
+    final scaleFactor = isTablet ? 1.3 : 1.0;
+
+    return style.copyWith(
+      fontSize: style.fontSize != null ? style.fontSize! * scaleFactor : null,
+    );
+  }
 }
 
 extension EdgeInsetsExtension on EdgeInsets {

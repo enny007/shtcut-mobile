@@ -27,6 +27,7 @@ class ActionSheet extends StackedView<ActionModel> {
           return Container(
             padding: EdgeInsets.symmetric(
               horizontal: 15.w,
+              vertical: 10.h,
             ),
             decoration: BoxDecoration(
               color: Colors.white,
@@ -110,9 +111,25 @@ class ActionSheet extends StackedView<ActionModel> {
                         Gap(16.h),
                         SelectableCard(
                           leadingImage:
+                              SvgPicture.asset('assets/svgs/signpost.svg'),
+                          title: 'All Posts',
+                          subtitle: 'View all created posts',
+                          onTap: () {},
+                        ),
+                        Gap(6.h),
+                        SelectableCard(
+                          leadingImage:
                               SvgPicture.asset('assets/svgs/gallery.svg'),
                           title: 'Media Library',
                           subtitle: 'Manage your library',
+                          onTap: () {},
+                        ),
+                        Gap(6.h),
+                        SelectableCard(
+                          leadingImage:
+                              SvgPicture.asset('assets/svgs/message-text.svg'),
+                          title: 'Messages',
+                          subtitle: 'Chat with members of your workspace',
                           onTap: () {},
                         ),
                         Gap(6.h),
@@ -141,13 +158,13 @@ class ActionSheet extends StackedView<ActionModel> {
                           onTap: () {},
                         ),
                         Gap(6.h),
-                        SelectableCard(
-                          leadingImage:
-                              SvgPicture.asset('assets/svgs/profile.svg'),
-                          title: 'Social Accounts',
-                          subtitle: 'Manage all your social accounts',
-                          onTap: () {},
-                        ),
+                        // SelectableCard(
+                        //   leadingImage:
+                        //       SvgPicture.asset('assets/svgs/profile.svg'),
+                        //   title: 'Social Accounts',
+                        //   subtitle: 'Manage all your social accounts',
+                        //   onTap: () {},
+                        // ),
                         Gap(20.h),
                       ],
                     ),

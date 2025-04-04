@@ -19,11 +19,14 @@ import 'package:shtcut_mobile/ui/bottom_sheets/label_manager/label_manager_sheet
 import 'package:shtcut_mobile/ui/bottom_sheets/notice/notice_sheet.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/password_confirmation/password_confirmation_sheet.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/permission_sheet/permission_sheet.dart';
+import 'package:shtcut_mobile/ui/bottom_sheets/publish_post/publish_post_sheet.dart';
+import 'package:shtcut_mobile/ui/bottom_sheets/schedule_post/schedule_post_sheet.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/set_new_password/set_new_password_sheet.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/welcome/welcome_sheet.dart';
 import 'package:shtcut_mobile/ui/dialogs/info_alert/info_alert_dialog.dart';
 import 'package:shtcut_mobile/ui/views/calendar/calendar_view.dart';
 import 'package:shtcut_mobile/ui/views/connect_accounts/connect_accounts_view.dart';
+import 'package:shtcut_mobile/ui/views/content_preview/content_preview_view.dart';
 import 'package:shtcut_mobile/ui/views/create_post/create_post_content_view.dart';
 import 'package:shtcut_mobile/ui/views/create_post/create_post_view.dart';
 import 'package:shtcut_mobile/ui/views/home/home_view.dart';
@@ -33,6 +36,7 @@ import 'package:shtcut_mobile/ui/views/recording/recording_view.dart';
 import 'package:shtcut_mobile/ui/views/sign_in/sign_in_view.dart';
 import 'package:shtcut_mobile/ui/views/sign_up/sign_up_view.dart';
 import 'package:shtcut_mobile/ui/views/startup/startup_view.dart';
+import 'package:shtcut_mobile/ui/views/unsplash/unsplash_view.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -83,6 +87,14 @@ import 'package:stacked_services/stacked_services.dart';
     page: CreatePostContentView,
     transitionsBuilder: TransitionsBuilders.fadeIn,
   ),
+  CustomRoute(
+    page: UnsplashView,
+    transitionsBuilder: TransitionsBuilders.fadeIn,
+  ),
+  CustomRoute(
+    page: ContentPreviewView,
+    transitionsBuilder: TransitionsBuilders.fadeIn,
+  ),
   // @stacked-route
 ], dependencies: [
   LazySingleton(classType: BottomSheetService),
@@ -116,6 +128,8 @@ import 'package:stacked_services/stacked_services.dart';
   StackedBottomsheet(classType: LabelCreatedSheet),
   StackedBottomsheet(classType: LabelManagerSheet),
   StackedBottomsheet(classType: AddLabelsSheet),
+  StackedBottomsheet(classType: SchedulePostSheet),
+  StackedBottomsheet(classType: PublishPostSheet),
   // @stacked-bottom-sheet
 ], dialogs: [
   StackedDialog(classType: InfoAlertDialog),

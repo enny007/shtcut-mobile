@@ -36,6 +36,8 @@ class BottomNavLayoutModel extends BaseViewModel {
         );
         break;
     }
+
+    notifyListeners();
   }
 
   Future<void> showActionSheet() async {

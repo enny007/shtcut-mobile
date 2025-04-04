@@ -43,6 +43,10 @@
 	<string>SHTCUT needs access to your photo library to select images and videos for your posts.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>SHTCUT needs access to your microphone to record videos with sound for your posts.</string>
+	<key>PHPhotoLibraryPreventAutomaticLimitedAccessAlert</key>
+	<true/>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>SHTCUT needs access to save photos to your library.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
