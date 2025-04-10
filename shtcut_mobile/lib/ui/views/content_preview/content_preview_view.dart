@@ -1,16 +1,18 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:shtcut_mobile/app/app_setup.dart';
 import 'package:shtcut_mobile/ui/common/app_colors.dart';
 import 'package:shtcut_mobile/ui/global_widgets/app_button.dart';
 import 'package:shtcut_mobile/ui/utils/extensions.dart';
 import 'package:shtcut_mobile/ui/views/content_preview/content_preview_view_model.dart';
-import 'package:shtcut_mobile/ui/views/content_preview/widget/social_card.dart';
-import 'package:shtcut_mobile/ui/views/content_preview/widget/social_media_selector_tile.dart';
+import 'package:shtcut_mobile/ui/views/content_preview/widget/facebook_preview_card.dart';
+import 'package:shtcut_mobile/ui/views/content_preview/widget/instagram_preview_card.dart';
+import 'package:shtcut_mobile/ui/views/content_preview/widget/linkedin_preview_card.dart';
 import 'package:shtcut_mobile/ui/views/content_preview/widget/social_profile_container.dart';
+import 'package:shtcut_mobile/ui/views/content_preview/widget/tiktok_preview_card.dart';
+import 'package:shtcut_mobile/ui/views/content_preview/widget/twitter_preview_card.dart';
 import 'package:stacked/stacked.dart';
 
 class ContentPreviewView extends StackedView<ContentPreviewViewModel> {
@@ -111,7 +113,12 @@ class ContentPreviewView extends StackedView<ContentPreviewViewModel> {
                     ),
                   ),
                   Gap(21.h),
-                  const SocialProfilesContainer(),
+                  SocialProfilesContainer(
+                    selectedPlatforms: viewModel.selectedSocialTypes,
+                    onPlatformSelected: (platformId) {
+                      viewModel.toggleSocialPlatform(platformId);
+                    },
+                  ),
                   Gap(21.h),
                   // SocialMediaSelector(
                   //   initialSelection: viewModel.selectedSocialTypes,
@@ -126,34 +133,7 @@ class ContentPreviewView extends StackedView<ContentPreviewViewModel> {
             // Social card
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 12.w),
-              child: viewModel.posts.isNotEmpty
-                  ? SocialCard(
-                      profileImageUrl: viewModel.posts[1]['profileImageUrl'],
-                      username: viewModel.posts[1]['username'],
-                      postImages:
-                          List<String>.from(viewModel.posts[1]['postImages']),
-                      caption: viewModel.posts[1]['caption'],
-                      likesCount: viewModel.posts[1]['likesCount'],
-                      commentsCount: viewModel.posts[1]['commentsCount'],
-                      isLiked: viewModel.posts[1]['isLiked'],
-                      isBookmarked: viewModel.posts[1]['isBookmarked'],
-                      onLike: () {
-                        // Handle like action
-                      },
-                      onComment: () {
-                        // Handle comment action
-                      },
-                      onShare: () {
-                        // Handle share action
-                      },
-                      onBookmark: () {
-                        // Handle bookmark action
-                      },
-                      onMoreOptions: () {
-                        // Handle more options
-                      },
-                    )
-                  : const SizedBox.shrink(),
+              child: _buildSocialMediaPreview(viewModel),
             ),
 
             // Add some bottom padding to ensure content is scrollable
@@ -170,7 +150,7 @@ class ContentPreviewView extends StackedView<ContentPreviewViewModel> {
           color: Colors.white,
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.05),
+              color: Colors.black.withValues(alpha: .05),
               spreadRadius: 1,
               blurRadius: 5,
               offset: const Offset(0, -1),
@@ -214,5 +194,93 @@ class ContentPreviewView extends StackedView<ContentPreviewViewModel> {
   @override
   ContentPreviewViewModel viewModelBuilder(BuildContext context) {
     return ContentPreviewViewModel();
+  }
+
+  Widget _buildSocialMediaPreview(ContentPreviewViewModel viewModel) {
+    // If no social media type is selected, show a placeholder
+    if (viewModel.selectedSocialTypes.isEmpty) {
+      return Container(
+        height: 400.h,
+        decoration: BoxDecoration(
+          color: Colors.grey[200],
+          borderRadius: BorderRadius.circular(8.r),
+        ),
+        child: Center(
+          child: Text(
+            'Select a social media platform to preview',
+            style: TextStyle(
+              color: Colors.grey[600],
+              fontSize: 16.sp,
+            ),
+          ),
+        ),
+      );
+    }
+
+    // Show the appropriate preview based on the selected social media type
+    switch (viewModel.currentPreviewType) {
+      case 'twitter':
+        return TwitterPreviewCard(
+          profileImageUrl: viewModel.twitterPost['profileImageUrl'],
+          username: viewModel.twitterPost['username'],
+          handle: viewModel.twitterPost['handle'],
+          tweetText: viewModel.twitterPost['tweetText'],
+          tweetImages: List<String>.from(viewModel.twitterPost['tweetImages']),
+        );
+
+      case 'facebook':
+        return FacebookPreviewCard(
+          profileImageUrl: viewModel.facebookPost['profileImageUrl'],
+          username: viewModel.facebookPost['username'],
+          postText: viewModel.facebookPost['postText'],
+          postImages: List<String>.from(viewModel.facebookPost['postImages']),
+        );
+      case 'tiktok':
+        return TikTokPreviewCard(
+          profileImageUrl: viewModel.tiktokPost['profileImageUrl'],
+          username: viewModel.tiktokPost['username'],
+          caption: viewModel.tiktokPost['caption'],
+          mediaUrls: List<String>.from(viewModel.tiktokPost['mediaUrls']),
+          isVideo: viewModel.tiktokPost['isVideo'],
+          soundName: viewModel.tiktokPost['soundName'],
+        );
+      case 'linkedin':
+        return LinkedInPreviewCard(
+          profileImageUrl: viewModel.linkedinPost['profileImageUrl'],
+          username: viewModel.linkedinPost['username'],
+          userTitle: viewModel.linkedinPost['userTitle'],
+          postText: viewModel.linkedinPost['postText'],
+          postImages: List<String>.from(viewModel.linkedinPost['postImages']),
+        );
+
+      case 'instagram':
+        return InstagramPreviewCard(
+          profileImageUrl: viewModel.posts[1]['profileImageUrl'],
+          username: viewModel.posts[1]['username'],
+          postImages: List<String>.from(viewModel.posts[1]['postImages']),
+          caption: viewModel.posts[1]['caption'],
+          likesCount: viewModel.posts[1]['likesCount'],
+          commentsCount: viewModel.posts[1]['commentsCount'],
+          isLiked: viewModel.posts[1]['isLiked'],
+          isBookmarked: viewModel.posts[1]['isBookmarked'],
+          onLike: () {
+            // Handle like action
+          },
+          onComment: () {
+            // Handle comment action
+          },
+          onShare: () {
+            // Handle share action
+          },
+          onBookmark: () {
+            // Handle bookmark action
+          },
+          onMoreOptions: () {
+            // Handle more options
+          },
+        );
+      default:
+        return const SizedBox();
+    }
   }
 }

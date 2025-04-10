@@ -2,28 +2,39 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:shtcut_mobile/ui/common/app_colors.dart';
 
 class SocialProfilesContainer extends StatelessWidget {
-  const SocialProfilesContainer({Key? key}) : super(key: key);
+  const SocialProfilesContainer({
+    Key? key,
+    required this.selectedPlatforms,
+    required this.onPlatformSelected,
+  }) : super(key: key);
 
+  final List<String> selectedPlatforms;
+  final Function(String) onPlatformSelected;
   @override
   Widget build(BuildContext context) {
     // List of social media platforms with their SVG paths
     final List<Map<String, String>> socialPlatforms = [
       {
+        'id': 'facebook',
         'svgPath': 'assets/svgs/facebook_logo.svg',
       },
       {
-        'svgPath':
-            'assets/svgs/instagram_logo.svg', // Assuming you have this SVG
+        'id': 'instagram',
+        'svgPath': 'assets/svgs/instagram_logo.svg',
       },
       {
+        'id': 'tiktok',
         'svgPath': 'assets/svgs/tiktok_logo.svg',
       },
       {
+        'id': 'twitter',
         'svgPath': 'assets/svgs/x_logo.svg',
       },
       {
+        'id': 'linkedin',
         'svgPath': 'assets/svgs/linkedin_logo.svg',
       },
     ];
@@ -48,8 +59,19 @@ class SocialProfilesContainer extends StatelessWidget {
           socialPlatforms.length,
           (index) => Row(
             children: [
-              SocialProfileItem(
-                svgPath: socialPlatforms[index]['svgPath']!,
+              GestureDetector(
+                onTap: () {
+                  // Safely access the id, providing a fallback if null
+                  final platformId = socialPlatforms[index]['id'] ?? '';
+                  if (platformId.isNotEmpty) {
+                    onPlatformSelected(platformId);
+                  }
+                },
+                child: SocialProfileItem(
+                  svgPath: socialPlatforms[index]['svgPath'] ?? '',
+                  isSelected:
+                      selectedPlatforms.contains(socialPlatforms[index]['id']),
+                ),
               ),
               // Add gap between items, except after the last item
               if (index < socialPlatforms.length - 1) Gap(34.w),
@@ -63,23 +85,31 @@ class SocialProfilesContainer extends StatelessWidget {
 
 class SocialProfileItem extends StatelessWidget {
   final String svgPath;
+  final bool isSelected;
 
   const SocialProfileItem({
     Key? key,
     required this.svgPath,
+    this.isSelected = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        // Profile picture circle
+        // Profile picture circle with selection indicator
         Container(
           width: 32.w,
           height: 32.h,
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: Colors.white,
+            border: isSelected
+                ? Border.all(
+                    color: kcPrimaryColor,
+                    width: 2.w,
+                  )
+                : null,
           ),
           child: Center(
             child: Image.asset(

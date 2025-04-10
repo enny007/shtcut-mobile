@@ -20,6 +20,7 @@ import '../ui/bottom_sheets/label_manager/label_manager_sheet.dart';
 import '../ui/bottom_sheets/notice/notice_sheet.dart';
 import '../ui/bottom_sheets/password_confirmation/password_confirmation_sheet.dart';
 import '../ui/bottom_sheets/permission_sheet/permission_sheet.dart';
+import '../ui/bottom_sheets/post_publish/post_publish_sheet.dart';
 import '../ui/bottom_sheets/publish_post/publish_post_sheet.dart';
 import '../ui/bottom_sheets/schedule_post/schedule_post_sheet.dart';
 import '../ui/bottom_sheets/set_new_password/set_new_password_sheet.dart';
@@ -43,6 +44,7 @@ enum BottomSheetType {
   addLabels,
   schedulePost,
   publishPost,
+  postPublish,
 }
 
 void setupBottomSheetUi() {
@@ -83,6 +85,8 @@ void setupBottomSheetUi() {
         SchedulePostSheet(request: request, completer: completer),
     BottomSheetType.publishPost: (context, request, completer) =>
         PublishPostSheet(request: request, completer: completer),
+    BottomSheetType.postPublish: (context, request, completer) =>
+        PostPublishSheet(request: request, completer: completer),
   };
 
   bottomsheetService.setCustomSheetBuilders(builders);

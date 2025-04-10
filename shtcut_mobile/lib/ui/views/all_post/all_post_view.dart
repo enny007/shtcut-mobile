@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:shtcut_mobile/ui/common/app_colors.dart';
 import 'package:shtcut_mobile/ui/utils/extensions.dart';
 import 'package:shtcut_mobile/ui/views/all_post/all_post_view_model.dart';
+import 'package:shtcut_mobile/ui/views/all_post/widgets/post_card.dart';
 import 'package:shtcut_mobile/ui/views/bottom_navigation/bottom_nav_layout.dart';
 import 'package:stacked/stacked.dart';
 
@@ -25,7 +26,7 @@ class AllPostView extends StackedView<AllPostViewModel> {
               width: double.infinity,
               padding: EdgeInsets.only(
                 left: 19.w,
-                top: 39.h,
+                top: 90.h,
                 bottom: 30.h,
               ),
               decoration: const BoxDecoration(
@@ -37,7 +38,7 @@ class AllPostView extends StackedView<AllPostViewModel> {
                   Text(
                     'Posts',
                     style: context.displaySmall!.copyWith(
-                      color: const Color(0xff101828),
+                      color: Colors.white,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -57,7 +58,7 @@ class AllPostView extends StackedView<AllPostViewModel> {
                   lefthorizontalPercentage: 12.w,
                   righthorizontalPercentage: 12.w,
                   topverticalPercentage: 20.h,
-                  bottomverticalPercentage: 20.h,
+                  bottomverticalPercentage: 10.h,
                   context: context,
                 ),
                 child: Column(
@@ -65,7 +66,7 @@ class AllPostView extends StackedView<AllPostViewModel> {
                     Container(
                       height: 48.h,
                       padding: EdgeInsets.symmetric(
-                        vertical: 2.h,
+                        vertical: 5.h,
                         horizontal: 8.w,
                       ),
                       decoration: BoxDecoration(
@@ -95,6 +96,12 @@ class AllPostView extends StackedView<AllPostViewModel> {
                         ],
                       ),
                     ),
+                    Gap(16.h),
+                    Expanded(
+                      child: viewModel.currentTabIndex == 0
+                          ? _buildScheduledPostsList(context, viewModel)
+                          : _buildLivePostsList(context, viewModel),
+                    ),
                   ],
                 ),
               ),
@@ -123,7 +130,7 @@ class AllPostView extends StackedView<AllPostViewModel> {
       child: GestureDetector(
         onTap: onTap,
         child: Container(
-          height: 26.h,
+          // height: 30.h,
           padding: EdgeInsets.symmetric(
             horizontal: 4.w,
             vertical: 10.h,
@@ -132,6 +139,7 @@ class AllPostView extends StackedView<AllPostViewModel> {
             color: isActive ? kcPrimaryColor : Colors.transparent,
             borderRadius: BorderRadius.circular(4.r),
           ),
+          alignment: Alignment.center,
           child: Center(
             child: Text(
               title,
@@ -145,6 +153,81 @@ class AllPostView extends StackedView<AllPostViewModel> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildScheduledPostsList(
+      BuildContext context, AllPostViewModel viewModel) {
+    final scheduledPosts = viewModel.getScheduledPosts();
+
+    if (scheduledPosts.isEmpty) {
+      return Center(
+        child: Text(
+          'No scheduled posts',
+          style: context.bodyMedium!.copyWith(
+            color: const Color(0xff5A5555),
+          ),
+        ),
+      );
+    }
+
+    return ListView.separated(
+      padding: EdgeInsets.zero,
+      itemCount: scheduledPosts.length,
+      separatorBuilder: (context, index) => Gap(16.h),
+      itemBuilder: (context, index) {
+        final post = scheduledPosts[index];
+        return PostCard(
+          title: post['title'],
+          scheduledTime: post['scheduledTime'],
+          socialIcons: post['socialIcons'],
+          imageUrl: post['imageUrl'],
+          additionalImagesCount: post['additionalImagesCount'],
+          onEdit: () {
+            // Handle edit action
+            viewModel.navigateToEditPost();
+          },
+          onPublish: () {
+            // Handle publish action
+            viewModel.showPublishPost();
+          },
+        );
+      },
+    );
+  }
+
+  Widget _buildLivePostsList(BuildContext context, AllPostViewModel viewModel) {
+    final livePosts = viewModel.getLivePosts();
+
+    if (livePosts.isEmpty) {
+      return Center(
+        child: Text(
+          'No live posts',
+          style: context.bodyMedium!.copyWith(
+            color: const Color(0xff5A5555),
+          ),
+        ),
+      );
+    }
+
+    return ListView.builder(
+      itemCount: livePosts.length,
+      itemBuilder: (context, index) {
+        final post = livePosts[index];
+        return PostCard(
+          title: post['title'],
+          scheduledTime: post['scheduledTime'],
+          socialIcons: post['socialIcons'],
+          imageUrl: post['imageUrl'],
+          additionalImagesCount: post['additionalImagesCount'],
+          onEdit: () {
+            // Handle edit action for live posts
+          },
+          onPublish: () {
+            // For live posts, this could be "Boost" or "Promote" instead
+          },
+        );
+      },
     );
   }
 }

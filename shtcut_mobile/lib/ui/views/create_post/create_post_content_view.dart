@@ -65,7 +65,7 @@ class CreatePostContentView extends StackedView<CreatePostViewModel> {
           ),
           centerTitle: true,
           title: Text(
-            'Create New Posts',
+            isEditView == true ? 'Edit Post' : 'Create New Posts',
             style: context.displaySmall!.copyWith(
               color: const Color(0xff101828),
               fontWeight: FontWeight.w600,

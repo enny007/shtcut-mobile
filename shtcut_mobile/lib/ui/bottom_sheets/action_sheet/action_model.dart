@@ -7,4 +7,9 @@ class ActionModel extends BaseViewModel {
     navRouter.back();
     navRouter.navigateToCreatePostView();
   }
+
+  void navigateToAllPostView() {
+    navRouter.back();
+    navRouter.navigateToAllPostView();
+  }
 }

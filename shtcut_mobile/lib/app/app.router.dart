@@ -5,9 +5,10 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:flutter/foundation.dart' as _i16;
-import 'package:flutter/material.dart' as _i15;
+import 'package:flutter/foundation.dart' as _i17;
+import 'package:flutter/material.dart' as _i16;
 import 'package:flutter/material.dart';
+import 'package:shtcut_mobile/ui/views/all_post/all_post_view.dart' as _i15;
 import 'package:shtcut_mobile/ui/views/calendar/calendar_view.dart' as _i8;
 import 'package:shtcut_mobile/ui/views/connect_accounts/connect_accounts_view.dart'
     as _i6;
@@ -27,7 +28,7 @@ import 'package:shtcut_mobile/ui/views/sign_up/sign_up_view.dart' as _i4;
 import 'package:shtcut_mobile/ui/views/startup/startup_view.dart' as _i2;
 import 'package:shtcut_mobile/ui/views/unsplash/unsplash_view.dart' as _i13;
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i17;
+import 'package:stacked_services/stacked_services.dart' as _i18;
 
 class Routes {
   static const startupView = '/startup-view';
@@ -56,6 +57,8 @@ class Routes {
 
   static const contentPreviewView = '/content-preview-view';
 
+  static const allPostView = '/all-post-view';
+
   static const all = <String>{
     startupView,
     onboardingView,
@@ -70,6 +73,7 @@ class Routes {
     createPostContentView,
     unsplashView,
     contentPreviewView,
+    allPostView,
   };
 }
 
@@ -127,11 +131,15 @@ class StackedRouter extends _i1.RouterBase {
       Routes.contentPreviewView,
       page: _i14.ContentPreviewView,
     ),
+    _i1.RouteDef(
+      Routes.allPostView,
+      page: _i15.AllPostView,
+    ),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
     _i2.StartupView: (data) {
-      return _i15.PageRouteBuilder<dynamic>(
+      return _i16.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i2.StartupView(),
         settings: data,
@@ -139,7 +147,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i3.OnboardingView: (data) {
-      return _i15.PageRouteBuilder<dynamic>(
+      return _i16.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i3.OnboardingView(),
         settings: data,
@@ -147,7 +155,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i4.SignUpView: (data) {
-      return _i15.PageRouteBuilder<dynamic>(
+      return _i16.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i4.SignUpView(),
         settings: data,
@@ -155,7 +163,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i5.SignInView: (data) {
-      return _i15.PageRouteBuilder<dynamic>(
+      return _i16.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i5.SignInView(),
         settings: data,
@@ -163,7 +171,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i6.ConnectAccountsView: (data) {
-      return _i15.PageRouteBuilder<dynamic>(
+      return _i16.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i6.ConnectAccountsView(),
         settings: data,
@@ -171,7 +179,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i7.HomeView: (data) {
-      return _i15.PageRouteBuilder<dynamic>(
+      return _i16.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i7.HomeView(),
         settings: data,
@@ -179,7 +187,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i8.CalendarView: (data) {
-      return _i15.PageRouteBuilder<dynamic>(
+      return _i16.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i8.CalendarView(),
         settings: data,
@@ -187,7 +195,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i9.RecordingView: (data) {
-      return _i15.PageRouteBuilder<dynamic>(
+      return _i16.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i9.RecordingView(),
         settings: data,
@@ -195,7 +203,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i10.LiveBroadcastView: (data) {
-      return _i15.PageRouteBuilder<dynamic>(
+      return _i16.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i10.LiveBroadcastView(),
         settings: data,
@@ -203,7 +211,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i11.CreatePostView: (data) {
-      return _i15.PageRouteBuilder<dynamic>(
+      return _i16.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i11.CreatePostView(),
         settings: data,
@@ -214,7 +222,7 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<CreatePostContentViewArguments>(
         orElse: () => const CreatePostContentViewArguments(),
       );
-      return _i15.PageRouteBuilder<dynamic>(
+      return _i16.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             _i12.CreatePostContentView(
                 key: args.key, isEditView: args.isEditView),
@@ -223,7 +231,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i13.UnsplashView: (data) {
-      return _i15.PageRouteBuilder<dynamic>(
+      return _i16.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i13.UnsplashView(),
         settings: data,
@@ -231,9 +239,17 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i14.ContentPreviewView: (data) {
-      return _i15.PageRouteBuilder<dynamic>(
+      return _i16.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i14.ContentPreviewView(),
+        settings: data,
+        transitionsBuilder: data.transition ?? _i1.TransitionsBuilders.fadeIn,
+      );
+    },
+    _i15.AllPostView: (data) {
+      return _i16.PageRouteBuilder<dynamic>(
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            const _i15.AllPostView(),
         settings: data,
         transitionsBuilder: data.transition ?? _i1.TransitionsBuilders.fadeIn,
       );
@@ -253,7 +269,7 @@ class CreatePostContentViewArguments {
     this.isEditView = false,
   });
 
-  final _i16.Key? key;
+  final _i17.Key? key;
 
   final bool isEditView;
 
@@ -274,7 +290,7 @@ class CreatePostContentViewArguments {
   }
 }
 
-extension NavigatorStateExtension on _i17.NavigationService {
+extension NavigatorStateExtension on _i18.NavigationService {
   Future<dynamic> navigateToStartupView([
     int? routerId,
     bool preventDuplicates = true,
@@ -416,7 +432,7 @@ extension NavigatorStateExtension on _i17.NavigationService {
   }
 
   Future<dynamic> navigateToCreatePostContentView({
-    _i16.Key? key,
+    _i17.Key? key,
     bool isEditView = false,
     int? routerId,
     bool preventDuplicates = true,
@@ -455,6 +471,20 @@ extension NavigatorStateExtension on _i17.NavigationService {
         transition,
   ]) async {
     return navigateTo<dynamic>(Routes.contentPreviewView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToAllPostView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.allPostView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -602,7 +632,7 @@ extension NavigatorStateExtension on _i17.NavigationService {
   }
 
   Future<dynamic> replaceWithCreatePostContentView({
-    _i16.Key? key,
+    _i17.Key? key,
     bool isEditView = false,
     int? routerId,
     bool preventDuplicates = true,
@@ -641,6 +671,20 @@ extension NavigatorStateExtension on _i17.NavigationService {
         transition,
   ]) async {
     return replaceWith<dynamic>(Routes.contentPreviewView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithAllPostView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.allPostView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

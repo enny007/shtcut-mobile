@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:shtcut_mobile/ui/common/app_colors.dart';
 
-class SocialCard extends StatefulWidget {
+class InstagramPreviewCard extends StatefulWidget {
   final String profileImageUrl;
   final String username;
   final List<String> postImages;
@@ -19,7 +19,7 @@ class SocialCard extends StatefulWidget {
   final VoidCallback onBookmark;
   final VoidCallback onMoreOptions;
 
-  const SocialCard({
+  const InstagramPreviewCard({
     Key? key,
     required this.profileImageUrl,
     required this.username,
@@ -37,10 +37,10 @@ class SocialCard extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<SocialCard> createState() => _SocialCardState();
+  State<InstagramPreviewCard> createState() => _InstagramPreviewCardState();
 }
 
-class _SocialCardState extends State<SocialCard> {
+class _InstagramPreviewCardState extends State<InstagramPreviewCard> {
   int _currentImageIndex = 0;
   final PageController _pageController = PageController();
 
@@ -188,8 +188,6 @@ class _SocialCardState extends State<SocialCard> {
                     ),
                   ),
                 ],
-
-                // Pagination dots
               ],
             ),
           ),
@@ -228,7 +226,6 @@ class _SocialCardState extends State<SocialCard> {
                   padding: EdgeInsets.zero,
                   constraints: const BoxConstraints(),
                 ),
-                // Gap(3.w),
 
                 // Comment button
                 IconButton(

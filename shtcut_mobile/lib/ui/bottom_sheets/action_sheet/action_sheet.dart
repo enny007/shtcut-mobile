@@ -114,7 +114,9 @@ class ActionSheet extends StackedView<ActionModel> {
                               SvgPicture.asset('assets/svgs/signpost.svg'),
                           title: 'All Posts',
                           subtitle: 'View all created posts',
-                          onTap: () {},
+                          onTap: () {
+                            viewModel.navigateToAllPostView();
+                          },
                         ),
                         Gap(6.h),
                         SelectableCard(
