@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/schedule_post/schedule_post_model.dart';
-import 'package:shtcut_mobile/ui/bottom_sheets/schedule_post/widgets/custom_calendar.dart';
+import 'package:shtcut_mobile/ui/global_widgets/custom_calendar.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/schedule_post/widgets/time_selector.dart';
 import 'package:shtcut_mobile/ui/common/app_colors.dart';
 import 'package:shtcut_mobile/ui/global_widgets/app_button.dart';

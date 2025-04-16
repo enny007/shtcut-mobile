@@ -12,4 +12,9 @@ class ActionModel extends BaseViewModel {
     navRouter.back();
     navRouter.navigateToAllPostView();
   }
+
+  void navigateToMediaLibrary() {
+    navRouter.back();
+    navRouter.navigateToMediaLibraryView();
+  }
 }

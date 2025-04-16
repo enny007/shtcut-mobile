@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shtcut_mobile/ui/common/app_colors.dart';
-import 'package:shtcut_mobile/ui/utils/extensions.dart';
 
 // Define the label colors
 class LabelColors {

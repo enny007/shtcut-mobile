@@ -133,28 +133,19 @@ class CreatePostView extends StackedView<CreatePostViewModel> {
                             CheckableAccountTile(
                               imagePath: 'assets/images/x_dummy.png',
                               title: 'Account 1',
-                              onChanged: (value) {
-                                // Handle checkbox change
-                                print('Account 1 checked: $value');
-                              },
+                              onChanged: (value) {},
                             ),
                             Gap(10.h),
                             CheckableAccountTile(
                               imagePath: 'assets/images/x_dummy.png',
                               title: 'Account 2',
-                              onChanged: (value) {
-                                // Handle checkbox change
-                                print('Account 2 checked: $value');
-                              },
+                              onChanged: (value) {},
                             ),
                             Gap(10.h),
                             CheckableAccountTile(
                               imagePath: 'assets/images/x_dummy.png',
                               title: 'Account 3',
-                              onChanged: (value) {
-                                // Handle checkbox change
-                                print('Account 3 checked: $value');
-                              },
+                              onChanged: (value) {},
                             ),
                             Gap(10.h),
                             Padding(
@@ -237,7 +228,7 @@ class CreatePostView extends StackedView<CreatePostViewModel> {
             color: Colors.white,
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.05),
+                color: Colors.black.withValues(alpha: .05),
                 spreadRadius: 1,
                 blurRadius: 5,
                 offset: const Offset(0, -1),

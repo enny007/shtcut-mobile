@@ -9,7 +9,6 @@ class SelectableCard extends StatelessWidget {
   final String subtitle;
   final Color backgroundColor;
   final double borderRadius;
-  // final bool isSelected;
   final VoidCallback onTap;
   final Color selectedBorderColor;
   final double selectedBorderWidth;

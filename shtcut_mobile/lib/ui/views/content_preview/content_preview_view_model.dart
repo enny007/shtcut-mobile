@@ -95,7 +95,8 @@ class ContentPreviewViewModel extends MBaseViewModel {
   final Map<String, dynamic> tiktokPost = {
     'profileImageUrl': 'https://randomuser.me/api/portraits/men/32.jpg',
     'username': 'tech_mike',
-    'caption': 'Check out this amazing new tech gadget! #tech #gadgets #review #trending',
+    'caption':
+        'Check out this amazing new tech gadget! #tech #gadgets #review #trending',
     'mediaUrls': [
       'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d',
       'https://images.unsplash.com/photo-1542744173-8e7e53415bb0',
@@ -109,7 +110,8 @@ class ContentPreviewViewModel extends MBaseViewModel {
   final Map<String, dynamic> tiktokVideoPost = {
     'profileImageUrl': 'https://randomuser.me/api/portraits/men/32.jpg',
     'username': 'tech_mike',
-    'caption': 'Unboxing the latest tech gadget! #tech #gadgets #unboxing #viral',
+    'caption':
+        'Unboxing the latest tech gadget! #tech #gadgets #unboxing #viral',
     'mediaUrls': [
       'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d', // This would be a video thumbnail in a real app
     ],
@@ -117,16 +119,16 @@ class ContentPreviewViewModel extends MBaseViewModel {
     'soundName': 'Original Sound - Tech Mike',
   };
 
-   final Map<String, dynamic> linkedinPost = {
+  final Map<String, dynamic> linkedinPost = {
     'profileImageUrl': 'https://randomuser.me/api/portraits/men/32.jpg',
     'username': 'Mike Johnson',
     'userTitle': 'Senior Product Manager at Tech Innovations',
-    'postText': 'Excited to share that we\'ve just launched our latest product! After months of hard work from our amazing team, we\'re proud to introduce a revolutionary tech gadget that will change how you interact with your devices. #ProductLaunch #Innovation #Technology',
+    'postText':
+        'Excited to share that we\'ve just launched our latest product! After months of hard work from our amazing team, we\'re proud to introduce a revolutionary tech gadget that will change how you interact with your devices. #ProductLaunch #Innovation #Technology',
     'postImages': [
       'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d',
       'https://images.unsplash.com/photo-1542744173-8e7e53415bb0',
     ],
-   
   };
 
   Future<void> showCalendar() async {

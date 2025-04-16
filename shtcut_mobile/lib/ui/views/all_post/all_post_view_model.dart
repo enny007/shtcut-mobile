@@ -74,7 +74,7 @@ class AllPostViewModel extends MBaseViewModel {
     );
   }
 
-  void navigateToEditPost(){
+  void navigateToEditPost() {
     navRouter.navigateToCreatePostContentView(
       isEditView: true,
     );

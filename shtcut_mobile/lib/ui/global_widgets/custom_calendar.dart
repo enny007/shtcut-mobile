@@ -3,6 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:shtcut_mobile/ui/common/app_colors.dart';
 
+typedef DayBuilder = Widget Function(
+    BuildContext context, DateTime date, bool isSelectable);
+
 class CustomCalendar extends StatelessWidget {
   final List<DateTime> days;
   final DateTime displayedMonth;
@@ -15,6 +18,7 @@ class CustomCalendar extends StatelessWidget {
   final int selectedMonth;
   final Function(int) onYearChanged;
   final Function(int) onMonthChanged;
+  final DayBuilder? dayBuilder;
 
   const CustomCalendar({
     Key? key,
@@ -29,6 +33,7 @@ class CustomCalendar extends StatelessWidget {
     required this.selectedMonth,
     required this.onYearChanged,
     required this.onMonthChanged,
+    this.dayBuilder,
   }) : super(key: key);
 
   @override
@@ -207,24 +212,31 @@ class CustomCalendar extends StatelessWidget {
                   : null,
             ),
             child: Center(
-              child: Text(
-                date.day.toString(),
-                style: TextStyle(
-                  fontSize: 14.sp,
-                  fontWeight: isSelected || isTodayDate
-                      ? FontWeight.bold
-                      : FontWeight.normal,
-                  color: isSelected
-                      ? Colors.white
-                      : isInCurrentMonth
-                          ? Colors.black
-                          : Colors.grey,
-                ),
-              ),
+              child: dayBuilder != null
+                  ? dayBuilder!(context, date, isInCurrentMonth)
+                  : _defaultDayBuilder(
+                      context, date, isInCurrentMonth, isSelected, isTodayDate),
             ),
           ),
         );
       },
+    );
+  }
+
+  Widget _defaultDayBuilder(BuildContext context, DateTime date,
+      bool isInCurrentMonth, bool isSelected, bool isTodayDate) {
+    return Text(
+      date.day.toString(),
+      style: TextStyle(
+        fontSize: 14.sp,
+        fontWeight:
+            isSelected || isTodayDate ? FontWeight.bold : FontWeight.normal,
+        color: isSelected
+            ? Colors.white
+            : isInCurrentMonth
+                ? Colors.black
+                : Colors.grey,
+      ),
     );
   }
 }

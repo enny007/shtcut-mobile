@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/action_sheet/action_model.dart';
-import 'package:shtcut_mobile/ui/bottom_sheets/action_sheet/widgets/selectable_card.dart';
+import 'package:shtcut_mobile/ui/global_widgets/selectable_card.dart';
 import 'package:shtcut_mobile/ui/utils/extensions.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -124,7 +124,9 @@ class ActionSheet extends StackedView<ActionModel> {
                               SvgPicture.asset('assets/svgs/gallery.svg'),
                           title: 'Media Library',
                           subtitle: 'Manage your library',
-                          onTap: () {},
+                          onTap: () {
+                            viewModel.navigateToMediaLibrary();
+                          },
                         ),
                         Gap(6.h),
                         SelectableCard(
