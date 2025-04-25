@@ -159,7 +159,9 @@ class ActionSheet extends StackedView<ActionModel> {
                               SvgPicture.asset('assets/svgs/task-square.svg'),
                           title: 'Tasks',
                           subtitle: 'View all tasks and more',
-                          onTap: () {},
+                          onTap: () {
+                            viewModel.navigateToTaskView();
+                          },
                         ),
                         Gap(6.h),
                         // SelectableCard(

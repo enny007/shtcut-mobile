@@ -49,7 +49,7 @@ class AdaptableIcon extends StatelessWidget {
         ? icons.take(maxVisibleIcons).toList()
         : icons;
     final remainingCount = icons.length - visibleIcons.length;
-    final offset = size * 0.85; // Adjust this value for edge attachment
+    final offset = size * 0.85;
 
     return Row(
       mainAxisSize: MainAxisSize.min,

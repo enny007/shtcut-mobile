@@ -11,6 +11,7 @@ import 'package:shtcut_mobile/ui/bottom_sheets/add_hashtag/add_hashtag_sheet.dar
 import 'package:shtcut_mobile/ui/bottom_sheets/add_hashtag/hashtag_created_sheet.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/add_labels/add_labels_sheet.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/create_media_folder/create_media_folder_sheet.dart';
+import 'package:shtcut_mobile/ui/bottom_sheets/create_new_task/create_new_task_sheet.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/email_verification/email_verification_sheet.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/forgot_password/forgot_password_otp_sheet.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/forgot_password/forgot_password_sheet.dart';
@@ -26,6 +27,7 @@ import 'package:shtcut_mobile/ui/bottom_sheets/post_publish/post_publish_sheet.d
 import 'package:shtcut_mobile/ui/bottom_sheets/publish_post/publish_post_sheet.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/schedule_post/schedule_post_sheet.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/set_new_password/set_new_password_sheet.dart';
+import 'package:shtcut_mobile/ui/bottom_sheets/task_created/task_created_sheet.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/welcome/welcome_sheet.dart';
 import 'package:shtcut_mobile/ui/dialogs/info_alert/info_alert_dialog.dart';
 import 'package:shtcut_mobile/ui/views/all_post/all_post_view.dart';
@@ -42,6 +44,8 @@ import 'package:shtcut_mobile/ui/views/recording/recording_view.dart';
 import 'package:shtcut_mobile/ui/views/sign_in/sign_in_view.dart';
 import 'package:shtcut_mobile/ui/views/sign_up/sign_up_view.dart';
 import 'package:shtcut_mobile/ui/views/startup/startup_view.dart';
+import 'package:shtcut_mobile/ui/views/task_details/task_details_view.dart';
+import 'package:shtcut_mobile/ui/views/tasks/tasks_view.dart';
 import 'package:shtcut_mobile/ui/views/unsplash/unsplash_view.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -109,6 +113,14 @@ import 'package:stacked_services/stacked_services.dart';
     page: MediaLibraryView,
     transitionsBuilder: TransitionsBuilders.fadeIn,
   ),
+  CustomRoute(
+    page: TasksView,
+    transitionsBuilder: TransitionsBuilders.fadeIn,
+  ),
+  CustomRoute(
+    page: TaskDetailsView,
+    transitionsBuilder: TransitionsBuilders.fadeIn,
+  ),
   // @stacked-route
 ], dependencies: [
   LazySingleton(classType: BottomSheetService),
@@ -148,6 +160,8 @@ import 'package:stacked_services/stacked_services.dart';
   StackedBottomsheet(classType: ManageLibrarySheet),
   StackedBottomsheet(classType: MediaUploadSheet),
   StackedBottomsheet(classType: CreateMediaFolderSheet),
+  StackedBottomsheet(classType: CreateNewTaskSheet),
+  StackedBottomsheet(classType: TaskCreatedSheet),
   // @stacked-bottom-sheet
 ], dialogs: [
   StackedDialog(classType: InfoAlertDialog),

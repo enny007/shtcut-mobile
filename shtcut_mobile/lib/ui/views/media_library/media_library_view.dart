@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:shtcut_mobile/ui/common/app_colors.dart';
-import 'package:shtcut_mobile/ui/global_widgets/app_button.dart';
 import 'package:shtcut_mobile/ui/global_widgets/app_text_field.dart';
 import 'package:shtcut_mobile/ui/utils/extensions.dart';
 import 'package:shtcut_mobile/ui/views/bottom_navigation/bottom_nav_layout.dart';

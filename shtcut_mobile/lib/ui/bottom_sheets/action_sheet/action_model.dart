@@ -17,4 +17,9 @@ class ActionModel extends BaseViewModel {
     navRouter.back();
     navRouter.navigateToMediaLibraryView();
   }
+
+  void navigateToTaskView() {
+    navRouter.back();
+    navRouter.navigateToTasksView();
+  }
 }

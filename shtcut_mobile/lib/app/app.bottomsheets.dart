@@ -12,6 +12,7 @@ import '../ui/bottom_sheets/add_hashtag/add_hashtag_sheet.dart';
 import '../ui/bottom_sheets/add_hashtag/hashtag_created_sheet.dart';
 import '../ui/bottom_sheets/add_labels/add_labels_sheet.dart';
 import '../ui/bottom_sheets/create_media_folder/create_media_folder_sheet.dart';
+import '../ui/bottom_sheets/create_new_task/create_new_task_sheet.dart';
 import '../ui/bottom_sheets/email_verification/email_verification_sheet.dart';
 import '../ui/bottom_sheets/forgot_password/forgot_password_otp_sheet.dart';
 import '../ui/bottom_sheets/forgot_password/forgot_password_sheet.dart';
@@ -27,6 +28,7 @@ import '../ui/bottom_sheets/post_publish/post_publish_sheet.dart';
 import '../ui/bottom_sheets/publish_post/publish_post_sheet.dart';
 import '../ui/bottom_sheets/schedule_post/schedule_post_sheet.dart';
 import '../ui/bottom_sheets/set_new_password/set_new_password_sheet.dart';
+import '../ui/bottom_sheets/task_created/task_created_sheet.dart';
 import '../ui/bottom_sheets/welcome/welcome_sheet.dart';
 
 enum BottomSheetType {
@@ -51,6 +53,8 @@ enum BottomSheetType {
   manageLibrary,
   mediaUpload,
   createMediaFolder,
+  createNewTask,
+  taskCreated,
 }
 
 void setupBottomSheetUi() {
@@ -99,6 +103,10 @@ void setupBottomSheetUi() {
         MediaUploadSheet(request: request, completer: completer),
     BottomSheetType.createMediaFolder: (context, request, completer) =>
         CreateMediaFolderSheet(request: request, completer: completer),
+    BottomSheetType.createNewTask: (context, request, completer) =>
+        CreateNewTaskSheet(request: request, completer: completer),
+    BottomSheetType.taskCreated: (context, request, completer) =>
+        TaskCreatedSheet(request: request, completer: completer),
   };
 
   bottomsheetService.setCustomSheetBuilders(builders);

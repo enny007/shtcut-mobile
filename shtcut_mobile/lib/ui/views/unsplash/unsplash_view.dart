@@ -87,7 +87,7 @@ class UnsplashView extends StackedView<UnsplashViewModel> {
                 'Done',
                 style: context.bodySmall!.copyWith(
                   color: Colors.white,
-                  fontSize: 7.64.sp,
+                  fontSize: 9.sp,
                   fontWeight: FontWeight.w600,
                 ),
               ),
