@@ -17,6 +17,8 @@ class TasksView extends StackedView<TasksViewModel> {
   @override
   Widget builder(
       BuildContext context, TasksViewModel viewModel, Widget? child) {
+    final data = MediaQueryData.fromView(View.of(context));
+    final isTablet = data.size.shortestSide >= 600;
     return BottomNavLayout(
       child: DefaultTabController(
         length: 3,
@@ -93,7 +95,7 @@ class TasksView extends StackedView<TasksViewModel> {
                         borderRadius: BorderRadius.circular(8.r),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.05),
+                            color: Colors.black.withValues(alpha: .05),
                             blurRadius: 4,
                             offset: const Offset(0, 2),
                           ),
@@ -121,21 +123,30 @@ class TasksView extends StackedView<TasksViewModel> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              TaskTile(
-                                assetName: 'assets/svgs/to_do.svg',
-                                taskState: 'ToDo',
-                                taskNumber:
-                                    '${viewModel.allTasksCount - viewModel.inProgressCount - viewModel.doneCount}',
+                              Expanded(
+                                child: TaskTile(
+                                  assetName: 'assets/svgs/to_do.svg',
+                                  taskState: 'ToDo',
+                                  taskNumber:
+                                      '${viewModel.allTasksCount - viewModel.inProgressCount - viewModel.doneCount}',
+                                ),
                               ),
-                              TaskTile(
-                                assetName: 'assets/svgs/in_progress.svg',
-                                taskState: 'In Progress',
-                                taskNumber: '${viewModel.inProgressCount}',
+                              Gap(8.h),
+                              Expanded(
+                                child: TaskTile(
+                                  assetName: 'assets/svgs/in_progress.svg',
+                                  taskState: 'In Progress',
+                                  taskNumber: '${viewModel.inProgressCount}',
+                                  isLongerThan9: true,
+                                ),
                               ),
-                              TaskTile(
-                                assetName: 'assets/svgs/done.svg',
-                                taskState: 'Done',
-                                taskNumber: '${viewModel.doneCount}',
+                              Gap(8.h),
+                              Expanded(
+                                child: TaskTile(
+                                  assetName: 'assets/svgs/done.svg',
+                                  taskState: 'Done',
+                                  taskNumber: '${viewModel.doneCount}',
+                                ),
                               ),
                             ],
                           )
@@ -149,7 +160,10 @@ class TasksView extends StackedView<TasksViewModel> {
               // Tab bar
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 12.w),
-                padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 8.w),
+                padding: EdgeInsets.symmetric(
+                  vertical: 8.h,
+                  horizontal: 8.w,
+                ),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(8.r),
@@ -216,7 +230,7 @@ class TasksView extends StackedView<TasksViewModel> {
                         ),
                       )
                     : SizedBox(
-                        height: 242.h,
+                        height: isTablet ? 550.h : 240.h,
                         child: ListView.builder(
                           padding: EdgeInsets.zero,
                           shrinkWrap: true,

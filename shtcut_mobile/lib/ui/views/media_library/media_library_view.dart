@@ -17,6 +17,8 @@ class MediaLibraryView extends StackedView<MediaLibraryViewModel> {
   @override
   Widget builder(
       BuildContext context, MediaLibraryViewModel viewModel, Widget? child) {
+    final data = MediaQueryData.fromView(View.of(context));
+    final isTablet = data.size.shortestSide >= 600;
     return BottomNavLayout(
       child: Scaffold(
         backgroundColor: const Color(0xffF1F3F8),
@@ -79,6 +81,9 @@ class MediaLibraryView extends StackedView<MediaLibraryViewModel> {
                   horizontal: 16.w,
                   vertical: 12.h,
                 ),
+                margin: EdgeInsets.symmetric(
+                  horizontal: 10.w,
+                ),
                 decoration: BoxDecoration(
                   color: const Color(0xffFEFEFE),
                   borderRadius: BorderRadius.circular(8.r),
@@ -108,7 +113,7 @@ class MediaLibraryView extends StackedView<MediaLibraryViewModel> {
                             viewModel.showManageLibrarySheet();
                           },
                           child: Container(
-                            width: 79.w,
+                            // width: 79.w,
                             height: 46.h,
                             padding: EdgeInsets.symmetric(
                               vertical: 10.h,
@@ -149,7 +154,7 @@ class MediaLibraryView extends StackedView<MediaLibraryViewModel> {
                                 crossAxisCount: 2,
                                 crossAxisSpacing: 16.w,
                                 mainAxisSpacing: 16.h,
-                                childAspectRatio: 0.89.h,
+                                childAspectRatio: isTablet ? 1.8.dg : 0.8.dg,
                               ),
                               itemCount: viewModel.currentTabItems.length,
                               padding: EdgeInsets.zero,

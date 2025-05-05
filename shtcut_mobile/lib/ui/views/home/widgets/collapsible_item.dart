@@ -77,6 +77,7 @@ class CollapsibleItem extends StatelessWidget {
               ),
               Expanded(
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     SvgPicture.asset(
                       'assets/svgs/summary_clock.svg',
@@ -109,22 +110,23 @@ class CollapsibleItem extends StatelessWidget {
               InkWell(
                 onTap: () {},
                 child: Container(
-                  width: 74.w,
+                  // width: 74.w,
                   height: 24.h,
                   padding: EdgeInsets.symmetric(
-                    horizontal: 8.w,
-                    vertical: 6.h,
+                    horizontal: 12.w,
+                    vertical: 3.h,
                   ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4.r),
                     color: kcPrimaryColor,
                   ),
-                  alignment: Alignment.center,
-                  child: Text(
-                    buttonText,
-                    style: context.bodySmall!.copyWith(
-                      fontSize: 10.sp,
-                      color: Colors.white,
+                  // alignment: Alignment.center,
+                  child: Center(
+                    child: Text(
+                      buttonText,
+                      style: context.bodySmall!.copyWith(
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),

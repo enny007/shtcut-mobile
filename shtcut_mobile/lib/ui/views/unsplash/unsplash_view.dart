@@ -25,20 +25,22 @@ class UnsplashView extends StackedView<UnsplashViewModel> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
-        leadingWidth: 102.w,
+        leadingWidth: 120.w,
         leading: Row(
           children: [
-            Gap(isTablet ? 14.w : 18.w),
+            Gap(18.w),
             SvgPicture.asset(
               'assets/svgs/unsplash_image.svg',
               fit: BoxFit.scaleDown,
             ),
             Gap(10.w),
-            Text(
-              'Unsplash',
-              style: context.bodySmall!.copyWith(
-                fontWeight: FontWeight.w600,
-                color: Colors.black,
+            Flexible(
+              child: Text(
+                'Unsplash',
+                style: context.bodySmall!.copyWith(
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
+                ),
               ),
             ),
           ],
@@ -58,13 +60,13 @@ class UnsplashView extends StackedView<UnsplashViewModel> {
             },
             child: Container(
               height: 26.h,
-              width: 71.w,
+              // width: 71.w,
               margin: EdgeInsets.only(
                 right: 20.w,
               ),
               padding: EdgeInsets.symmetric(
                 horizontal: 11.46.w,
-                vertical: 6.37.h,
+                vertical: 2.h,
               ),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(4.r),
@@ -87,7 +89,6 @@ class UnsplashView extends StackedView<UnsplashViewModel> {
                 'Done',
                 style: context.bodySmall!.copyWith(
                   color: Colors.white,
-                  fontSize: 9.sp,
                   fontWeight: FontWeight.w600,
                 ),
               ),

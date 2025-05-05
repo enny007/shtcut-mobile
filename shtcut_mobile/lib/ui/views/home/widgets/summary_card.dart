@@ -15,7 +15,8 @@ class SummaryCard extends StatelessWidget {
       padding: EdgeInsets.only(
         left: 16.w,
         top: 12.h,
-        bottom: 16.h,
+        bottom: 18.h,
+        right: 16.w,
       ),
       decoration: BoxDecoration(
         color: const Color(0xffFEFEFE),
@@ -40,33 +41,43 @@ class SummaryCard extends StatelessWidget {
           ),
           Gap(12.h),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              _summaryCard(
-                title: 'Posts',
-                number: '5',
-                iconPath: 'assets/svgs/summary_calendar.svg',
-                context: context,
+              Expanded(
+                child: _summaryCard(
+                  title: 'Posts',
+                  number: '5',
+                  iconPath: 'assets/svgs/summary_calendar.svg',
+                  context: context,
+                ),
               ),
               Gap(8.w),
-              _summaryCard(
-                title: 'Tasks',
-                number: '2',
-                iconPath: 'assets/svgs/summary_clock.svg',
-                context: context,
+              Expanded(
+                child: _summaryCard(
+                  title: 'Tasks',
+                  number: '2',
+                  iconPath: 'assets/svgs/summary_clock.svg',
+                  context: context,
+                ),
               ),
               Gap(8.w),
-              _summaryCard(
-                title: 'Ads',
-                number: '5',
-                iconPath: 'assets/svgs/summary_calendar.svg',
-                context: context,
+              Expanded(
+                child: _summaryCard(
+                  title: 'Ads',
+                  number: '5',
+                  iconPath: 'assets/svgs/summary_calendar.svg',
+                  context: context,
+                ),
               ),
               Gap(8.w),
-              _summaryCard(
-                title: 'Streams',
-                number: '1',
-                iconPath: 'assets/svgs/summary_video.svg',
-                context: context,
+              Expanded(
+                child: _summaryCard(
+                  title: 'Streams',
+                  number: '1',
+                  iconPath: 'assets/svgs/summary_video.svg',
+                  context: context,
+                  isLongChar: true,
+                ),
               ),
             ],
           ),
@@ -80,15 +91,14 @@ class SummaryCard extends StatelessWidget {
     required String number,
     required String iconPath,
     required BuildContext context,
+    bool isLongChar = false,
   }) {
     return Container(
       height: 70.h,
-      // width: 80.w,
       padding: EdgeInsets.only(
-        left: 12.w,
-        right: 12.w,
+        left: isLongChar ? 6.w : 12.w,
+        right: isLongChar ? 6.w : 0,
         top: 12.h,
-        // bottom: 16.h,
       ),
       decoration: BoxDecoration(
           color: const Color(0xffF9F9F9),
@@ -101,16 +111,21 @@ class SummaryCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
+            mainAxisSize: MainAxisSize.min, // Use minimum space needed
             children: [
               SvgPicture.asset(
                 iconPath,
                 fit: BoxFit.scaleDown,
               ),
               Gap(2.w),
-              Text(
-                title,
-                style: context.bodySmall!.copyWith(
-                  fontWeight: FontWeight.w400,
+              Flexible(
+                child: Text(
+                  title,
+                  style: context.bodySmall!.copyWith(
+                    fontWeight: FontWeight.w400,
+                  ),
+                  overflow:
+                      TextOverflow.visible, // Allow text to be fully visible
                 ),
               ),
             ],

@@ -26,7 +26,7 @@ class AllPostView extends StackedView<AllPostViewModel> {
               width: double.infinity,
               padding: EdgeInsets.only(
                 left: 19.w,
-                top: 90.h,
+                top: 81.h,
                 bottom: 30.h,
               ),
               decoration: const BoxDecoration(

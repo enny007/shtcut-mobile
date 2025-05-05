@@ -11,14 +11,16 @@ class TaskTile extends StatelessWidget {
     required this.assetName,
     required this.taskState,
     required this.taskNumber,
+    this.isLongerThan9 = false,
   });
   final String assetName;
   final String taskState;
   final String taskNumber;
+  final bool isLongerThan9;
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 106.w,
+      // width: 106.w,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8.r),
         color: const Color(0xffF9F9F9),
@@ -27,6 +29,7 @@ class TaskTile extends StatelessWidget {
         left: 12.w,
         top: 12.h,
         bottom: 12.h,
+        right: isLongerThan9 ? 5.w : 12.w,
       ),
       // padding: const EdgeInsets.all(12),
       child: Column(
