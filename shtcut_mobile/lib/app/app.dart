@@ -36,13 +36,20 @@ import 'package:shtcut_mobile/ui/views/connect_accounts/connect_accounts_view.da
 import 'package:shtcut_mobile/ui/views/content_preview/content_preview_view.dart';
 import 'package:shtcut_mobile/ui/views/create_post/create_post_content_view.dart';
 import 'package:shtcut_mobile/ui/views/create_post/create_post_view.dart';
+import 'package:shtcut_mobile/ui/views/create_topic/create_topic_view.dart';
 import 'package:shtcut_mobile/ui/views/home/home_view.dart';
 import 'package:shtcut_mobile/ui/views/live_broadcast/live_broadcast_view.dart';
 import 'package:shtcut_mobile/ui/views/media_library/media_library_view.dart';
+import 'package:shtcut_mobile/ui/views/messaging/view/add_group_members_view.dart';
+import 'package:shtcut_mobile/ui/views/messaging/view/messaging_view.dart';
+import 'package:shtcut_mobile/ui/views/messaging/view/new_chat_view.dart';
+import 'package:shtcut_mobile/ui/views/messaging/view/new_group_view.dart';
 import 'package:shtcut_mobile/ui/views/onboarding/onboarding_view.dart';
 import 'package:shtcut_mobile/ui/views/recording/recording_view.dart';
 import 'package:shtcut_mobile/ui/views/sign_in/sign_in_view.dart';
 import 'package:shtcut_mobile/ui/views/sign_up/sign_up_view.dart';
+import 'package:shtcut_mobile/ui/views/social_listening/social_listening_view.dart';
+import 'package:shtcut_mobile/ui/views/social_listening_detail/social_listening_detail_view.dart';
 import 'package:shtcut_mobile/ui/views/startup/startup_view.dart';
 import 'package:shtcut_mobile/ui/views/task_details/task_details_view.dart';
 import 'package:shtcut_mobile/ui/views/tasks/tasks_view.dart';
@@ -121,6 +128,35 @@ import 'package:stacked_services/stacked_services.dart';
     page: TaskDetailsView,
     transitionsBuilder: TransitionsBuilders.fadeIn,
   ),
+  CustomRoute(
+    page: SocialListeningView,
+    transitionsBuilder: TransitionsBuilders.fadeIn,
+  ),
+  CustomRoute(
+    page: SocialListeningDetailView,
+    transitionsBuilder: TransitionsBuilders.fadeIn,
+  ),
+  CustomRoute(
+    page: CreateTopicView,
+    transitionsBuilder: TransitionsBuilders.fadeIn,
+  ),
+  CustomRoute(
+    page: MessagingView,
+    transitionsBuilder: TransitionsBuilders.fadeIn,
+  ),
+  CustomRoute(
+    page: NewChatView,
+    transitionsBuilder: TransitionsBuilders.fadeIn,
+  ),
+  CustomRoute(
+    page: AddGroupMembersView,
+    transitionsBuilder: TransitionsBuilders.fadeIn,
+  ),
+  CustomRoute(
+    page: NewGroupView,
+    transitionsBuilder: TransitionsBuilders.fadeIn,
+  ),
+
   // @stacked-route
 ], dependencies: [
   LazySingleton(classType: BottomSheetService),

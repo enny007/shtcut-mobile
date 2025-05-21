@@ -54,7 +54,7 @@ class CustomDropdown extends StatelessWidget {
               ),
               boxShadow: [
                 BoxShadow(
-                  color: const Color(0xff101828).withOpacity(0.05),
+                  color: const Color(0xff101828).withValues(alpha: 0.05),
                   blurRadius: 2,
                   offset: const Offset(0, 1),
                 ),
@@ -94,7 +94,7 @@ class CustomDropdown extends StatelessWidget {
               borderRadius: BorderRadius.circular(8.r),
               boxShadow: [
                 BoxShadow(
-                  color: const Color(0xff101828).withOpacity(0.1),
+                  color: const Color(0xff101828).withValues(alpha: 0.1),
                   blurRadius: 4,
                   offset: const Offset(0, 2),
                 ),
@@ -118,7 +118,7 @@ class CustomDropdown extends StatelessWidget {
                     ),
                     decoration: BoxDecoration(
                       color: isSelected
-                          ? kcPrimaryColor.withOpacity(0.1)
+                          ? kcPrimaryColor.withValues(alpha: .1)
                           : Colors.white,
                       border: Border(
                         bottom: index < items.length - 1

@@ -151,7 +151,9 @@ class ActionSheet extends StackedView<ActionModel> {
                           title: 'Social Listening',
                           subtitle:
                               'Leverage social listening data as a strategic partner',
-                          onTap: () {},
+                          onTap: () {
+                            viewModel.navigateToSocialListeningView();
+                          },
                         ),
                         Gap(6.h),
                         SelectableCard(

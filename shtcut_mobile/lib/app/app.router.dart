@@ -5,8 +5,8 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:flutter/foundation.dart' as _i20;
-import 'package:flutter/material.dart' as _i19;
+import 'package:flutter/foundation.dart' as _i27;
+import 'package:flutter/material.dart' as _i26;
 import 'package:flutter/material.dart';
 import 'package:shtcut_mobile/ui/views/all_post/all_post_view.dart' as _i15;
 import 'package:shtcut_mobile/ui/views/calendar/calendar_view.dart' as _i8;
@@ -18,22 +18,36 @@ import 'package:shtcut_mobile/ui/views/create_post/create_post_content_view.dart
     as _i12;
 import 'package:shtcut_mobile/ui/views/create_post/create_post_view.dart'
     as _i11;
+import 'package:shtcut_mobile/ui/views/create_topic/create_topic_view.dart'
+    as _i21;
 import 'package:shtcut_mobile/ui/views/home/home_view.dart' as _i7;
 import 'package:shtcut_mobile/ui/views/live_broadcast/live_broadcast_view.dart'
     as _i10;
 import 'package:shtcut_mobile/ui/views/media_library/media_library_view.dart'
     as _i16;
+import 'package:shtcut_mobile/ui/views/messaging/view/add_group_members_view.dart'
+    as _i24;
+import 'package:shtcut_mobile/ui/views/messaging/view/messaging_view.dart'
+    as _i22;
+import 'package:shtcut_mobile/ui/views/messaging/view/new_chat_view.dart'
+    as _i23;
+import 'package:shtcut_mobile/ui/views/messaging/view/new_group_view.dart'
+    as _i25;
 import 'package:shtcut_mobile/ui/views/onboarding/onboarding_view.dart' as _i3;
 import 'package:shtcut_mobile/ui/views/recording/recording_view.dart' as _i9;
 import 'package:shtcut_mobile/ui/views/sign_in/sign_in_view.dart' as _i5;
 import 'package:shtcut_mobile/ui/views/sign_up/sign_up_view.dart' as _i4;
+import 'package:shtcut_mobile/ui/views/social_listening/social_listening_view.dart'
+    as _i19;
+import 'package:shtcut_mobile/ui/views/social_listening_detail/social_listening_detail_view.dart'
+    as _i20;
 import 'package:shtcut_mobile/ui/views/startup/startup_view.dart' as _i2;
 import 'package:shtcut_mobile/ui/views/task_details/task_details_view.dart'
     as _i18;
 import 'package:shtcut_mobile/ui/views/tasks/tasks_view.dart' as _i17;
 import 'package:shtcut_mobile/ui/views/unsplash/unsplash_view.dart' as _i13;
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i21;
+import 'package:stacked_services/stacked_services.dart' as _i28;
 
 class Routes {
   static const startupView = '/startup-view';
@@ -70,6 +84,20 @@ class Routes {
 
   static const taskDetailsView = '/task-details-view';
 
+  static const socialListeningView = '/social-listening-view';
+
+  static const socialListeningDetailView = '/social-listening-detail-view';
+
+  static const createTopicView = '/create-topic-view';
+
+  static const messagingView = '/messaging-view';
+
+  static const newChatView = '/new-chat-view';
+
+  static const addGroupMembersView = '/add-group-members-view';
+
+  static const newGroupView = '/new-group-view';
+
   static const all = <String>{
     startupView,
     onboardingView,
@@ -88,6 +116,13 @@ class Routes {
     mediaLibraryView,
     tasksView,
     taskDetailsView,
+    socialListeningView,
+    socialListeningDetailView,
+    createTopicView,
+    messagingView,
+    newChatView,
+    addGroupMembersView,
+    newGroupView,
   };
 }
 
@@ -161,11 +196,39 @@ class StackedRouter extends _i1.RouterBase {
       Routes.taskDetailsView,
       page: _i18.TaskDetailsView,
     ),
+    _i1.RouteDef(
+      Routes.socialListeningView,
+      page: _i19.SocialListeningView,
+    ),
+    _i1.RouteDef(
+      Routes.socialListeningDetailView,
+      page: _i20.SocialListeningDetailView,
+    ),
+    _i1.RouteDef(
+      Routes.createTopicView,
+      page: _i21.CreateTopicView,
+    ),
+    _i1.RouteDef(
+      Routes.messagingView,
+      page: _i22.MessagingView,
+    ),
+    _i1.RouteDef(
+      Routes.newChatView,
+      page: _i23.NewChatView,
+    ),
+    _i1.RouteDef(
+      Routes.addGroupMembersView,
+      page: _i24.AddGroupMembersView,
+    ),
+    _i1.RouteDef(
+      Routes.newGroupView,
+      page: _i25.NewGroupView,
+    ),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
     _i2.StartupView: (data) {
-      return _i19.PageRouteBuilder<dynamic>(
+      return _i26.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i2.StartupView(),
         settings: data,
@@ -173,7 +236,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i3.OnboardingView: (data) {
-      return _i19.PageRouteBuilder<dynamic>(
+      return _i26.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i3.OnboardingView(),
         settings: data,
@@ -181,7 +244,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i4.SignUpView: (data) {
-      return _i19.PageRouteBuilder<dynamic>(
+      return _i26.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i4.SignUpView(),
         settings: data,
@@ -189,7 +252,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i5.SignInView: (data) {
-      return _i19.PageRouteBuilder<dynamic>(
+      return _i26.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i5.SignInView(),
         settings: data,
@@ -197,7 +260,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i6.ConnectAccountsView: (data) {
-      return _i19.PageRouteBuilder<dynamic>(
+      return _i26.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i6.ConnectAccountsView(),
         settings: data,
@@ -205,7 +268,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i7.HomeView: (data) {
-      return _i19.PageRouteBuilder<dynamic>(
+      return _i26.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i7.HomeView(),
         settings: data,
@@ -213,7 +276,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i8.CalendarView: (data) {
-      return _i19.PageRouteBuilder<dynamic>(
+      return _i26.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i8.CalendarView(),
         settings: data,
@@ -221,7 +284,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i9.RecordingView: (data) {
-      return _i19.PageRouteBuilder<dynamic>(
+      return _i26.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i9.RecordingView(),
         settings: data,
@@ -229,7 +292,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i10.LiveBroadcastView: (data) {
-      return _i19.PageRouteBuilder<dynamic>(
+      return _i26.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i10.LiveBroadcastView(),
         settings: data,
@@ -237,7 +300,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i11.CreatePostView: (data) {
-      return _i19.PageRouteBuilder<dynamic>(
+      return _i26.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i11.CreatePostView(),
         settings: data,
@@ -248,7 +311,7 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<CreatePostContentViewArguments>(
         orElse: () => const CreatePostContentViewArguments(),
       );
-      return _i19.PageRouteBuilder<dynamic>(
+      return _i26.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             _i12.CreatePostContentView(
                 key: args.key, isEditView: args.isEditView),
@@ -257,7 +320,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i13.UnsplashView: (data) {
-      return _i19.PageRouteBuilder<dynamic>(
+      return _i26.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i13.UnsplashView(),
         settings: data,
@@ -265,7 +328,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i14.ContentPreviewView: (data) {
-      return _i19.PageRouteBuilder<dynamic>(
+      return _i26.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i14.ContentPreviewView(),
         settings: data,
@@ -273,7 +336,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i15.AllPostView: (data) {
-      return _i19.PageRouteBuilder<dynamic>(
+      return _i26.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i15.AllPostView(),
         settings: data,
@@ -281,7 +344,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i16.MediaLibraryView: (data) {
-      return _i19.PageRouteBuilder<dynamic>(
+      return _i26.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i16.MediaLibraryView(),
         settings: data,
@@ -289,7 +352,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i17.TasksView: (data) {
-      return _i19.PageRouteBuilder<dynamic>(
+      return _i26.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i17.TasksView(),
         settings: data,
@@ -297,9 +360,71 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i18.TaskDetailsView: (data) {
-      return _i19.PageRouteBuilder<dynamic>(
+      return _i26.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i18.TaskDetailsView(),
+        settings: data,
+        transitionsBuilder: data.transition ?? _i1.TransitionsBuilders.fadeIn,
+      );
+    },
+    _i19.SocialListeningView: (data) {
+      return _i26.PageRouteBuilder<dynamic>(
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            const _i19.SocialListeningView(),
+        settings: data,
+        transitionsBuilder: data.transition ?? _i1.TransitionsBuilders.fadeIn,
+      );
+    },
+    _i20.SocialListeningDetailView: (data) {
+      final args = data.getArgs<SocialListeningDetailViewArguments>(
+        orElse: () => const SocialListeningDetailViewArguments(),
+      );
+      return _i26.PageRouteBuilder<dynamic>(
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            _i20.SocialListeningDetailView(
+                key: args.key, topicName: args.topicName),
+        settings: data,
+        transitionsBuilder: data.transition ?? _i1.TransitionsBuilders.fadeIn,
+      );
+    },
+    _i21.CreateTopicView: (data) {
+      return _i26.PageRouteBuilder<dynamic>(
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            const _i21.CreateTopicView(),
+        settings: data,
+        transitionsBuilder: data.transition ?? _i1.TransitionsBuilders.fadeIn,
+      );
+    },
+    _i22.MessagingView: (data) {
+      return _i26.PageRouteBuilder<dynamic>(
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            const _i22.MessagingView(),
+        settings: data,
+        transitionsBuilder: data.transition ?? _i1.TransitionsBuilders.fadeIn,
+      );
+    },
+    _i23.NewChatView: (data) {
+      return _i26.PageRouteBuilder<dynamic>(
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            const _i23.NewChatView(),
+        settings: data,
+        transitionsBuilder: data.transition ?? _i1.TransitionsBuilders.fadeIn,
+      );
+    },
+    _i24.AddGroupMembersView: (data) {
+      return _i26.PageRouteBuilder<dynamic>(
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            const _i24.AddGroupMembersView(),
+        settings: data,
+        transitionsBuilder: data.transition ?? _i1.TransitionsBuilders.fadeIn,
+      );
+    },
+    _i25.NewGroupView: (data) {
+      final args = data.getArgs<NewGroupViewArguments>(nullOk: false);
+      return _i26.PageRouteBuilder<dynamic>(
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            _i25.NewGroupView(
+                key: args.key, selectedMembers: args.selectedMembers),
         settings: data,
         transitionsBuilder: data.transition ?? _i1.TransitionsBuilders.fadeIn,
       );
@@ -319,7 +444,7 @@ class CreatePostContentViewArguments {
     this.isEditView = false,
   });
 
-  final _i20.Key? key;
+  final _i27.Key? key;
 
   final bool isEditView;
 
@@ -340,7 +465,61 @@ class CreatePostContentViewArguments {
   }
 }
 
-extension NavigatorStateExtension on _i21.NavigationService {
+class SocialListeningDetailViewArguments {
+  const SocialListeningDetailViewArguments({
+    this.key,
+    this.topicName = '',
+  });
+
+  final _i27.Key? key;
+
+  final String? topicName;
+
+  @override
+  String toString() {
+    return '{"key": "$key", "topicName": "$topicName"}';
+  }
+
+  @override
+  bool operator ==(covariant SocialListeningDetailViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.key == key && other.topicName == topicName;
+  }
+
+  @override
+  int get hashCode {
+    return key.hashCode ^ topicName.hashCode;
+  }
+}
+
+class NewGroupViewArguments {
+  const NewGroupViewArguments({
+    this.key,
+    required this.selectedMembers,
+  });
+
+  final _i27.Key? key;
+
+  final List<Map<String, dynamic>> selectedMembers;
+
+  @override
+  String toString() {
+    return '{"key": "$key", "selectedMembers": "$selectedMembers"}';
+  }
+
+  @override
+  bool operator ==(covariant NewGroupViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.key == key && other.selectedMembers == selectedMembers;
+  }
+
+  @override
+  int get hashCode {
+    return key.hashCode ^ selectedMembers.hashCode;
+  }
+}
+
+extension NavigatorStateExtension on _i28.NavigationService {
   Future<dynamic> navigateToStartupView([
     int? routerId,
     bool preventDuplicates = true,
@@ -482,7 +661,7 @@ extension NavigatorStateExtension on _i21.NavigationService {
   }
 
   Future<dynamic> navigateToCreatePostContentView({
-    _i20.Key? key,
+    _i27.Key? key,
     bool isEditView = false,
     int? routerId,
     bool preventDuplicates = true,
@@ -577,6 +756,112 @@ extension NavigatorStateExtension on _i21.NavigationService {
         transition,
   ]) async {
     return navigateTo<dynamic>(Routes.taskDetailsView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToSocialListeningView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.socialListeningView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToSocialListeningDetailView({
+    _i27.Key? key,
+    String? topicName = '',
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.socialListeningDetailView,
+        arguments:
+            SocialListeningDetailViewArguments(key: key, topicName: topicName),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToCreateTopicView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.createTopicView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToMessagingView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.messagingView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToNewChatView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.newChatView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToAddGroupMembersView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.addGroupMembersView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToNewGroupView({
+    _i27.Key? key,
+    required List<Map<String, dynamic>> selectedMembers,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.newGroupView,
+        arguments:
+            NewGroupViewArguments(key: key, selectedMembers: selectedMembers),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -724,7 +1009,7 @@ extension NavigatorStateExtension on _i21.NavigationService {
   }
 
   Future<dynamic> replaceWithCreatePostContentView({
-    _i20.Key? key,
+    _i27.Key? key,
     bool isEditView = false,
     int? routerId,
     bool preventDuplicates = true,
@@ -819,6 +1104,112 @@ extension NavigatorStateExtension on _i21.NavigationService {
         transition,
   ]) async {
     return replaceWith<dynamic>(Routes.taskDetailsView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithSocialListeningView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.socialListeningView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithSocialListeningDetailView({
+    _i27.Key? key,
+    String? topicName = '',
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return replaceWith<dynamic>(Routes.socialListeningDetailView,
+        arguments:
+            SocialListeningDetailViewArguments(key: key, topicName: topicName),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithCreateTopicView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.createTopicView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithMessagingView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.messagingView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithNewChatView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.newChatView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithAddGroupMembersView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.addGroupMembersView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithNewGroupView({
+    _i27.Key? key,
+    required List<Map<String, dynamic>> selectedMembers,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return replaceWith<dynamic>(Routes.newGroupView,
+        arguments:
+            NewGroupViewArguments(key: key, selectedMembers: selectedMembers),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
