@@ -16,6 +16,7 @@ import '../ui/bottom_sheets/create_new_task/create_new_task_sheet.dart';
 import '../ui/bottom_sheets/email_verification/email_verification_sheet.dart';
 import '../ui/bottom_sheets/forgot_password/forgot_password_otp_sheet.dart';
 import '../ui/bottom_sheets/forgot_password/forgot_password_sheet.dart';
+import '../ui/bottom_sheets/group_profile_picture/group_profile_picture_sheet.dart';
 import '../ui/bottom_sheets/hashtag/hashtag_sheet.dart';
 import '../ui/bottom_sheets/label_created/label_created_sheet.dart';
 import '../ui/bottom_sheets/label_manager/label_manager_sheet.dart';
@@ -55,6 +56,7 @@ enum BottomSheetType {
   createMediaFolder,
   createNewTask,
   taskCreated,
+  groupProfilePicture,
 }
 
 void setupBottomSheetUi() {
@@ -107,6 +109,8 @@ void setupBottomSheetUi() {
         CreateNewTaskSheet(request: request, completer: completer),
     BottomSheetType.taskCreated: (context, request, completer) =>
         TaskCreatedSheet(request: request, completer: completer),
+    BottomSheetType.groupProfilePicture: (context, request, completer) =>
+        GroupProfilePictureSheet(request: request, completer: completer),
   };
 
   bottomsheetService.setCustomSheetBuilders(builders);

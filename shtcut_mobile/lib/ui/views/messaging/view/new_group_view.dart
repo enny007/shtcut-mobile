@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart'
+    hide EdgeInsetsExtension;
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:shtcut_mobile/app/app_setup.dart';
@@ -24,6 +25,7 @@ class NewGroupView extends StackedView<NewGroupViewModel> {
       BuildContext context, NewGroupViewModel viewModel, Widget? child) {
     return BottomNavLayout(
       child: Scaffold(
+        backgroundColor: const Color(0xffF1F3F8),
         appBar: AppBar(
           backgroundColor: const Color(0xffFEFEFE),
           toolbarHeight: 60.h,
@@ -70,85 +72,97 @@ class NewGroupView extends StackedView<NewGroupViewModel> {
             ),
           ),
         ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Gap(10.h),
-            Container(
-              width: double.infinity,
-              padding: EdgeInsets.symmetric(
-                horizontal: 19.w,
-                vertical: 12.h,
-              ),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(8.r),
-              ),
-              child: Row(
-                children: [
-                  Container(
-                    height: 42.h,
-                    width: 42.w,
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Color(0xffDCE5FB),
+        body: Padding(
+          padding: EdgeInsetsExtension.fromPercentage(
+            lefthorizontalPercentage: 15.w,
+            righthorizontalPercentage: 15.w,
+            topverticalPercentage: 0.h,
+            bottomverticalPercentage: 20.h,
+            context: context,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Gap(10.h),
+              Container(
+                width: double.infinity,
+                padding: EdgeInsets.symmetric(
+                  horizontal: 19.w,
+                  vertical: 12.h,
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8.r),
+                ),
+                child: Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () => viewModel.openImageSheet(),
+                      child: Container(
+                        height: 42.h,
+                        width: 42.w,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Color(0xffDCE5FB),
+                        ),
+                        alignment: Alignment.center,
+                        child: SvgPicture.asset(
+                          'assets/svgs/new_group_camera.svg',
+                        ),
+                      ),
                     ),
-                    alignment: Alignment.center,
-                    child: SvgPicture.asset(
-                      'assets/icons/new_group_camera.svg',
-                    ),
-                  ),
-                  Gap(16.w),
-                  Text(
-                    'Enter group name (Optional)',
-                    style: context.bodySmall!.copyWith(
-                      color: const Color(0xff726C6C),
-                      fontWeight: FontWeight.w400,
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Gap(23.h),
-            Text(
-              'Members: ${viewModel.selectedMembers.length} Selected',
-              style: context.displaySmall!.copyWith(
-                color: const Color(0xff726C6C),
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-            Gap(6.h),
-            Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(8.r),
-              ),
-              padding: EdgeInsets.symmetric(
-                horizontal: 10.w,
-                vertical: 8.h,
-              ),
-              child: SizedBox(
-                height: 90.h,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: viewModel.selectedMembers.length,
-                  itemBuilder: (context, index) {
-                    final member = viewModel.selectedMembers[index];
-                    return SelectedMemberChip(
-                      name: member['name'],
-                      imageUrl: member['imageUrl'],
-                      onRemove: () {
-                        // Remove member from the list
-                        viewModel.selectedMembers.removeAt(index);
-                        viewModel.notifyListeners();
-                      },
-                    );
-                  },
+                    Gap(16.w),
+                    Text(
+                      'Enter group name (Optional)',
+                      style: context.bodySmall!.copyWith(
+                        color: const Color(0xff726C6C),
+                        fontWeight: FontWeight.w400,
+                      ),
+                    )
+                  ],
                 ),
               ),
-            ),
-          ],
+              Gap(23.h),
+              Text(
+                'Members: ${viewModel.selectedMembers.length} Selected',
+                style: context.displaySmall!.copyWith(
+                  color: const Color(0xff726C6C),
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+              Gap(6.h),
+              Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8.r),
+                ),
+                padding: EdgeInsets.symmetric(
+                  horizontal: 10.w,
+                  vertical: 8.h,
+                ),
+                child: SizedBox(
+                  height: 90.h,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: viewModel.selectedMembers.length,
+                    itemBuilder: (context, index) {
+                      final member = viewModel.selectedMembers[index];
+                      return SelectedMemberChip(
+                        name: member['name'],
+                        imageUrl: member['imageUrl'],
+                        onRemove: () {
+                          // Remove member from the list
+                          viewModel.selectedMembers.removeAt(index);
+                          viewModel.notifyListeners();
+                        },
+                      );
+                    },
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
         bottomNavigationBar: Container(
           padding: EdgeInsets.symmetric(
@@ -167,7 +181,9 @@ class NewGroupView extends StackedView<NewGroupViewModel> {
             ],
           ),
           child: AppButton(
-            callback: () {},
+            callback: () {
+              viewModel.createGroup();
+            },
             text: 'Create New Group',
             color: kcPrimaryColor,
           ),

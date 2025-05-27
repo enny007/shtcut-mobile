@@ -18,12 +18,13 @@ class SelectableChatTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      contentPadding: EdgeInsets.zero,
       onTap: onSelect,
       leading: Container(
-        height: 60.h,
-        width: 60.w,
+        height: 36.h,
+        width: 36.w,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.r),
+          // borderRadius: BorderRadius.circular(10.r),
           shape: BoxShape.circle,
           image: DecorationImage(
             image: AssetImage(imageUrl ?? 'assets/images/pic_1.png'),
@@ -35,12 +36,14 @@ class SelectableChatTile extends StatelessWidget {
         title,
         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
               color: const Color(0xff151314),
+              fontWeight: FontWeight.w600,
             ),
       ),
       subtitle: Text(
         subtitle,
         style: Theme.of(context).textTheme.bodySmall?.copyWith(
               color: const Color(0xff726C6C),
+              fontWeight: FontWeight.w400,
             ),
       ),
       // trailing: Radio<bool>(

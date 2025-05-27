@@ -20,12 +20,12 @@ class GroupTile extends StatelessWidget {
     return ListTile(
       contentPadding: EdgeInsets.zero,
       leading: Container(
-        height: 60.h,
-        width: 60.w,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.r),
+        height: 36.h,
+        width: 36.w,
+        decoration: const BoxDecoration(
+          // borderRadius: BorderRadius.circular(10.r),
           shape: BoxShape.circle,
-          image: const DecorationImage(
+          image: DecorationImage(
             image: AssetImage('assets/images/pic_1.png'),
             fit: BoxFit.cover,
           ),
@@ -35,12 +35,14 @@ class GroupTile extends StatelessWidget {
         title,
         style: context.bodyLarge!.copyWith(
           color: const Color(0xff151314),
+          fontWeight: FontWeight.w600,
         ),
       ),
       subtitle: Text(
         subtitle,
         style: context.bodySmall!.copyWith(
           color: const Color(0xff726C6C),
+          fontWeight: FontWeight.w400,
         ),
       ),
       trailing: Column(
@@ -58,7 +60,7 @@ class GroupTile extends StatelessWidget {
           SizedBox(height: 5.h),
           if (unreadCount > 0)
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+              padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 3.h),
               decoration: BoxDecoration(
                 color: Colors.red,
                 borderRadius: BorderRadius.circular(10.r),

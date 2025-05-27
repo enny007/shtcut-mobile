@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart'
+    hide EdgeInsetsExtension;
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:shtcut_mobile/app/app_setup.dart';
@@ -21,6 +22,7 @@ class AddGroupMembersView extends StackedView<AddGroupMembersViewModel> {
       BuildContext context, AddGroupMembersViewModel viewModel, Widget? child) {
     return BottomNavLayout(
       child: Scaffold(
+        backgroundColor: const Color(0xffF1F3F8),
         appBar: AppBar(
           backgroundColor: const Color(0xffFEFEFE),
           toolbarHeight: 60.h,
@@ -67,132 +69,156 @@ class AddGroupMembersView extends StackedView<AddGroupMembersViewModel> {
             ),
           ),
         ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Expanded(
-                  child: AppTextField(
-                    controller: viewModel.nameController,
-                    validator: (_) {
-                      return null;
-                    },
-                    hintText: 'Search name',
-                    prefixIcon: SvgPicture.asset(
-                      'assets/svgs/search.svg',
-                      fit: BoxFit.scaleDown,
-                    ),
-                  ),
-                ),
-                Gap(2.w),
-                GestureDetector(
-                  onTap: () {
-                    // viewModel.showManageLibrarySheet();
-                  },
-                  child: Container(
-                    // width: 79.w,
-                    height: 46.h,
-                    padding: EdgeInsets.symmetric(
-                      vertical: 10.h,
-                      horizontal: 14.w,
-                    ),
-                    decoration: BoxDecoration(
-                      color: kcPrimaryColor,
-                      borderRadius: BorderRadius.circular(4.r),
-                    ),
-                    alignment: Alignment.center,
-                    child: Text(
-                      'Next',
-                      style: context.bodySmall!.copyWith(
-                        color: Colors.white,
+        body: Padding(
+          padding: EdgeInsetsExtension.fromPercentage(
+            lefthorizontalPercentage: 15.w,
+            righthorizontalPercentage: 15.w,
+            topverticalPercentage: 0.h,
+            bottomverticalPercentage: 20.h,
+            context: context,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Expanded(
+                    child: AppTextField(
+                      controller: viewModel.nameController,
+                      validator: (_) {
+                        return null;
+                      },
+                      hintText: 'Search name',
+                      prefixIcon: SvgPicture.asset(
+                        'assets/svgs/search.svg',
+                        fit: BoxFit.scaleDown,
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
-            Gap(14.h),
-            //Selected members in a tile
-            if (viewModel.selectedContacts.isNotEmpty)
-              Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8.r),
-                ),
-                padding: EdgeInsets.symmetric(
-                  horizontal: 10.w,
-                  vertical: 8.h,
-                ),
-                child: SizedBox(
-                  height: 90.h,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: viewModel.selectedContacts.length,
-                    itemBuilder: (context, index) {
-                      // Find the contact data for the selected ID
-                      final contactId =
-                          viewModel.selectedContacts.elementAt(index);
-                      final contact = viewModel.contacts.firstWhere(
-                        (c) => c['id'] == contactId,
-                        orElse: () => {
-                          'name': 'Unknown',
-                          'imageUrl': 'assets/images/pic_1.png'
-                        },
-                      );
-
-                      return SelectedMemberChip(
-                        name: contact['name'],
-                        imageUrl: contact['imageUrl'],
-                        onRemove: () =>
-                            viewModel.toggleContactSelection(contactId),
-                      );
+                  Gap(2.w),
+                  GestureDetector(
+                    onTap: () {
+                      viewModel.createGroup();
                     },
-                  ),
-                ),
-              ),
-            Text(
-              'All Members',
-              style: context.bodyMedium!.copyWith(
-                fontWeight: FontWeight.w600,
-                color: const Color(0xff101828),
-              ),
-            ),
-            Gap(11.h),
-            Expanded(
-              child: viewModel.getFilteredContacts().isEmpty
-                  ? Center(
+                    child: Container(
+                      // width: 79.w,
+                      height: 46.h,
+                      padding: EdgeInsets.symmetric(
+                        vertical: 10.h,
+                        horizontal: 14.w,
+                      ),
+                      decoration: BoxDecoration(
+                        color: kcPrimaryColor,
+                        borderRadius: BorderRadius.circular(4.r),
+                      ),
+                      alignment: Alignment.center,
                       child: Text(
-                        'No contacts found',
-                        style: context.bodyMedium!.copyWith(
-                          color: const Color(0xff726C6C),
+                        'Next',
+                        style: context.bodySmall!.copyWith(
+                          color: Colors.white,
                         ),
                       ),
-                    )
-                  : ListView.separated(
-                      itemCount: viewModel.getFilteredContacts().length,
-                      separatorBuilder: (context, index) => Divider(
-                        height: 1.h,
-                        thickness: 1.h,
-                        color: const Color(0xffF2F2F2),
-                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Gap(14.h),
+              //Selected members in a tile
+              if (viewModel.selectedContacts.isNotEmpty)
+                Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8.r),
+                  ),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 10.w,
+                    vertical: 8.h,
+                  ),
+                  child: SizedBox(
+                    height: 90.h,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: viewModel.selectedContacts.length,
                       itemBuilder: (context, index) {
-                        final contact = viewModel.getFilteredContacts()[index];
-                        return SelectableTile(
-                          title: contact['name'],
-                          subtitle: contact['subtitle'],
+                        // Find the contact data for the selected ID
+                        final contactId =
+                            viewModel.selectedContacts.elementAt(index);
+                        final contact = viewModel.contacts.firstWhere(
+                          (c) => c['id'] == contactId,
+                          orElse: () => {
+                            'name': 'Unknown',
+                            'imageUrl': 'assets/images/pic_1.png'
+                          },
+                        );
+
+                        return SelectedMemberChip(
+                          name: contact['name'],
                           imageUrl: contact['imageUrl'],
-                          isSelected:
-                              viewModel.isContactSelected(contact['id']),
-                          onSelect: () =>
-                              viewModel.toggleContactSelection(contact['id']),
+                          onRemove: () =>
+                              viewModel.toggleContactSelection(contactId),
                         );
                       },
                     ),
-            ),
-          ],
+                  ),
+                ),
+              Gap(10.h),
+              Text(
+                'All Members',
+                style: context.bodyMedium!.copyWith(
+                  fontWeight: FontWeight.w600,
+                  color: const Color(0xff101828),
+                ),
+              ),
+              Gap(11.h),
+              Expanded(
+                child: viewModel.getFilteredContacts().isEmpty
+                    ? Center(
+                        child: Text(
+                          'No contacts found',
+                          style: context.bodyMedium!.copyWith(
+                            color: const Color(0xff726C6C),
+                          ),
+                        ),
+                      )
+                    : Container(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 12.w,
+                          vertical: 7.h,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(10.r),
+                            topRight: Radius.circular(10.r),
+                          ),
+                        ),
+                        child: ListView.separated(
+                          itemCount: viewModel.getFilteredContacts().length,
+                          separatorBuilder: (context, index) => Divider(
+                            height: 1.h,
+                            thickness: 1.h,
+                            color: const Color(0xffF2F2F2),
+                          ),
+                          itemBuilder: (context, index) {
+                            final contact =
+                                viewModel.getFilteredContacts()[index];
+                            return SelectableTile(
+                              title: contact['name'],
+                              subtitle: contact['subtitle'],
+                              imageUrl: contact['imageUrl'],
+                              isSelected:
+                                  viewModel.isContactSelected(contact['id']),
+                              onSelect: () => viewModel
+                                  .toggleContactSelection(contact['id']),
+                            );
+                          },
+                        ),
+                      ),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart'
+    hide EdgeInsetsExtension;
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:shtcut_mobile/app/app_setup.dart';
@@ -20,6 +21,7 @@ class NewChatView extends StackedView<NewChatViewModel> {
       BuildContext context, NewChatViewModel viewModel, Widget? child) {
     return BottomNavLayout(
       child: Scaffold(
+        backgroundColor: const Color(0xffF1F3F8),
         appBar: AppBar(
           backgroundColor: const Color(0xffFEFEFE),
           toolbarHeight: 60.h,
@@ -66,95 +68,104 @@ class NewChatView extends StackedView<NewChatViewModel> {
             ),
           ),
         ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Expanded(
-                  child: AppTextField(
-                    controller: viewModel.nameController,
-                    validator: (_) {
-                      return null;
-                    },
-                    hintText: 'Search name',
-                    prefixIcon: SvgPicture.asset(
-                      'assets/svgs/search.svg',
-                      fit: BoxFit.scaleDown,
-                    ),
-                  ),
-                ),
-                Gap(2.w),
-                GestureDetector(
-                  onTap: () {
-                    // viewModel.showManageLibrarySheet();
-                  },
-                  child: Container(
-                    // width: 79.w,
-                    height: 46.h,
-                    padding: EdgeInsets.symmetric(
-                      vertical: 10.h,
-                      horizontal: 14.w,
-                    ),
-                    decoration: BoxDecoration(
-                      color: kcPrimaryColor,
-                      borderRadius: BorderRadius.circular(4.r),
-                    ),
-                    alignment: Alignment.center,
-                    child: Text(
-                      'New Group',
-                      style: context.bodySmall!.copyWith(
-                        color: Colors.white,
+        body: Padding(
+          padding: EdgeInsetsExtension.fromPercentage(
+            lefthorizontalPercentage: 15.w,
+            righthorizontalPercentage: 15.w,
+            topverticalPercentage: 0.h,
+            bottomverticalPercentage: 20.h,
+            context: context,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Expanded(
+                    child: AppTextField(
+                      controller: viewModel.nameController,
+                      validator: (_) {
+                        return null;
+                      },
+                      hintText: 'Search name',
+                      prefixIcon: SvgPicture.asset(
+                        'assets/svgs/search.svg',
+                        fit: BoxFit.scaleDown,
                       ),
                     ),
                   ),
+                  Gap(2.w),
+                  GestureDetector(
+                    onTap: () {
+                      viewModel.navigateToNewGroup();
+                    },
+                    child: Container(
+                      // width: 79.w,
+                      height: 46.h,
+                      padding: EdgeInsets.symmetric(
+                        vertical: 10.h,
+                        horizontal: 14.w,
+                      ),
+                      decoration: BoxDecoration(
+                        color: kcPrimaryColor,
+                        borderRadius: BorderRadius.circular(4.r),
+                      ),
+                      alignment: Alignment.center,
+                      child: Text(
+                        'New Group',
+                        style: context.bodySmall!.copyWith(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Gap(14.h),
+              Text(
+                'All Members',
+                style: context.bodyMedium!.copyWith(
+                  fontWeight: FontWeight.w600,
+                  color: const Color(0xff101828),
                 ),
-              ],
-            ),
-            Gap(14.h),
-            Text(
-              'All Members',
-              style: context.bodyMedium!.copyWith(
-                fontWeight: FontWeight.w600,
-                color: const Color(0xff101828),
               ),
-            ),
-            Gap(14.h),
-            Container(
-              padding: EdgeInsets.symmetric(
-                horizontal: 12.w,
-                vertical: 15.h,
-              ),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(10.r),
-                  topRight: Radius.circular(10.r),
+              Gap(14.h),
+              Container(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 12.w,
+                  vertical: 15.h,
                 ),
-              ),
-              child: ListView.separated(
-                shrinkWrap: true,
-                itemCount: viewModel.contacts.length,
-                separatorBuilder: (BuildContext context, int index) {
-                  return Divider(
-                    height: 1.h,
-                    thickness: 1.h,
-                    color: const Color(0xffF2F2F2),
-                  );
-                },
-                itemBuilder: (BuildContext context, int index) {
-                  final message = viewModel.contacts[index];
-                  return SelectableChatTile(
-                    title: message['name'],
-                    subtitle: message['career'],
-                    imageUrl: message['imageUrl'],
-                    onSelect: message['onSelect'],
-                  );
-                },
-              ),
-            )
-          ],
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(10.r),
+                    topRight: Radius.circular(10.r),
+                  ),
+                ),
+                child: ListView.separated(
+                  shrinkWrap: true,
+                  itemCount: viewModel.contacts.length,
+                  separatorBuilder: (BuildContext context, int index) {
+                    return Divider(
+                      height: 1.h,
+                      thickness: 1.h,
+                      color: const Color(0xffF2F2F2),
+                    );
+                  },
+                  itemBuilder: (BuildContext context, int index) {
+                    final message = viewModel.contacts[index];
+                    return SelectableChatTile(
+                      title: message['name'],
+                      subtitle: message['career'],
+                      imageUrl: message['imageUrl'],
+                      onSelect: message['onSelect'],
+                    );
+                  },
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

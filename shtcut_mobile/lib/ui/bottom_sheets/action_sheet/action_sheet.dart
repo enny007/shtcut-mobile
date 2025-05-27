@@ -134,7 +134,9 @@ class ActionSheet extends StackedView<ActionModel> {
                               SvgPicture.asset('assets/svgs/message-text.svg'),
                           title: 'Messages',
                           subtitle: 'Chat with members of your workspace',
-                          onTap: () {},
+                          onTap: () {
+                            viewModel.navigateToMessagingView();
+                          },
                         ),
                         Gap(6.h),
                         SelectableCard(

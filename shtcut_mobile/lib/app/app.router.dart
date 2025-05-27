@@ -5,8 +5,8 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:flutter/foundation.dart' as _i27;
-import 'package:flutter/material.dart' as _i26;
+import 'package:flutter/foundation.dart' as _i30;
+import 'package:flutter/material.dart' as _i29;
 import 'package:flutter/material.dart';
 import 'package:shtcut_mobile/ui/views/all_post/all_post_view.dart' as _i15;
 import 'package:shtcut_mobile/ui/views/calendar/calendar_view.dart' as _i8;
@@ -25,8 +25,14 @@ import 'package:shtcut_mobile/ui/views/live_broadcast/live_broadcast_view.dart'
     as _i10;
 import 'package:shtcut_mobile/ui/views/media_library/media_library_view.dart'
     as _i16;
+import 'package:shtcut_mobile/ui/views/messaging/view/active_message_view.dart'
+    as _i26;
 import 'package:shtcut_mobile/ui/views/messaging/view/add_group_members_view.dart'
     as _i24;
+import 'package:shtcut_mobile/ui/views/messaging/view/media_details_view.dart'
+    as _i28;
+import 'package:shtcut_mobile/ui/views/messaging/view/message_profile_view.dart'
+    as _i27;
 import 'package:shtcut_mobile/ui/views/messaging/view/messaging_view.dart'
     as _i22;
 import 'package:shtcut_mobile/ui/views/messaging/view/new_chat_view.dart'
@@ -47,7 +53,7 @@ import 'package:shtcut_mobile/ui/views/task_details/task_details_view.dart'
 import 'package:shtcut_mobile/ui/views/tasks/tasks_view.dart' as _i17;
 import 'package:shtcut_mobile/ui/views/unsplash/unsplash_view.dart' as _i13;
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i28;
+import 'package:stacked_services/stacked_services.dart' as _i31;
 
 class Routes {
   static const startupView = '/startup-view';
@@ -98,6 +104,12 @@ class Routes {
 
   static const newGroupView = '/new-group-view';
 
+  static const activeMessageView = '/active-message-view';
+
+  static const messageProfileView = '/message-profile-view';
+
+  static const mediaDetailsView = '/media-details-view';
+
   static const all = <String>{
     startupView,
     onboardingView,
@@ -123,6 +135,9 @@ class Routes {
     newChatView,
     addGroupMembersView,
     newGroupView,
+    activeMessageView,
+    messageProfileView,
+    mediaDetailsView,
   };
 }
 
@@ -224,11 +239,23 @@ class StackedRouter extends _i1.RouterBase {
       Routes.newGroupView,
       page: _i25.NewGroupView,
     ),
+    _i1.RouteDef(
+      Routes.activeMessageView,
+      page: _i26.ActiveMessageView,
+    ),
+    _i1.RouteDef(
+      Routes.messageProfileView,
+      page: _i27.MessageProfileView,
+    ),
+    _i1.RouteDef(
+      Routes.mediaDetailsView,
+      page: _i28.MediaDetailsView,
+    ),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
     _i2.StartupView: (data) {
-      return _i26.PageRouteBuilder<dynamic>(
+      return _i29.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i2.StartupView(),
         settings: data,
@@ -236,7 +263,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i3.OnboardingView: (data) {
-      return _i26.PageRouteBuilder<dynamic>(
+      return _i29.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i3.OnboardingView(),
         settings: data,
@@ -244,7 +271,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i4.SignUpView: (data) {
-      return _i26.PageRouteBuilder<dynamic>(
+      return _i29.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i4.SignUpView(),
         settings: data,
@@ -252,7 +279,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i5.SignInView: (data) {
-      return _i26.PageRouteBuilder<dynamic>(
+      return _i29.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i5.SignInView(),
         settings: data,
@@ -260,7 +287,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i6.ConnectAccountsView: (data) {
-      return _i26.PageRouteBuilder<dynamic>(
+      return _i29.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i6.ConnectAccountsView(),
         settings: data,
@@ -268,7 +295,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i7.HomeView: (data) {
-      return _i26.PageRouteBuilder<dynamic>(
+      return _i29.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i7.HomeView(),
         settings: data,
@@ -276,7 +303,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i8.CalendarView: (data) {
-      return _i26.PageRouteBuilder<dynamic>(
+      return _i29.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i8.CalendarView(),
         settings: data,
@@ -284,7 +311,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i9.RecordingView: (data) {
-      return _i26.PageRouteBuilder<dynamic>(
+      return _i29.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i9.RecordingView(),
         settings: data,
@@ -292,7 +319,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i10.LiveBroadcastView: (data) {
-      return _i26.PageRouteBuilder<dynamic>(
+      return _i29.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i10.LiveBroadcastView(),
         settings: data,
@@ -300,7 +327,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i11.CreatePostView: (data) {
-      return _i26.PageRouteBuilder<dynamic>(
+      return _i29.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i11.CreatePostView(),
         settings: data,
@@ -311,7 +338,7 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<CreatePostContentViewArguments>(
         orElse: () => const CreatePostContentViewArguments(),
       );
-      return _i26.PageRouteBuilder<dynamic>(
+      return _i29.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             _i12.CreatePostContentView(
                 key: args.key, isEditView: args.isEditView),
@@ -320,7 +347,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i13.UnsplashView: (data) {
-      return _i26.PageRouteBuilder<dynamic>(
+      return _i29.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i13.UnsplashView(),
         settings: data,
@@ -328,7 +355,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i14.ContentPreviewView: (data) {
-      return _i26.PageRouteBuilder<dynamic>(
+      return _i29.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i14.ContentPreviewView(),
         settings: data,
@@ -336,7 +363,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i15.AllPostView: (data) {
-      return _i26.PageRouteBuilder<dynamic>(
+      return _i29.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i15.AllPostView(),
         settings: data,
@@ -344,7 +371,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i16.MediaLibraryView: (data) {
-      return _i26.PageRouteBuilder<dynamic>(
+      return _i29.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i16.MediaLibraryView(),
         settings: data,
@@ -352,7 +379,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i17.TasksView: (data) {
-      return _i26.PageRouteBuilder<dynamic>(
+      return _i29.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i17.TasksView(),
         settings: data,
@@ -360,7 +387,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i18.TaskDetailsView: (data) {
-      return _i26.PageRouteBuilder<dynamic>(
+      return _i29.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i18.TaskDetailsView(),
         settings: data,
@@ -368,7 +395,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i19.SocialListeningView: (data) {
-      return _i26.PageRouteBuilder<dynamic>(
+      return _i29.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i19.SocialListeningView(),
         settings: data,
@@ -379,7 +406,7 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<SocialListeningDetailViewArguments>(
         orElse: () => const SocialListeningDetailViewArguments(),
       );
-      return _i26.PageRouteBuilder<dynamic>(
+      return _i29.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             _i20.SocialListeningDetailView(
                 key: args.key, topicName: args.topicName),
@@ -388,7 +415,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i21.CreateTopicView: (data) {
-      return _i26.PageRouteBuilder<dynamic>(
+      return _i29.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i21.CreateTopicView(),
         settings: data,
@@ -396,7 +423,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i22.MessagingView: (data) {
-      return _i26.PageRouteBuilder<dynamic>(
+      return _i29.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i22.MessagingView(),
         settings: data,
@@ -404,7 +431,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i23.NewChatView: (data) {
-      return _i26.PageRouteBuilder<dynamic>(
+      return _i29.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i23.NewChatView(),
         settings: data,
@@ -412,7 +439,7 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i24.AddGroupMembersView: (data) {
-      return _i26.PageRouteBuilder<dynamic>(
+      return _i29.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             const _i24.AddGroupMembersView(),
         settings: data,
@@ -421,10 +448,34 @@ class StackedRouter extends _i1.RouterBase {
     },
     _i25.NewGroupView: (data) {
       final args = data.getArgs<NewGroupViewArguments>(nullOk: false);
-      return _i26.PageRouteBuilder<dynamic>(
+      return _i29.PageRouteBuilder<dynamic>(
         pageBuilder: (context, animation, secondaryAnimation) =>
             _i25.NewGroupView(
                 key: args.key, selectedMembers: args.selectedMembers),
+        settings: data,
+        transitionsBuilder: data.transition ?? _i1.TransitionsBuilders.fadeIn,
+      );
+    },
+    _i26.ActiveMessageView: (data) {
+      return _i29.PageRouteBuilder<dynamic>(
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            const _i26.ActiveMessageView(),
+        settings: data,
+        transitionsBuilder: data.transition ?? _i1.TransitionsBuilders.fadeIn,
+      );
+    },
+    _i27.MessageProfileView: (data) {
+      return _i29.PageRouteBuilder<dynamic>(
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            const _i27.MessageProfileView(),
+        settings: data,
+        transitionsBuilder: data.transition ?? _i1.TransitionsBuilders.fadeIn,
+      );
+    },
+    _i28.MediaDetailsView: (data) {
+      return _i29.PageRouteBuilder<dynamic>(
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            const _i28.MediaDetailsView(),
         settings: data,
         transitionsBuilder: data.transition ?? _i1.TransitionsBuilders.fadeIn,
       );
@@ -444,7 +495,7 @@ class CreatePostContentViewArguments {
     this.isEditView = false,
   });
 
-  final _i27.Key? key;
+  final _i30.Key? key;
 
   final bool isEditView;
 
@@ -471,7 +522,7 @@ class SocialListeningDetailViewArguments {
     this.topicName = '',
   });
 
-  final _i27.Key? key;
+  final _i30.Key? key;
 
   final String? topicName;
 
@@ -498,7 +549,7 @@ class NewGroupViewArguments {
     required this.selectedMembers,
   });
 
-  final _i27.Key? key;
+  final _i30.Key? key;
 
   final List<Map<String, dynamic>> selectedMembers;
 
@@ -519,7 +570,7 @@ class NewGroupViewArguments {
   }
 }
 
-extension NavigatorStateExtension on _i28.NavigationService {
+extension NavigatorStateExtension on _i31.NavigationService {
   Future<dynamic> navigateToStartupView([
     int? routerId,
     bool preventDuplicates = true,
@@ -661,7 +712,7 @@ extension NavigatorStateExtension on _i28.NavigationService {
   }
 
   Future<dynamic> navigateToCreatePostContentView({
-    _i27.Key? key,
+    _i30.Key? key,
     bool isEditView = false,
     int? routerId,
     bool preventDuplicates = true,
@@ -777,7 +828,7 @@ extension NavigatorStateExtension on _i28.NavigationService {
   }
 
   Future<dynamic> navigateToSocialListeningDetailView({
-    _i27.Key? key,
+    _i30.Key? key,
     String? topicName = '',
     int? routerId,
     bool preventDuplicates = true,
@@ -851,7 +902,7 @@ extension NavigatorStateExtension on _i28.NavigationService {
   }
 
   Future<dynamic> navigateToNewGroupView({
-    _i27.Key? key,
+    _i30.Key? key,
     required List<Map<String, dynamic>> selectedMembers,
     int? routerId,
     bool preventDuplicates = true,
@@ -862,6 +913,48 @@ extension NavigatorStateExtension on _i28.NavigationService {
     return navigateTo<dynamic>(Routes.newGroupView,
         arguments:
             NewGroupViewArguments(key: key, selectedMembers: selectedMembers),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToActiveMessageView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.activeMessageView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToMessageProfileView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.messageProfileView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToMediaDetailsView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.mediaDetailsView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -1009,7 +1102,7 @@ extension NavigatorStateExtension on _i28.NavigationService {
   }
 
   Future<dynamic> replaceWithCreatePostContentView({
-    _i27.Key? key,
+    _i30.Key? key,
     bool isEditView = false,
     int? routerId,
     bool preventDuplicates = true,
@@ -1125,7 +1218,7 @@ extension NavigatorStateExtension on _i28.NavigationService {
   }
 
   Future<dynamic> replaceWithSocialListeningDetailView({
-    _i27.Key? key,
+    _i30.Key? key,
     String? topicName = '',
     int? routerId,
     bool preventDuplicates = true,
@@ -1199,7 +1292,7 @@ extension NavigatorStateExtension on _i28.NavigationService {
   }
 
   Future<dynamic> replaceWithNewGroupView({
-    _i27.Key? key,
+    _i30.Key? key,
     required List<Map<String, dynamic>> selectedMembers,
     int? routerId,
     bool preventDuplicates = true,
@@ -1210,6 +1303,48 @@ extension NavigatorStateExtension on _i28.NavigationService {
     return replaceWith<dynamic>(Routes.newGroupView,
         arguments:
             NewGroupViewArguments(key: key, selectedMembers: selectedMembers),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithActiveMessageView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.activeMessageView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithMessageProfileView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.messageProfileView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithMediaDetailsView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.mediaDetailsView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shtcut_mobile/app/app.router.dart';
+import 'package:shtcut_mobile/app/app_setup.dart';
 import 'package:shtcut_mobile/core/base/base_view_model.dart';
 
 class NewChatViewModel extends MBaseViewModel {
@@ -52,6 +54,11 @@ class NewChatViewModel extends MBaseViewModel {
       },
     },
   ];
+
+  void navigateToNewGroup() {
+    // Navigate to the new chat view
+    navRouter.navigateToAddGroupMembersView();
+  }
 
   @override
   void dispose() {

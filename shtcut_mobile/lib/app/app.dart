@@ -15,6 +15,7 @@ import 'package:shtcut_mobile/ui/bottom_sheets/create_new_task/create_new_task_s
 import 'package:shtcut_mobile/ui/bottom_sheets/email_verification/email_verification_sheet.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/forgot_password/forgot_password_otp_sheet.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/forgot_password/forgot_password_sheet.dart';
+import 'package:shtcut_mobile/ui/bottom_sheets/group_profile_picture/group_profile_picture_sheet.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/hashtag/hashtag_sheet.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/label_created/label_created_sheet.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/label_manager/label_manager_sheet.dart';
@@ -40,7 +41,10 @@ import 'package:shtcut_mobile/ui/views/create_topic/create_topic_view.dart';
 import 'package:shtcut_mobile/ui/views/home/home_view.dart';
 import 'package:shtcut_mobile/ui/views/live_broadcast/live_broadcast_view.dart';
 import 'package:shtcut_mobile/ui/views/media_library/media_library_view.dart';
+import 'package:shtcut_mobile/ui/views/messaging/view/active_message_view.dart';
 import 'package:shtcut_mobile/ui/views/messaging/view/add_group_members_view.dart';
+import 'package:shtcut_mobile/ui/views/messaging/view/media_details_view.dart';
+import 'package:shtcut_mobile/ui/views/messaging/view/message_profile_view.dart';
 import 'package:shtcut_mobile/ui/views/messaging/view/messaging_view.dart';
 import 'package:shtcut_mobile/ui/views/messaging/view/new_chat_view.dart';
 import 'package:shtcut_mobile/ui/views/messaging/view/new_group_view.dart';
@@ -156,6 +160,18 @@ import 'package:stacked_services/stacked_services.dart';
     page: NewGroupView,
     transitionsBuilder: TransitionsBuilders.fadeIn,
   ),
+  CustomRoute(
+    page: ActiveMessageView,
+    transitionsBuilder: TransitionsBuilders.fadeIn,
+  ),
+  CustomRoute(
+    page: MessageProfileView,
+    transitionsBuilder: TransitionsBuilders.fadeIn,
+  ),
+  CustomRoute(
+    page: MediaDetailsView,
+    transitionsBuilder: TransitionsBuilders.fadeIn,
+  ),
 
   // @stacked-route
 ], dependencies: [
@@ -198,6 +214,7 @@ import 'package:stacked_services/stacked_services.dart';
   StackedBottomsheet(classType: CreateMediaFolderSheet),
   StackedBottomsheet(classType: CreateNewTaskSheet),
   StackedBottomsheet(classType: TaskCreatedSheet),
+  StackedBottomsheet(classType: GroupProfilePictureSheet),
   // @stacked-bottom-sheet
 ], dialogs: [
   StackedDialog(classType: InfoAlertDialog),

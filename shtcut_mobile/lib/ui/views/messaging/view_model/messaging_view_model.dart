@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shtcut_mobile/app/app.router.dart';
+import 'package:shtcut_mobile/app/app_setup.dart';
 import 'package:shtcut_mobile/core/base/base_view_model.dart';
 
 class MessagingViewModel extends MBaseViewModel {
@@ -36,6 +38,10 @@ class MessagingViewModel extends MBaseViewModel {
       'unreadCount': 0,
     },
   ];
+
+  void navigateToNewChat() {
+    navRouter.navigateToNewChatView();
+  }
 
   @override
   void dispose() {

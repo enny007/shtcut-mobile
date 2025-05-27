@@ -27,4 +27,9 @@ class ActionModel extends BaseViewModel {
     navRouter.back();
     navRouter.navigateToSocialListeningView();
   }
+
+  void navigateToMessagingView() {
+    navRouter.back();
+    navRouter.navigateToMessagingView();
+  }
 }
