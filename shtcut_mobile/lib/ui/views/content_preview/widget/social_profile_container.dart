@@ -9,10 +9,13 @@ class SocialProfilesContainer extends StatelessWidget {
     Key? key,
     required this.selectedPlatforms,
     required this.onPlatformSelected,
+    this.onAddProfile,
   }) : super(key: key);
 
   final List<String> selectedPlatforms;
   final Function(String) onPlatformSelected;
+  final VoidCallback? onAddProfile;
+
   @override
   Widget build(BuildContext context) {
     // List of social media platforms with their SVG paths
@@ -33,10 +36,10 @@ class SocialProfilesContainer extends StatelessWidget {
         'id': 'twitter',
         'svgPath': 'assets/svgs/x_logo.svg',
       },
-      {
-        'id': 'linkedin',
-        'svgPath': 'assets/svgs/linkedin_logo.svg',
-      },
+      // {
+      //   'id': 'linkedin',
+      //   'svgPath': 'assets/svgs/linkedin_logo.svg',
+      // },
     ];
 
     return Container(
@@ -55,29 +58,39 @@ class SocialProfilesContainer extends StatelessWidget {
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
-        children: List.generate(
-          socialPlatforms.length,
-          (index) => Row(
-            children: [
-              GestureDetector(
-                onTap: () {
-                  // Safely access the id, providing a fallback if null
-                  final platformId = socialPlatforms[index]['id'] ?? '';
-                  if (platformId.isNotEmpty) {
-                    onPlatformSelected(platformId);
-                  }
-                },
-                child: SocialProfileItem(
-                  svgPath: socialPlatforms[index]['svgPath'] ?? '',
-                  isSelected:
-                      selectedPlatforms.contains(socialPlatforms[index]['id']),
+        children: [
+          // Social platform items
+          ...List.generate(
+            socialPlatforms.length,
+            (index) => Row(
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    // Safely access the id, providing a fallback if null
+                    final platformId = socialPlatforms[index]['id'] ?? '';
+                    if (platformId.isNotEmpty) {
+                      onPlatformSelected(platformId);
+                    }
+                  },
+                  child: SocialProfileItem(
+                    svgPath: socialPlatforms[index]['svgPath'] ?? '',
+                    isSelected: selectedPlatforms
+                        .contains(socialPlatforms[index]['id']),
+                  ),
                 ),
-              ),
-              // Add gap between items, except after the last item
-              if (index < socialPlatforms.length - 1) Gap(34.w),
-            ],
+                // Add gap between items, but not after the last item if no add button
+                if (index < socialPlatforms.length - 1 || onAddProfile != null)
+                  Gap(34.w),
+              ],
+            ),
           ),
-        ),
+          // Add profile button - only show if onAddProfile is provided
+          if (onAddProfile != null)
+            GestureDetector(
+              onTap: onAddProfile,
+              child: const AddProfileItem(),
+            ),
+        ],
       ),
     );
   }
@@ -154,6 +167,28 @@ class SocialProfileItem extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class AddProfileItem extends StatelessWidget {
+  const AddProfileItem({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 32.w,
+      height: 32.h,
+      decoration: const BoxDecoration(
+        color: Colors.transparent,
+      ),
+      child: Center(
+        child: Icon(
+          Icons.add_circle_outline,
+          size: 20.w,
+          color: kcPrimaryColor,
+        ),
+      ),
     );
   }
 }

@@ -161,4 +161,15 @@ class CreatePostViewModel extends ReactiveViewModel {
   void navigateToPreview() {
     navRouter.navigateToContentPreviewView();
   }
+
+  void navigateToCampaignBudget() {
+    navRouter.navigateToAdCampaignBudgetView();
+  }
+
+  Future<void> showAdSelectPostSheet() async {
+    await bottomSheetService.showCustomSheet(
+      variant: BottomSheetType.adSelectPost,
+      isScrollControlled: true,
+    );
+  }
 }

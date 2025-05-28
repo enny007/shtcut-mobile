@@ -18,8 +18,10 @@ class CreatePostContentView extends StackedView<CreatePostViewModel> {
   const CreatePostContentView({
     super.key,
     this.isEditView = false,
+    this.isAdCampaign = false,
   });
   final bool isEditView;
+  final bool isAdCampaign;
   @override
   Widget builder(
       BuildContext context, CreatePostViewModel viewModel, Widget? child) {
@@ -81,68 +83,103 @@ class CreatePostContentView extends StackedView<CreatePostViewModel> {
               bottomverticalPercentage: 20.h,
               context: context,
             ),
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(8.r),
-              ),
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 16.w,
-                  vertical: 12.h,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Post Content',
-                      style: context.bodyMedium!.copyWith(
-                        fontWeight: FontWeight.w600,
-                        color: const Color(0xff101828),
-                      ),
+            child: Column(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8.r),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 16.w,
+                      vertical: 12.h,
                     ),
-                    Gap(2.h),
-                    Text(
-                      'Add captions to your post',
-                      style: context.bodySmall!.copyWith(
-                        color: const Color(0xff475467),
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                    Gap(21.h),
-                    AppTextField(
-                      controller: viewModel.contentController,
-                      validator: viewModel.contentValidator,
-                      maxLines: 7,
-                      hintText: 'Add Caption',
-                    ),
-                    Gap(14.h),
-                    if (viewModel.selectedMedia.isNotEmpty)
-                      MediaPreviewRow(
-                        mediaItems: viewModel.selectedMedia,
-                        onRemove: (index) => viewModel.removeMedia(index),
-                      ),
-                    Gap(viewModel.selectedMedia.isNotEmpty ? 14.h : 0),
-                    ListView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: viewModel.contentOptions.length,
-                      itemBuilder: (context, index) {
-                        final option = viewModel.contentOptions[index];
-                        return ContentOptionTile(
-                          svgPath: option['svgPath'],
-                          title: option['title'],
-                          onTap: () {
-                            option['onTap']();
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Post Content',
+                          style: context.bodyMedium!.copyWith(
+                            fontWeight: FontWeight.w600,
+                            color: const Color(0xff101828),
+                          ),
+                        ),
+                        Gap(2.h),
+                        Text(
+                          'Add captions to your post',
+                          style: context.bodySmall!.copyWith(
+                            color: const Color(0xff475467),
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                        Gap(21.h),
+                        AppTextField(
+                          controller: viewModel.contentController,
+                          validator: viewModel.contentValidator,
+                          maxLines: 7,
+                          hintText: 'Add Caption',
+                        ),
+                        Gap(14.h),
+                        if (viewModel.selectedMedia.isNotEmpty)
+                          MediaPreviewRow(
+                            mediaItems: viewModel.selectedMedia,
+                            onRemove: (index) => viewModel.removeMedia(index),
+                          ),
+                        Gap(viewModel.selectedMedia.isNotEmpty ? 14.h : 0),
+                        ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: viewModel.contentOptions.length,
+                          itemBuilder: (context, index) {
+                            final option = viewModel.contentOptions[index];
+                            return ContentOptionTile(
+                              svgPath: option['svgPath'],
+                              title: option['title'],
+                              onTap: () {
+                                option['onTap']();
+                              },
+                            );
                           },
-                        );
-                      },
+                        ),
+                        // Add padding at the bottom to ensure content is scrollable
+                        Gap(30.h),
+                      ],
                     ),
-                    // Add padding at the bottom to ensure content is scrollable
-                    Gap(30.h),
-                  ],
+                  ),
                 ),
-              ),
+                if (isAdCampaign == true) ...[
+                  Gap(8.h),
+                  GestureDetector(
+                    onTap: () {
+                      viewModel.showAdSelectPostSheet();
+                    },
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                        vertical: 12.h,
+                        horizontal: 16.w,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8.r),
+                      ),
+                      child: Row(
+                        children: [
+                          const Icon(
+                            Icons.add_circle_outline,
+                            color: kcPrimaryColor,
+                          ),
+                          Gap(10.w),
+                          Text(
+                            'Use existing post to create campaign',
+                            style: context.bodyMedium!.copyWith(),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ],
             ),
           ),
         ),
@@ -164,7 +201,9 @@ class CreatePostContentView extends StackedView<CreatePostViewModel> {
           ),
           child: AppButton(
             callback: () {
-              viewModel.navigateToPreview();
+              isAdCampaign == true
+                  ? viewModel.navigateToCampaignBudget()
+                  : viewModel.navigateToPreview();
             },
             text: 'Next',
             color: kcPrimaryColor,

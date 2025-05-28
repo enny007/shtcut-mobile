@@ -7,12 +7,12 @@ import 'package:shtcut_mobile/ui/common/app_colors.dart';
 import 'package:shtcut_mobile/ui/global_widgets/app_button.dart';
 import 'package:shtcut_mobile/ui/utils/extensions.dart';
 import 'package:shtcut_mobile/ui/views/content_preview/content_preview_view_model.dart';
-import 'package:shtcut_mobile/ui/views/content_preview/widget/facebook_preview_card.dart';
-import 'package:shtcut_mobile/ui/views/content_preview/widget/instagram_preview_card.dart';
-import 'package:shtcut_mobile/ui/views/content_preview/widget/linkedin_preview_card.dart';
+import 'package:shtcut_mobile/ui/global_widgets/facebook_preview_card.dart';
+import 'package:shtcut_mobile/ui/global_widgets/instagram_preview_card.dart';
+import 'package:shtcut_mobile/ui/global_widgets/linkedin_preview_card.dart';
 import 'package:shtcut_mobile/ui/views/content_preview/widget/social_profile_container.dart';
-import 'package:shtcut_mobile/ui/views/content_preview/widget/tiktok_preview_card.dart';
-import 'package:shtcut_mobile/ui/views/content_preview/widget/twitter_preview_card.dart';
+import 'package:shtcut_mobile/ui/global_widgets/tiktok_preview_card.dart';
+import 'package:shtcut_mobile/ui/global_widgets/twitter_preview_card.dart';
 import 'package:stacked/stacked.dart';
 
 class ContentPreviewView extends StackedView<ContentPreviewViewModel> {

@@ -7,11 +7,13 @@ import 'package:shtcut_mobile/core/service/media_service.dart';
 import 'package:shtcut_mobile/core/service/social_auth_service.dart';
 import 'package:shtcut_mobile/core/service/toast_service.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/action_sheet/action_sheet.dart';
+import 'package:shtcut_mobile/ui/bottom_sheets/ad_select_post/ad_select_post_sheet.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/add_hashtag/add_hashtag_sheet.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/add_hashtag/hashtag_created_sheet.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/add_labels/add_labels_sheet.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/create_media_folder/create_media_folder_sheet.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/create_new_task/create_new_task_sheet.dart';
+import 'package:shtcut_mobile/ui/bottom_sheets/custom_location/custom_location_sheet.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/email_verification/email_verification_sheet.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/forgot_password/forgot_password_otp_sheet.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/forgot_password/forgot_password_sheet.dart';
@@ -31,6 +33,11 @@ import 'package:shtcut_mobile/ui/bottom_sheets/set_new_password/set_new_password
 import 'package:shtcut_mobile/ui/bottom_sheets/task_created/task_created_sheet.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/welcome/welcome_sheet.dart';
 import 'package:shtcut_mobile/ui/dialogs/info_alert/info_alert_dialog.dart';
+import 'package:shtcut_mobile/ui/views/ad_management/view/ad_campaign_budget_view.dart';
+import 'package:shtcut_mobile/ui/views/ad_management/view/ad_management_view.dart';
+import 'package:shtcut_mobile/ui/views/ad_management/view/campaign_goal_view.dart';
+import 'package:shtcut_mobile/ui/views/ad_management/view/campaign_review_view.dart';
+import 'package:shtcut_mobile/ui/views/ad_management/view/create_ad_campaign_view.dart';
 import 'package:shtcut_mobile/ui/views/all_post/all_post_view.dart';
 import 'package:shtcut_mobile/ui/views/calendar/calendar_view.dart';
 import 'package:shtcut_mobile/ui/views/connect_accounts/connect_accounts_view.dart';
@@ -172,6 +179,26 @@ import 'package:stacked_services/stacked_services.dart';
     page: MediaDetailsView,
     transitionsBuilder: TransitionsBuilders.fadeIn,
   ),
+  CustomRoute(
+    page: AdManagementView,
+    transitionsBuilder: TransitionsBuilders.fadeIn,
+  ),
+  CustomRoute(
+    page: CreateAdCampaignView,
+    transitionsBuilder: TransitionsBuilders.fadeIn,
+  ),
+  CustomRoute(
+    page: CampaignGoalView,
+    transitionsBuilder: TransitionsBuilders.fadeIn,
+  ),
+  CustomRoute(
+    page: AdCampaignBudgetView,
+    transitionsBuilder: TransitionsBuilders.fadeIn,
+  ),
+  CustomRoute(
+    page: CampaignReviewView,
+    transitionsBuilder: TransitionsBuilders.fadeIn,
+  ),
 
   // @stacked-route
 ], dependencies: [
@@ -215,6 +242,8 @@ import 'package:stacked_services/stacked_services.dart';
   StackedBottomsheet(classType: CreateNewTaskSheet),
   StackedBottomsheet(classType: TaskCreatedSheet),
   StackedBottomsheet(classType: GroupProfilePictureSheet),
+  StackedBottomsheet(classType: CustomLocationSheet),
+  StackedBottomsheet(classType: AdSelectPostSheet),
   // @stacked-bottom-sheet
 ], dialogs: [
   StackedDialog(classType: InfoAlertDialog),

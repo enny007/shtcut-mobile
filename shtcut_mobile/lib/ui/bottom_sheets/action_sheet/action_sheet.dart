@@ -98,7 +98,9 @@ class ActionSheet extends StackedView<ActionModel> {
                               SvgPicture.asset('assets/svgs/Broadcast.svg'),
                           title: 'Create New Ad',
                           subtitle: 'Post to your social platform',
-                          onTap: () {},
+                          onTap: () {
+                            viewModel.navigateToAdCampaignView();
+                          },
                         ),
                         Gap(22.h),
                         Text(

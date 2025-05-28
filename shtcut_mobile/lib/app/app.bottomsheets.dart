@@ -8,11 +8,13 @@ import 'package:stacked_services/stacked_services.dart';
 
 import 'app.locator.dart';
 import '../ui/bottom_sheets/action_sheet/action_sheet.dart';
+import '../ui/bottom_sheets/ad_select_post/ad_select_post_sheet.dart';
 import '../ui/bottom_sheets/add_hashtag/add_hashtag_sheet.dart';
 import '../ui/bottom_sheets/add_hashtag/hashtag_created_sheet.dart';
 import '../ui/bottom_sheets/add_labels/add_labels_sheet.dart';
 import '../ui/bottom_sheets/create_media_folder/create_media_folder_sheet.dart';
 import '../ui/bottom_sheets/create_new_task/create_new_task_sheet.dart';
+import '../ui/bottom_sheets/custom_location/custom_location_sheet.dart';
 import '../ui/bottom_sheets/email_verification/email_verification_sheet.dart';
 import '../ui/bottom_sheets/forgot_password/forgot_password_otp_sheet.dart';
 import '../ui/bottom_sheets/forgot_password/forgot_password_sheet.dart';
@@ -57,6 +59,8 @@ enum BottomSheetType {
   createNewTask,
   taskCreated,
   groupProfilePicture,
+  customLocation,
+  adSelectPost,
 }
 
 void setupBottomSheetUi() {
@@ -111,6 +115,10 @@ void setupBottomSheetUi() {
         TaskCreatedSheet(request: request, completer: completer),
     BottomSheetType.groupProfilePicture: (context, request, completer) =>
         GroupProfilePictureSheet(request: request, completer: completer),
+    BottomSheetType.customLocation: (context, request, completer) =>
+        CustomLocationSheet(request: request, completer: completer),
+    BottomSheetType.adSelectPost: (context, request, completer) =>
+        AdSelectPostSheet(request: request, completer: completer),
   };
 
   bottomsheetService.setCustomSheetBuilders(builders);
