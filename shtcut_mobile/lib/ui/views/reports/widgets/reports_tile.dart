@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:shtcut_mobile/ui/common/app_colors.dart';
+import 'package:shtcut_mobile/ui/global_widgets/app_text_field.dart';
 import 'package:shtcut_mobile/ui/utils/extensions.dart';
 
 class ReportsTile extends StatefulWidget {
@@ -77,6 +78,7 @@ class _ReportsTileState extends State<ReportsTile> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity,
       padding: EdgeInsets.symmetric(
         horizontal: 14.w,
         vertical: 16.h,
@@ -84,13 +86,6 @@ class _ReportsTileState extends State<ReportsTile> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(13.19.r),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
-          ),
-        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -128,14 +123,14 @@ class _ReportsTileState extends State<ReportsTile> {
                 ],
               ),
               Gap(12.w),
-              Text(
-                widget.userName,
-                style: context.bodyMedium!.copyWith(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-              Gap(8.w),
+              // Text(
+              //   widget.userName,
+              //   style: context.bodyMedium!.copyWith(
+              //     color: Colors.black,
+              //     fontWeight: FontWeight.w400,
+              //   ),
+              // ),
+              // Gap(8.w),
               // Name and action text
               Expanded(
                 child: RichText(
@@ -150,8 +145,15 @@ class _ReportsTileState extends State<ReportsTile> {
                       ),
                       TextSpan(
                         text: ' ${widget.actionText}',
-                        style: context.bodyMedium!.copyWith(
+                        style: context.bodySmall!.copyWith(
                           color: const Color(0xff475467),
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      TextSpan(
+                        text: ' Wellness Crest',
+                        style: context.bodySmall!.copyWith(
+                          color: kcPrimaryColor,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
@@ -169,7 +171,7 @@ class _ReportsTileState extends State<ReportsTile> {
                     borderRadius: BorderRadius.circular(6.r),
                   ),
                   child: SvgPicture.asset(
-                    'assets/svgs/tag.svg', // Replace with your tag icon
+                    'assets/svgs/report_tag.svg', // Replace with your tag icon
                     width: 16.w,
                     height: 16.h,
                     colorFilter: const ColorFilter.mode(
@@ -197,45 +199,80 @@ class _ReportsTileState extends State<ReportsTile> {
           Row(
             children: [
               // Like button
-              GestureDetector(
-                onTap: widget.onLike,
-                child: SvgPicture.asset(
-                  'assets/svgs/heart.svg', // Replace with your like icon
-                  width: 16.w,
-                  height: 16.h,
-                  colorFilter: const ColorFilter.mode(
-                    Color(0xff475467),
-                    BlendMode.srcIn,
+              Row(
+                children: [
+                  GestureDetector(
+                    onTap: widget.onLike,
+                    child: SvgPicture.asset(
+                      'assets/svgs/heart.svg', // Replace with your like icon
+                      width: 16.w,
+                      height: 16.h,
+                      colorFilter: const ColorFilter.mode(
+                        Color(0xff475467),
+                        BlendMode.srcIn,
+                      ),
+                    ),
                   ),
-                ),
+                  Gap(4.w),
+                  Text(
+                    'Like',
+                    style: context.bodySmall!.copyWith(
+                      color: const Color(0xff2B2829),
+                    ),
+                  ),
+                ],
               ),
               Gap(20.w),
               // Reply button
-              GestureDetector(
-                onTap: _toggleReplyField,
-                child: SvgPicture.asset(
-                  'assets/svgs/message.svg', // Replace with your reply icon
-                  width: 16.w,
-                  height: 16.h,
-                  colorFilter: ColorFilter.mode(
-                    _showReplyField ? kcPrimaryColor : const Color(0xff475467),
-                    BlendMode.srcIn,
+              Row(
+                children: [
+                  GestureDetector(
+                    onTap: _toggleReplyField,
+                    child: SvgPicture.asset(
+                      'assets/svgs/comment.svg', // Replace with your reply icon
+                      width: 16.w,
+                      height: 16.h,
+                      colorFilter: ColorFilter.mode(
+                        _showReplyField
+                            ? kcPrimaryColor
+                            : const Color(0xff475467),
+                        BlendMode.srcIn,
+                      ),
+                    ),
                   ),
-                ),
+                  Gap(4.w),
+                  Text(
+                    'Reply',
+                    style: context.bodySmall!.copyWith(
+                      color: const Color(0xff2B2829),
+                    ),
+                  ),
+                ],
               ),
               Gap(20.w),
               // Share button
-              GestureDetector(
-                onTap: widget.onShare,
-                child: SvgPicture.asset(
-                  'assets/svgs/share.svg', // Replace with your share icon
-                  width: 16.w,
-                  height: 16.h,
-                  colorFilter: const ColorFilter.mode(
-                    Color(0xff475467),
-                    BlendMode.srcIn,
+              Row(
+                children: [
+                  GestureDetector(
+                    onTap: widget.onShare,
+                    child: SvgPicture.asset(
+                      'assets/svgs/report_share.svg', // Replace with your share icon
+                      width: 16.w,
+                      height: 16.h,
+                      colorFilter: const ColorFilter.mode(
+                        Color(0xff475467),
+                        BlendMode.srcIn,
+                      ),
+                    ),
                   ),
-                ),
+                  Gap(4.w),
+                  Text(
+                    'Share',
+                    style: context.bodySmall!.copyWith(
+                      color: const Color(0xff2B2829),
+                    ),
+                  ),
+                ],
               ),
               const Spacer(),
               // Time
@@ -250,62 +287,15 @@ class _ReportsTileState extends State<ReportsTile> {
           // Reply Text Field (conditionally shown)
           if (_showReplyField) ...[
             Gap(12.h),
-            Container(
-              padding: EdgeInsets.symmetric(
-                horizontal: 12.w,
-                vertical: 8.h,
-              ),
-              decoration: BoxDecoration(
-                color: const Color(0xffF9FAFB),
-                borderRadius: BorderRadius.circular(8.r),
-                border: Border.all(
-                  color: const Color(0xffE4E7EC),
-                ),
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: TextField(
-                      controller: _replyController,
-                      focusNode: _replyFocusNode,
-                      decoration: InputDecoration(
-                        hintText: 'Write a reply...',
-                        hintStyle: context.bodySmall!.copyWith(
-                          color: const Color(0xff98A2B3),
-                        ),
-                        border: InputBorder.none,
-                        contentPadding: EdgeInsets.zero,
-                      ),
-                      style: context.bodySmall!.copyWith(
-                        color: const Color(0xff101828),
-                      ),
-                      maxLines: null,
-                      textInputAction: TextInputAction.send,
-                      onSubmitted: (_) => _submitReply(),
-                    ),
-                  ),
-                  Gap(8.w),
-                  GestureDetector(
-                    onTap: _submitReply,
-                    child: Container(
-                      padding: EdgeInsets.all(6.w),
-                      decoration: BoxDecoration(
-                        color: kcPrimaryColor,
-                        borderRadius: BorderRadius.circular(6.r),
-                      ),
-                      child: SvgPicture.asset(
-                        'assets/svgs/send.svg', // Replace with your send icon
-                        width: 14.w,
-                        height: 14.h,
-                        colorFilter: const ColorFilter.mode(
-                          Colors.white,
-                          BlendMode.srcIn,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+            AppTextField(
+              controller: _replyController,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return 'Please enter a reply';
+                }
+                return null;
+              },
+              hintText: 'Reply Message',
             ),
           ],
         ],

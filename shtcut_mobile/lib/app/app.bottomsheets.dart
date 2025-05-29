@@ -29,6 +29,7 @@ import '../ui/bottom_sheets/password_confirmation/password_confirmation_sheet.da
 import '../ui/bottom_sheets/permission_sheet/permission_sheet.dart';
 import '../ui/bottom_sheets/post_publish/post_publish_sheet.dart';
 import '../ui/bottom_sheets/publish_post/publish_post_sheet.dart';
+import '../ui/bottom_sheets/report_filter/report_filter_sheet.dart';
 import '../ui/bottom_sheets/schedule_post/schedule_post_sheet.dart';
 import '../ui/bottom_sheets/set_new_password/set_new_password_sheet.dart';
 import '../ui/bottom_sheets/task_created/task_created_sheet.dart';
@@ -61,6 +62,7 @@ enum BottomSheetType {
   groupProfilePicture,
   customLocation,
   adSelectPost,
+  reportFilter,
 }
 
 void setupBottomSheetUi() {
@@ -119,6 +121,8 @@ void setupBottomSheetUi() {
         CustomLocationSheet(request: request, completer: completer),
     BottomSheetType.adSelectPost: (context, request, completer) =>
         AdSelectPostSheet(request: request, completer: completer),
+    BottomSheetType.reportFilter: (context, request, completer) =>
+        ReportFilterSheet(request: request, completer: completer),
   };
 
   bottomsheetService.setCustomSheetBuilders(builders);

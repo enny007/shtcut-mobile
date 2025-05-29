@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shtcut_mobile/app/app.bottomsheets.dart';
+import 'package:shtcut_mobile/app/app_setup.dart';
 import 'package:shtcut_mobile/core/base/base_view_model.dart';
 
 class ReportsViewModel extends MBaseViewModel {
@@ -6,8 +8,8 @@ class ReportsViewModel extends MBaseViewModel {
 
   List<Map<String, dynamic>> get reports => [
         {
-          'profileImage': 'assets/images/profile_1.png',
-          'socialMediaIcon': 'assets/svgs/twitter.svg',
+          'profileImage': 'assets/images/pic_1.png',
+          'socialMediaIcon': 'assets/svgs/facebook_logo.svg',
           'userName': 'John Doe',
           'actionText': 'Commented on',
           'postContent':
@@ -15,8 +17,8 @@ class ReportsViewModel extends MBaseViewModel {
           'timeAgo': '8 mins',
         },
         {
-          'profileImage': 'assets/images/profile_2.png',
-          'socialMediaIcon': 'assets/svgs/instagram.svg',
+          'profileImage': 'assets/images/pic_2.png',
+          'socialMediaIcon': 'assets/svgs/instagram_logo.svg',
           'userName': 'Jane Smith',
           'actionText': 'Posted on',
           'postContent':
@@ -24,8 +26,8 @@ class ReportsViewModel extends MBaseViewModel {
           'timeAgo': '15 mins',
         },
         {
-          'profileImage': 'assets/images/profile_1.png',
-          'socialMediaIcon': 'assets/svgs/twitter.svg',
+          'profileImage': 'assets/images/pic_1.png',
+          'socialMediaIcon': 'assets/svgs/tiktok_logo.svg',
           'userName': 'John Doe',
           'actionText': 'Commented on',
           'postContent':
@@ -33,8 +35,8 @@ class ReportsViewModel extends MBaseViewModel {
           'timeAgo': '8 mins',
         },
         {
-          'profileImage': 'assets/images/profile_2.png',
-          'socialMediaIcon': 'assets/svgs/instagram.svg',
+          'profileImage': 'assets/images/pic_2.png',
+          'socialMediaIcon': 'assets/svgs/x_logo.svg',
           'userName': 'Jane Smith',
           'actionText': 'Posted on',
           'postContent':
@@ -42,8 +44,8 @@ class ReportsViewModel extends MBaseViewModel {
           'timeAgo': '15 mins',
         },
         {
-          'profileImage': 'assets/images/profile_1.png',
-          'socialMediaIcon': 'assets/svgs/twitter.svg',
+          'profileImage': 'assets/images/pic_1.png',
+          'socialMediaIcon': 'assets/svgs/x_logo.svg',
           'userName': 'John Doe',
           'actionText': 'Commented on',
           'postContent':
@@ -51,8 +53,8 @@ class ReportsViewModel extends MBaseViewModel {
           'timeAgo': '8 mins',
         },
         {
-          'profileImage': 'assets/images/profile_2.png',
-          'socialMediaIcon': 'assets/svgs/instagram.svg',
+          'profileImage': 'assets/images/pic_2.png',
+          'socialMediaIcon': 'assets/svgs/youtube_logo.svg',
           'userName': 'Jane Smith',
           'actionText': 'Posted on',
           'postContent':
@@ -66,6 +68,13 @@ class ReportsViewModel extends MBaseViewModel {
     // Handle reply submission logic here
     print('Reply to post $postIndex: $reply');
     // You can add logic to save the reply, send to API, etc.
+  }
+
+  Future<void> showFilterSheet() async {
+    await bottomSheetService.showCustomSheet(
+      variant: BottomSheetType.reportFilter,
+      isScrollControlled: true,
+    );
   }
 
   @override

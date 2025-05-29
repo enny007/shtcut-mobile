@@ -37,4 +37,9 @@ class ActionModel extends BaseViewModel {
     navRouter.back();
     navRouter.navigateToAdManagementView();
   }
+
+  void navigateToReportsView() {
+    navRouter.back();
+    navRouter.navigateToReportsView();
+  }
 }

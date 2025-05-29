@@ -28,6 +28,7 @@ import 'package:shtcut_mobile/ui/bottom_sheets/password_confirmation/password_co
 import 'package:shtcut_mobile/ui/bottom_sheets/permission_sheet/permission_sheet.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/post_publish/post_publish_sheet.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/publish_post/publish_post_sheet.dart';
+import 'package:shtcut_mobile/ui/bottom_sheets/report_filter/report_filter_sheet.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/schedule_post/schedule_post_sheet.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/set_new_password/set_new_password_sheet.dart';
 import 'package:shtcut_mobile/ui/bottom_sheets/task_created/task_created_sheet.dart';
@@ -57,6 +58,7 @@ import 'package:shtcut_mobile/ui/views/messaging/view/new_chat_view.dart';
 import 'package:shtcut_mobile/ui/views/messaging/view/new_group_view.dart';
 import 'package:shtcut_mobile/ui/views/onboarding/onboarding_view.dart';
 import 'package:shtcut_mobile/ui/views/recording/recording_view.dart';
+import 'package:shtcut_mobile/ui/views/reports/reports_view.dart';
 import 'package:shtcut_mobile/ui/views/sign_in/sign_in_view.dart';
 import 'package:shtcut_mobile/ui/views/sign_up/sign_up_view.dart';
 import 'package:shtcut_mobile/ui/views/social_listening/social_listening_view.dart';
@@ -199,6 +201,10 @@ import 'package:stacked_services/stacked_services.dart';
     page: CampaignReviewView,
     transitionsBuilder: TransitionsBuilders.fadeIn,
   ),
+  CustomRoute(
+    page: ReportsView,
+    transitionsBuilder: TransitionsBuilders.fadeIn,
+  ),
 
   // @stacked-route
 ], dependencies: [
@@ -244,6 +250,7 @@ import 'package:stacked_services/stacked_services.dart';
   StackedBottomsheet(classType: GroupProfilePictureSheet),
   StackedBottomsheet(classType: CustomLocationSheet),
   StackedBottomsheet(classType: AdSelectPostSheet),
+  StackedBottomsheet(classType: ReportFilterSheet),
   // @stacked-bottom-sheet
 ], dialogs: [
   StackedDialog(classType: InfoAlertDialog),

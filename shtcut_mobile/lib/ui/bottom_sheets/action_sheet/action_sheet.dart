@@ -146,7 +146,9 @@ class ActionSheet extends StackedView<ActionModel> {
                               SvgPicture.asset('assets/svgs/status-up.svg'),
                           title: 'Report',
                           subtitle: 'View user responses to post and more',
-                          onTap: () {},
+                          onTap: () {
+                            viewModel.navigateToReportsView();
+                          },
                         ),
                         Gap(6.h),
                         SelectableCard(
