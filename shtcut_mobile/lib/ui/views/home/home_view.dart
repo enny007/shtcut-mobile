@@ -29,10 +29,15 @@ class HomeView extends StackedView<HomeViewModel> {
               left: 12.w,
               bottom: 30.h,
             ),
-            child: CircleAvatar(
-              radius: 44.r,
-              backgroundImage: const AssetImage(
-                'assets/images/home_page_placard.png',
+            child: GestureDetector(
+              onTap: () {
+                viewModel.navigateToUserProfile();
+              },
+              child: CircleAvatar(
+                radius: 44.r,
+                backgroundImage: const AssetImage(
+                  'assets/images/home_page_placard.png',
+                ),
               ),
             ),
           ),

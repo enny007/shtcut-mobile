@@ -41,6 +41,7 @@ class AppTextField extends StatefulWidget {
   final FocusNode? focusNode;
   final TextInputAction? textInputAction;
   final Function(String)? onFieldSubmitted;
+  final bool isDatePicker; // New parameter for date picker
 
   const AppTextField({
     super.key,
@@ -79,6 +80,7 @@ class AppTextField extends StatefulWidget {
     this.focusNode,
     this.textInputAction,
     this.onFieldSubmitted,
+    this.isDatePicker = false, // Default to false
   });
 
   static void _defaultOnTap() {}
@@ -135,7 +137,9 @@ class _AppTextFieldState extends State<AppTextField> {
             validator: widget.validator,
             keyboardType: widget.keyboardType,
             obscureText: widget.obscureText,
-            readOnly: widget.readOnly,
+            readOnly: widget.readOnly ||
+                widget.isDatePicker, // Make read-only if it's a date picker
+            enabled: widget.enabled,
             onTap: widget.onTap,
             maxLength: widget.maxLength,
             maxLines: widget.maxLines,
@@ -219,7 +223,13 @@ class _AppTextFieldState extends State<AppTextField> {
                       ),
                       child: widget.suffixIcon,
                     )
-                  : null,
+                  : widget.isDatePicker
+                      ? Icon(
+                          Icons.calendar_today,
+                          color: Colors.grey,
+                          size: 20.w,
+                        )
+                      : null,
               fillColor: widget.fillColor,
               filled: true,
             )),

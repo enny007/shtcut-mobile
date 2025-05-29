@@ -40,6 +40,7 @@ class ReportsView extends StackedView<ReportsViewModel> {
                 ),
               ),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

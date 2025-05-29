@@ -118,7 +118,7 @@ class MessageProfileView extends StackedView<MessageProfileViewModel> {
               Gap(13.h),
               Center(
                 child: Container(
-                  height: 80.h,
+                  height: 90.h,
                   padding: EdgeInsets.symmetric(
                     horizontal: 27.w,
                     vertical: 10.h,
@@ -130,6 +130,7 @@ class MessageProfileView extends StackedView<MessageProfileViewModel> {
                   child: ListView.separated(
                     itemCount: viewModel.profileList.length,
                     shrinkWrap: true,
+                    padding: EdgeInsets.zero,
                     scrollDirection: Axis.horizontal,
                     physics: const NeverScrollableScrollPhysics(),
                     separatorBuilder: (BuildContext context, int index) {
@@ -262,6 +263,7 @@ class MessageProfileView extends StackedView<MessageProfileViewModel> {
                 ),
                 child: ListView.separated(
                   itemCount: viewModel.members.length,
+                  padding: EdgeInsets.zero,
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   separatorBuilder: (BuildContext context, int index) {

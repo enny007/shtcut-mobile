@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shtcut_mobile/app/app.router.dart';
+import 'package:shtcut_mobile/app/app_setup.dart';
 import 'package:stacked/stacked.dart';
 
 class HomeViewModel extends BaseViewModel {
@@ -24,4 +26,8 @@ class HomeViewModel extends BaseViewModel {
     const CircleAvatar(backgroundImage: AssetImage('assets/images/pic_2.png')),
     const CircleAvatar(backgroundImage: AssetImage('assets/images/pic_2.png')),
   ];
+
+  void navigateToUserProfile() {
+    navRouter.navigateToUserProfileView();
+  }
 }

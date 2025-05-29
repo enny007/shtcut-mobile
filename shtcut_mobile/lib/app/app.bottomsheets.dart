@@ -28,11 +28,14 @@ import '../ui/bottom_sheets/notice/notice_sheet.dart';
 import '../ui/bottom_sheets/password_confirmation/password_confirmation_sheet.dart';
 import '../ui/bottom_sheets/permission_sheet/permission_sheet.dart';
 import '../ui/bottom_sheets/post_publish/post_publish_sheet.dart';
+import '../ui/bottom_sheets/profile_updated/profile_updated_sheet.dart';
 import '../ui/bottom_sheets/publish_post/publish_post_sheet.dart';
 import '../ui/bottom_sheets/report_filter/report_filter_sheet.dart';
 import '../ui/bottom_sheets/schedule_post/schedule_post_sheet.dart';
 import '../ui/bottom_sheets/set_new_password/set_new_password_sheet.dart';
 import '../ui/bottom_sheets/task_created/task_created_sheet.dart';
+import '../ui/bottom_sheets/update_password/update_password_sheet.dart';
+import '../ui/bottom_sheets/update_profile/update_profile_sheet.dart';
 import '../ui/bottom_sheets/welcome/welcome_sheet.dart';
 
 enum BottomSheetType {
@@ -63,6 +66,9 @@ enum BottomSheetType {
   customLocation,
   adSelectPost,
   reportFilter,
+  updateProfile,
+  profileUpdated,
+  updatePassword,
 }
 
 void setupBottomSheetUi() {
@@ -123,6 +129,12 @@ void setupBottomSheetUi() {
         AdSelectPostSheet(request: request, completer: completer),
     BottomSheetType.reportFilter: (context, request, completer) =>
         ReportFilterSheet(request: request, completer: completer),
+    BottomSheetType.updateProfile: (context, request, completer) =>
+        UpdateProfileSheet(request: request, completer: completer),
+    BottomSheetType.profileUpdated: (context, request, completer) =>
+        ProfileUpdatedSheet(request: request, completer: completer),
+    BottomSheetType.updatePassword: (context, request, completer) =>
+        UpdatePasswordSheet(request: request, completer: completer),
   };
 
   bottomsheetService.setCustomSheetBuilders(builders);

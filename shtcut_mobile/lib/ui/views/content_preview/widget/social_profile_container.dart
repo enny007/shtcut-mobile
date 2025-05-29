@@ -56,6 +56,7 @@ class SocialProfilesContainer extends StatelessWidget {
           width: 1.w,
         ),
       ),
+      alignment: Alignment.center,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -63,6 +64,7 @@ class SocialProfilesContainer extends StatelessWidget {
           ...List.generate(
             socialPlatforms.length,
             (index) => Row(
+         
               children: [
                 GestureDetector(
                   onTap: () {
