@@ -64,7 +64,6 @@ class SocialProfilesContainer extends StatelessWidget {
           ...List.generate(
             socialPlatforms.length,
             (index) => Row(
-         
               children: [
                 GestureDetector(
                   onTap: () {
